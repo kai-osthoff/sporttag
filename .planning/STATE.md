@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-17)
 
 **Core value:** Native macOS App fuer faire, automatisierte Zuteilung — installierbar mit einem Terminal-Befehl
-**Current focus:** Phase 7: Build Pipeline
+**Current focus:** Phase 8: Installation Scripts
 
 ## Current Position
 
-Phase: 7 of 9 (Build Pipeline) - IN PROGRESS
-Plan: 1 of 2 in current phase
-Status: Plan 07-01 complete
-Last activity: 2026-01-17 — Completed 07-01-PLAN.md
+Phase: 7 of 9 (Build Pipeline) - COMPLETE
+Plan: 2 of 2 in current phase
+Status: Phase 07 complete
+Last activity: 2026-01-17 — Completed 07-02-PLAN.md
 
-Progress: [================....] 80% (16 of 20 plans across v1.0+v2.0)
+Progress: [=================...] 85% (17 of 20 plans across v1.0+v2.0)
 
 ## Performance Metrics
 
@@ -24,7 +24,7 @@ Progress: [================....] 80% (16 of 20 plans across v1.0+v2.0)
 - Total milestone time: ~30min execution
 
 **v2.0 (in progress):**
-- Total plans completed: 4
+- Total plans completed: 5
 - Estimated plans: 8 (based on phase structure)
 
 **By Phase:**
@@ -37,7 +37,7 @@ Progress: [================....] 80% (16 of 20 plans across v1.0+v2.0)
 | 04-output | 4 | 8.4min | 2.1min |
 | 05-electron | 2 | 19min | 9.5min |
 | 06-database | 1 | 1.8min | 1.8min |
-| 07-build | 1 | 14min | 14min |
+| 07-build | 2 | 29min | 14.5min |
 | 08-install | - | - | - |
 | 09-updates | - | - | - |
 
@@ -63,6 +63,8 @@ Recent decisions for v2.0:
 - macOS 12.0 minimum system version (Monterey, covers 2017+ Macs) (07-01)
 - Dark gray background (#2d2d2d) for DMG installer appearance (07-01)
 - images.unoptimized in next.config.ts to prevent sharp conflicts (07-01)
+- ARM64-only build using free macos-14 runner (Rosetta 2 covers Intel) (07-02)
+- explicit contents:write permission for workflow releases (07-02)
 
 ### Pending Todos
 
@@ -75,10 +77,18 @@ Recent decisions for v2.0:
 
 ### Blockers/Concerns
 
-- Universal binary not achievable locally (better-sqlite3 in standalone) - GitHub Actions 07-02 may address this
+- None currently (universal binary concern resolved - ARM64 works on Intel via Rosetta 2)
 
 ## Session Continuity
 
-Last session: 2026-01-17T18:39Z
-Stopped at: Completed 07-01-PLAN.md (DMG Build Configuration)
-Resume file: None (Continue to 07-02 GitHub Actions)
+Last session: 2026-01-17T18:56Z
+Stopped at: Completed 07-02-PLAN.md (GitHub Actions Release)
+Resume file: None (Continue to 08-install phase)
+
+## Release Information
+
+**v2.0.0 Released:**
+- URL: https://github.com/kai-osthoff/sporttag/releases/tag/v2.0.0
+- ARM64 DMG: Sporttag-2.0.0-arm64.dmg (130MB)
+- x64 DMG: Sporttag-2.0.0.dmg (134MB)
+- Repository: public (kai-osthoff/sporttag)
