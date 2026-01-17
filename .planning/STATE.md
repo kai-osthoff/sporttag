@@ -5,11 +5,11 @@
 See: .planning/PROJECT.md (updated 2026-01-17)
 
 **Core value:** Native macOS App fuer faire, automatisierte Zuteilung — installierbar mit einem Terminal-Befehl
-**Current focus:** Phase 6: Database Paths (or Phase 7: Build Pipeline)
+**Current focus:** Phase 7: Build Pipeline
 
 ## Current Position
 
-Phase: 6 of 9 (Database Migration) - IN PROGRESS
+Phase: 6 of 9 (Database Migration) - COMPLETE
 Plan: 1 of 1 in current phase
 Status: Phase complete
 Last activity: 2026-01-17 — Completed 06-01-PLAN.md
@@ -24,7 +24,7 @@ Progress: [===============.....] 75% (15 of 20 plans across v1.0+v2.0)
 - Total milestone time: ~30min execution
 
 **v2.0 (in progress):**
-- Total plans completed: 2
+- Total plans completed: 3
 - Estimated plans: 8 (based on phase structure)
 
 **By Phase:**

@@ -17,9 +17,9 @@ Requirements for Desktop Distribution milestone. Each maps to roadmap phases.
 
 ### Data Persistence
 
-- [ ] **DATA-01**: SQLite-Datenbank wird in ~/Library/Application Support/Sporttag/ gespeichert
-- [ ] **DATA-02**: Datenbank ueberlebt App-Updates ohne Datenverlust
-- [ ] **DATA-03**: Bei erstem Start wird Datenbankverzeichnis automatisch erstellt
+- [x] **DATA-01**: SQLite-Datenbank wird in ~/Library/Application Support/Sporttag/ gespeichert
+- [x] **DATA-02**: Datenbank ueberlebt App-Updates ohne Datenverlust
+- [x] **DATA-03**: Bei erstem Start wird Datenbankverzeichnis automatisch erstellt
 
 ### Installation
 
@@ -89,9 +89,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DESK-03 | Phase 5 | Complete |
 | DESK-04 | Phase 5 | Complete |
 | DESK-05 | Phase 5 | Complete |
-| DATA-01 | Phase 6 | Pending |
-| DATA-02 | Phase 6 | Pending |
-| DATA-03 | Phase 6 | Pending |
+| DATA-01 | Phase 6 | Complete |
+| DATA-02 | Phase 6 | Complete |
+| DATA-03 | Phase 6 | Complete |
 | INST-01 | Phase 8 | Pending |
 | INST-02 | Phase 8 | Pending |
 | INST-03 | Phase 7 | Pending |
@@ -113,4 +113,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-17*
-*Last updated: 2026-01-17 after roadmap creation*
+*Last updated: 2026-01-17 after Phase 6 completion*

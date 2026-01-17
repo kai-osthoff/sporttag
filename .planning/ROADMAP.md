@@ -57,7 +57,7 @@ Plans:
 **Milestone Goal:** Native macOS Desktop-App mit Ein-Befehl-Installation fuer nicht-technische Lehrer
 
 - [x] **Phase 5: Electron Shell** - Electron wrapper with Next.js standalone server
-- [ ] **Phase 6: Database Migration** - SQLite in Application Support folder
+- [x] **Phase 6: Database Migration** - SQLite in Application Support folder
 - [ ] **Phase 7: Build Pipeline** - DMG generation and GitHub Releases
 - [ ] **Phase 8: Installation + README** - curl installer and user documentation
 - [ ] **Phase 9: Update Notification** - In-app banner for new versions
@@ -91,7 +91,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 06-01-PLAN.md — userData directory creation, migration runner, and extraResources config
+- [x] 06-01-PLAN.md — userData directory creation, migration runner, and extraResources config
 
 ### Phase 7: Build Pipeline
 **Goal**: Automated build produces distributable DMG for ARM and Intel Macs
@@ -149,7 +149,7 @@ Plans:
 | 3. Allocation | v1.0 | 4/4 | Complete | 2026-01-16 |
 | 4. Output | v1.0 | 4/4 | Complete | 2026-01-17 |
 | 5. Electron Shell | v2.0 | 2/2 | Complete | 2026-01-17 |
-| 6. Database Migration | v2.0 | 0/1 | Planned | - |
+| 6. Database Migration | v2.0 | 1/1 | Complete | 2026-01-17 |
 | 7. Build Pipeline | v2.0 | 0/? | Not started | - |
 | 8. Installation + README | v2.0 | 0/? | Not started | - |
 | 9. Update Notification | v2.0 | 0/? | Not started | - |
