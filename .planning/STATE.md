@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 
 ## Current Position
 
-Phase: 5 of 9 (Electron Shell) - COMPLETE
-Plan: 2 of 2 in current phase
+Phase: 6 of 9 (Database Migration) - IN PROGRESS
+Plan: 1 of 1 in current phase
 Status: Phase complete
-Last activity: 2026-01-17 — Completed 05-02-PLAN.md
+Last activity: 2026-01-17 — Completed 06-01-PLAN.md
 
-Progress: [==============......] 70% (14 of 20 plans across v1.0+v2.0)
+Progress: [===============.....] 75% (15 of 20 plans across v1.0+v2.0)
 
 ## Performance Metrics
 
@@ -36,7 +36,7 @@ Progress: [==============......] 70% (14 of 20 plans across v1.0+v2.0)
 | 03-allocation | 4 | 11min | 2.75min |
 | 04-output | 4 | 8.4min | 2.1min |
 | 05-electron | 2 | 19min | 9.5min |
-| 06-database | - | - | - |
+| 06-database | 1 | 1.8min | 1.8min |
 | 07-build | - | - | - |
 | 08-install | - | - | - |
 | 09-updates | - | - | - |
@@ -55,6 +55,10 @@ Recent decisions for v2.0:
 - DB_PATH env var for production/development database path switching
 - Dev mode detection via app.isPackaged
 - electron-builder install-app-deps for native module postinstall
+- userData directory (~/.../Application Support/Sporttag/) for production database (06-01)
+- MIGRATIONS_PATH env var for bundled migration files location (06-01)
+- Automatic migration on app startup (synchronous with better-sqlite3) (06-01)
+- Graceful migration failure handling (log but don't crash) (06-01)
 
 ### Pending Todos
 
@@ -69,6 +73,6 @@ Recent decisions for v2.0:
 
 ## Session Continuity
 
-Last session: 2026-01-17T17:00Z
-Stopped at: Completed 05-02-PLAN.md (macOS Window Behavior)
-Resume file: None (Phase 5 complete, proceed to Phase 6 or 7)
+Last session: 2026-01-17T17:42Z
+Stopped at: Completed 06-01-PLAN.md (Database Persistence)
+Resume file: None (Phase 6 complete, proceed to Phase 7: Build Pipeline)
