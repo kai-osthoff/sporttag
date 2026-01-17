@@ -46,8 +46,10 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
       setPriority1('')
       setPriority2('')
       setPriority3('')
-      // Focus first field for next entry
-      firstNameRef.current?.focus()
+      // Focus first field for next entry (slight delay ensures DOM is ready)
+      setTimeout(() => {
+        firstNameRef.current?.focus()
+      }, 0)
     }
   }, [state.success, state.savedStudent])
 
