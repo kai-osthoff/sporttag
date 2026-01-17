@@ -88,7 +88,12 @@ Plans:
 5. All lists print cleanly on A4 paper with readable fonts (designed for SMV-Brett posting)
 6. Teacher can view statistics dashboard showing allocation overview
 
-**Plans:** (created by /gsd:plan-phase)
+**Plans:** 3 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Print infrastructure and CSV export utilities
+- [ ] 04-02-PLAN.md — Output dashboard and per-event participant lists
+- [ ] 04-03-PLAN.md — Per-class list and enhanced Sonderliste
 
 ---
 
