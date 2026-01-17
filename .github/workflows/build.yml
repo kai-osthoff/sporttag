@@ -7,17 +7,7 @@ on:
 
 jobs:
   build-mac:
-    strategy:
-      matrix:
-        include:
-          - os: macos-14
-            arch: arm64
-            runner_arch: ARM64
-          - os: macos-15-large
-            arch: x64
-            runner_arch: X64
-
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-14
 
     steps:
       - name: Checkout code
@@ -49,4 +39,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: false
-        run: npx electron-builder --mac --${{ matrix.arch }} --publish always
+        run: npx electron-builder --mac --arm64 --publish always
