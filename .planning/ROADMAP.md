@@ -42,7 +42,11 @@ Plans:
 3. Teacher sees confirmation message after successful registration
 4. Teacher can view list of all registered students with their selected priorities
 
-**Plans:** (created by /gsd:plan-phase)
+**Plans:** 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Database schema extension and UI components (students table, Select, Sonner)
+- [ ] 02-02-PLAN.md — Registration form and student list pages
 
 ---
 
@@ -87,7 +91,7 @@ Plans:
 | Phase | Status | Completed |
 |-------|--------|-----------|
 | 1 - Foundation + Events | Complete | 2026-01-17 |
-| 2 - Registration | Not started | -- |
+| 2 - Registration | Planned | -- |
 | 3 - Allocation | Not started | -- |
 | 4 - Output | Not started | -- |
 
