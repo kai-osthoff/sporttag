@@ -5,29 +5,29 @@
 See: .planning/PROJECT.md
 
 **Core value:** Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen per Losverfahren
-**Current focus:** Phase 2 Registration -- Plan 01 complete
+**Current focus:** Phase 2 Registration -- Plan 02 complete
 
 ## Current Position
 
 Phase: 2 of 4 (Registration)
-Plan: 1 of 3 complete
+Plan: 2 of 3 complete
 Status: In progress
-Last activity: 2026-01-17 -- Completed 02-01-PLAN.md (Registration Schema Setup)
+Last activity: 2026-01-17 -- Completed 02-02-PLAN.md (Registration Form)
 
-Progress: [============--------] 37% (3 of ~8 plans across 4 phases)
+Progress: [==============------] 50% (4 of ~8 plans across 4 phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 3.7min
+- Total plans completed: 4
+- Average duration: 3.25min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation-events | 2 | 9min | 4.5min |
-| 02-registration | 1 | 2min | 2min |
+| 02-registration | 2 | 4min | 2min |
 
 ## Accumulated Context
 
@@ -40,10 +40,10 @@ Progress: [============--------] 37% (3 of ~8 plans across 4 phases)
 - 2026-01-17: Used .bind(null, id) pattern for passing event ID to updateEvent action
 - 2026-01-17: Used fixed light theme for Sonner (avoids theme provider complexity)
 - 2026-01-17: Used z.coerce.number() for priority IDs (FormData returns strings)
+- 2026-01-17: Used SQL subqueries for priority name lookup (simpler than Drizzle relations)
 
 ### Pending Todos
 
-- Delete event needs registration check when students table has registrations
 - Capacity display needs JOIN query for actual registrations
 
 ### Blockers/Concerns
@@ -52,6 +52,6 @@ Progress: [============--------] 37% (3 of ~8 plans across 4 phases)
 
 ## Session Continuity
 
-Last session: 2026-01-17 10:35
-Stopped at: Completed 02-01-PLAN.md (Registration Schema Setup)
-Resume file: 02-02-PLAN.md (Registration Form)
+Last session: 2026-01-17 10:39
+Stopped at: Completed 02-02-PLAN.md (Registration Form)
+Resume file: 02-03-PLAN.md (Registration List Enhancements)
