@@ -132,10 +132,11 @@ Plans:
   2. Banner is visible but not blocking (can continue using app)
   3. Banner contains a link/button that opens the download page
   4. User can dismiss the banner (it does not reappear until next launch)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 09-01: TBD (GitHub Releases API check + notification banner)
+- [ ] 09-01-PLAN.md — Electron IPC extension and version comparison utility
+- [ ] 09-02-PLAN.md — Update check hook and banner component
 
 ## Progress
 
@@ -151,7 +152,7 @@ Plans:
 | 6. Database Migration | v2.0 | 1/1 | Complete | 2026-01-17 |
 | 7. Build Pipeline | v2.0 | 2/2 | Complete | 2026-01-17 |
 | 8. Installation + README | v2.0 | 1/1 | Complete | 2026-01-17 |
-| 9. Update Notification | v2.0 | 0/? | Not started | - |
+| 9. Update Notification | v2.0 | 0/2 | Not started | - |
 
 ---
 *Roadmap created: 2026-01-17*
