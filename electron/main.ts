@@ -107,9 +107,8 @@ function createWindow(): void {
   // Let windowStateKeeper track position and size changes
   windowState.manage(mainWindow);
 
-  // Determine URL based on development vs production mode
-  const isDev = !app.isPackaged;
-  const url = isDev ? 'http://localhost:3000' : `http://localhost:${PORT}`;
+  // Use PORT 3456 for both dev and production (consistent, avoids conflicts)
+  const url = `http://localhost:${PORT}`;
   mainWindow.loadURL(url);
 
   // macOS: Hide instead of close on X button (unless actually quitting)

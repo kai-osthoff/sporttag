@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "postinstall": "electron-builder install-app-deps",
-    "electron:dev": "concurrently -k \"next dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron:dev": "concurrently -k \"next dev -p 3456\" \"wait-on http://localhost:3456 && electron .\"",
     "electron:build": "next build && electron-builder --mac"
   },
   "dependencies": {
