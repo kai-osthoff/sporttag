@@ -5,7 +5,7 @@
 See: .planning/PROJECT.md
 
 **Core value:** Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen per Losverfahren
-**Current focus:** Phase 3 complete -- Ready for Phase 4 (Output)
+**Current focus:** All 4 phases complete -- Milestone v1.0 ready for audit
 
 ## Current Position
 

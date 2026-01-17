@@ -35,12 +35,12 @@ Requirements fuer den ersten Release. Jedes Requirement wird einer Phase zugeord
 
 ### Ausgabe
 
-- [ ] **OUT-01**: System generiert Teilnehmerliste pro Veranstaltung
-- [ ] **OUT-02**: System generiert Teilnehmerliste pro Klasse
-- [ ] **OUT-03**: System generiert Sonderliste (unzugeteilte Schueler)
-- [ ] **OUT-04**: Alle Listen sind als CSV exportierbar
-- [ ] **OUT-05**: Alle Listen sind druckfreundlich formatiert (fuers SMV-Brett)
-- [ ] **OUT-06**: System zeigt Statistik-Dashboard mit Uebersicht
+- [x] **OUT-01**: System generiert Teilnehmerliste pro Veranstaltung
+- [x] **OUT-02**: System generiert Teilnehmerliste pro Klasse
+- [x] **OUT-03**: System generiert Sonderliste (unzugeteilte Schueler)
+- [x] **OUT-04**: Alle Listen sind als CSV exportierbar
+- [x] **OUT-05**: Alle Listen sind druckfreundlich formatiert (fuers SMV-Brett)
+- [x] **OUT-06**: System zeigt Statistik-Dashboard mit Uebersicht
 
 ## v2 Requirements
 
@@ -102,12 +102,12 @@ Welche Phase deckt welches Requirement ab.
 | ALLOC-05 | Phase 3 | Complete |
 | ALLOC-06 | Phase 3 | Complete |
 | ALLOC-07 | Phase 3 | Complete |
-| OUT-01 | Phase 4 | Pending |
-| OUT-02 | Phase 4 | Pending |
-| OUT-03 | Phase 4 | Pending |
-| OUT-04 | Phase 4 | Pending |
-| OUT-05 | Phase 4 | Pending |
-| OUT-06 | Phase 4 | Pending |
+| OUT-01 | Phase 4 | Complete |
+| OUT-02 | Phase 4 | Complete |
+| OUT-03 | Phase 4 | Complete |
+| OUT-04 | Phase 4 | Complete |
+| OUT-05 | Phase 4 | Complete |
+| OUT-06 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 23 total

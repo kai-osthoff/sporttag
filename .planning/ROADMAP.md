@@ -94,7 +94,7 @@ Plans:
 - [x] 04-01-PLAN.md — Print infrastructure and CSV export utilities
 - [x] 04-02-PLAN.md — Output dashboard and per-event participant lists
 - [x] 04-03-PLAN.md — Per-class list and enhanced Sonderliste
-- [ ] 04-04-PLAN.md — Gap closure: integrate AllocationStats into output page
+- [x] 04-04-PLAN.md — Gap closure: integrate AllocationStats into output page
 
 ---
 
@@ -105,7 +105,7 @@ Plans:
 | 1 - Foundation + Events | Complete | 2026-01-17 |
 | 2 - Registration | Complete | 2026-01-17 |
 | 3 - Allocation | Complete | 2026-01-17 |
-| 4 - Output | In progress | -- |
+| 4 - Output | Complete | 2026-01-17 |
 
 ---
 
