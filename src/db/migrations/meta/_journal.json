@@ -8,6 +8,13 @@
       "when": 1768641325418,
       "tag": "0000_tan_agent_brand",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1768646080779,
+      "tag": "0001_new_red_wolf",
+      "breakpoints": true
     }
   ]
 }
