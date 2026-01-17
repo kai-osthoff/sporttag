@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-17)
 
 **Core value:** Native macOS App fuer faire, automatisierte Zuteilung — installierbar mit einem Terminal-Befehl
-**Current focus:** Phase 5: Electron Shell
+**Current focus:** Phase 6: Database Paths (or Phase 7: Build Pipeline)
 
 ## Current Position
 
-Phase: 5 of 9 (Electron Shell)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-17 — Completed 05-01-PLAN.md
+Phase: 5 of 9 (Electron Shell) - COMPLETE
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-01-17 — Completed 05-02-PLAN.md
 
-Progress: [=============.......] 65% (13 of 20 plans across v1.0+v2.0)
+Progress: [==============......] 70% (14 of 20 plans across v1.0+v2.0)
 
 ## Performance Metrics
 
@@ -24,7 +24,7 @@ Progress: [=============.......] 65% (13 of 20 plans across v1.0+v2.0)
 - Total milestone time: ~30min execution
 
 **v2.0 (in progress):**
-- Total plans completed: 1
+- Total plans completed: 2
 - Estimated plans: 8 (based on phase structure)
 
 **By Phase:**
@@ -35,7 +35,7 @@ Progress: [=============.......] 65% (13 of 20 plans across v1.0+v2.0)
 | 02-registration | 2 | 4min | 2min |
 | 03-allocation | 4 | 11min | 2.75min |
 | 04-output | 4 | 8.4min | 2.1min |
-| 05-electron | 1 | 4min | 4min |
+| 05-electron | 2 | 19min | 9.5min |
 | 06-database | - | - | - |
 | 07-build | - | - | - |
 | 08-install | - | - | - |
@@ -53,6 +53,8 @@ Recent decisions for v2.0:
 - Manual updates over auto-update (simpler, more transparent)
 - Port 3456 for embedded server (avoid conflicts with dev servers)
 - DB_PATH env var for production/development database path switching
+- Dev mode detection via app.isPackaged
+- electron-builder install-app-deps for native module postinstall
 
 ### Pending Todos
 
@@ -67,6 +69,6 @@ Recent decisions for v2.0:
 
 ## Session Continuity
 
-Last session: 2026-01-17T15:33Z
-Stopped at: Completed 05-01-PLAN.md (Electron Shell Setup)
-Resume file: .planning/phases/05-electron-shell/05-02-PLAN.md
+Last session: 2026-01-17T17:00Z
+Stopped at: Completed 05-02-PLAN.md (macOS Window Behavior)
+Resume file: None (Phase 5 complete, proceed to Phase 6 or 7)
