@@ -12,7 +12,7 @@ See: .planning/PROJECT.md
 Phase: 4 of 4 (Output) -- IN PROGRESS
 Plan: 3 of 4 complete
 Status: In progress
-Last activity: 2026-01-17 -- Completed 04-03-PLAN.md (Per-Class Lists & Enhanced Sonderliste)
+Last activity: 2026-01-17 -- Completed 04-02-PLAN.md (Per-Event Participant Lists)
 
 Progress: [===================–] 95% (11 of ~12 plans across 4 phases)
 
@@ -20,7 +20,7 @@ Progress: [===================–] 95% (11 of ~12 plans across 4 phases)
 
 **Velocity:**
 - Total plans completed: 11
-- Average duration: 2.6min
+- Average duration: 2.7min
 
 **By Phase:**
 
@@ -29,7 +29,7 @@ Progress: [===================–] 95% (11 of ~12 plans across 4 phases)
 | 01-foundation-events | 2 | 9min | 4.5min |
 | 02-registration | 2 | 4min | 2min |
 | 03-allocation | 4 | 11min | 2.75min |
-| 04-output | 3 | 5.7min | 1.9min |
+| 04-output | 3 | 7.4min | 2.47min |
 
 ## Accumulated Context
 
@@ -59,6 +59,8 @@ Progress: [===================–] 95% (11 of ~12 plans across 4 phases)
 - 2026-01-17: Group class selector by Klassenstufe for easier navigation
 - 2026-01-17: Server-side reason calculation for unassigned students
 - 2026-01-17: Sort by Vorname first, then Nachname (German name conventions)
+- 2026-01-17: Server/client composition for per-event lists (server fetches, client displays/exports)
+- 2026-01-17: Three-column participant table (Vorname, Nachname, Klasse) for SMV-Brett
 
 ### Pending Todos
 
@@ -70,6 +72,6 @@ Progress: [===================–] 95% (11 of ~12 plans across 4 phases)
 
 ## Session Continuity
 
-Last session: 2026-01-17 13:01
-Stopped at: Completed 04-03-PLAN.md (Per-Class Lists & Enhanced Sonderliste)
+Last session: 2026-01-17 13:03
+Stopped at: Completed 04-02-PLAN.md (Per-Event Participant Lists)
 Resume file: None
