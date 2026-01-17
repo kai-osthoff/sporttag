@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md
 
 **Core value:** Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen per Losverfahren
-**Current focus:** Phase 2 Registration -- Plan 02 complete
+**Current focus:** Phase 2 complete -- Ready for Phase 3 (Allocation)
 
 ## Current Position
 
-Phase: 2 of 4 (Registration)
-Plan: 2 of 3 complete
-Status: In progress
+Phase: 2 of 4 (Registration) -- COMPLETE
+Plan: 2 of 2 complete
+Status: Phase complete
 Last activity: 2026-01-17 -- Completed 02-02-PLAN.md (Registration Form)
 
-Progress: [==============------] 50% (4 of ~8 plans across 4 phases)
+Progress: [==========----------] 50% (4 of ~8 plans across 4 phases)
 
 ## Performance Metrics
 
@@ -44,7 +44,7 @@ Progress: [==============------] 50% (4 of ~8 plans across 4 phases)
 
 ### Pending Todos
 
-- Capacity display needs JOIN query for actual registrations
+- Capacity display needs JOIN query for actual registrations (shows allocated count in Phase 3)
 
 ### Blockers/Concerns
 
@@ -52,6 +52,6 @@ Progress: [==============------] 50% (4 of ~8 plans across 4 phases)
 
 ## Session Continuity
 
-Last session: 2026-01-17 10:39
-Stopped at: Completed 02-02-PLAN.md (Registration Form)
-Resume file: 02-03-PLAN.md (Registration List Enhancements)
+Last session: 2026-01-17 10:45
+Stopped at: Completed Phase 2 (Registration)
+Resume file: Phase 3 plans (allocation)

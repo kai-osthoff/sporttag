@@ -45,8 +45,8 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Database schema extension and UI components (students table, Select, Sonner)
-- [ ] 02-02-PLAN.md — Registration form and student list pages
+- [x] 02-01-PLAN.md — Database schema extension and UI components (students table, Select, Sonner)
+- [x] 02-02-PLAN.md — Registration form and student list pages
 
 ---
 
@@ -91,7 +91,7 @@ Plans:
 | Phase | Status | Completed |
 |-------|--------|-----------|
 | 1 - Foundation + Events | Complete | 2026-01-17 |
-| 2 - Registration | Planned | -- |
+| 2 - Registration | Complete | 2026-01-17 |
 | 3 - Allocation | Not started | -- |
 | 4 - Output | Not started | -- |
 

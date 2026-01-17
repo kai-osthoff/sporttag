@@ -16,12 +16,12 @@ Requirements fuer den ersten Release. Jedes Requirement wird einer Phase zugeord
 
 ### Registrierung
 
-- [ ] **REG-01**: Lehrer kann Schueler erfassen mit Vorname, Nachname und Klasse
-- [ ] **REG-02**: Lehrer kann fuer Schueler genau 3 Prioritaeten auswaehlen (1., 2., 3. Wahl)
-- [ ] **REG-03**: System validiert, dass alle 3 Prioritaeten unterschiedlich sind
-- [ ] **REG-04**: System validiert, dass alle Pflichtfelder ausgefuellt sind
-- [ ] **REG-05**: Lehrer erhaelt Bestaetigung nach erfolgreicher Registrierung
-- [ ] **REG-06**: System zeigt Uebersicht aller registrierten Schueler
+- [x] **REG-01**: Lehrer kann Schueler erfassen mit Vorname, Nachname und Klasse
+- [x] **REG-02**: Lehrer kann fuer Schueler genau 3 Prioritaeten auswaehlen (1., 2., 3. Wahl)
+- [x] **REG-03**: System validiert, dass alle 3 Prioritaeten unterschiedlich sind
+- [x] **REG-04**: System validiert, dass alle Pflichtfelder ausgefuellt sind
+- [x] **REG-05**: Lehrer erhaelt Bestaetigung nach erfolgreicher Registrierung
+- [x] **REG-06**: System zeigt Uebersicht aller registrierten Schueler
 
 ### Zuteilung
 
@@ -89,12 +89,12 @@ Welche Phase deckt welches Requirement ab.
 | EVENT-02 | Phase 1 | Complete |
 | EVENT-03 | Phase 1 | Complete |
 | EVENT-04 | Phase 1 | Complete |
-| REG-01 | Phase 2 | Pending |
-| REG-02 | Phase 2 | Pending |
-| REG-03 | Phase 2 | Pending |
-| REG-04 | Phase 2 | Pending |
-| REG-05 | Phase 2 | Pending |
-| REG-06 | Phase 2 | Pending |
+| REG-01 | Phase 2 | Complete |
+| REG-02 | Phase 2 | Complete |
+| REG-03 | Phase 2 | Complete |
+| REG-04 | Phase 2 | Complete |
+| REG-05 | Phase 2 | Complete |
+| REG-06 | Phase 2 | Complete |
 | ALLOC-01 | Phase 3 | Pending |
 | ALLOC-02 | Phase 3 | Pending |
 | ALLOC-03 | Phase 3 | Pending |
