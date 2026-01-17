@@ -88,12 +88,13 @@ Plans:
 5. All lists print cleanly on A4 paper with readable fonts (designed for SMV-Brett posting)
 6. Teacher can view statistics dashboard showing allocation overview
 
-**Plans:** 3 plans
+**Plans:** 4 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Print infrastructure and CSV export utilities
-- [ ] 04-02-PLAN.md — Output dashboard and per-event participant lists
-- [ ] 04-03-PLAN.md — Per-class list and enhanced Sonderliste
+- [x] 04-01-PLAN.md — Print infrastructure and CSV export utilities
+- [x] 04-02-PLAN.md — Output dashboard and per-event participant lists
+- [x] 04-03-PLAN.md — Per-class list and enhanced Sonderliste
+- [ ] 04-04-PLAN.md — Gap closure: integrate AllocationStats into output page
 
 ---
 
@@ -104,7 +105,7 @@ Plans:
 | 1 - Foundation + Events | Complete | 2026-01-17 |
 | 2 - Registration | Complete | 2026-01-17 |
 | 3 - Allocation | Complete | 2026-01-17 |
-| 4 - Output | Not started | -- |
+| 4 - Output | In progress | -- |
 
 ---
 
