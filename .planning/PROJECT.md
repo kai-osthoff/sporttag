@@ -13,7 +13,18 @@ Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen basierend auf p
 **Version:** v1.0 MVP (shipped 2026-01-17)
 **Tech Stack:** Next.js 16, SQLite/Drizzle, shadcn/ui, Tailwind v4
 **LOC:** 4,093 lines TypeScript
-**Status:** Production-ready for school use
+**Status:** Production-ready, preparing for distribution
+
+## Current Milestone: v2.0 Desktop Distribution
+
+**Goal:** Die App als native macOS Desktop-Anwendung verpacken, die Lehrer ohne technische Kenntnisse mit einem Terminal-Befehl installieren und wie eine normale Mac-App nutzen koennen.
+
+**Target features:**
+- Native macOS App (.app Bundle) mit eigenem Fenster
+- Ein-Befehl-Installation via curl (wie Homebrew)
+- Persistente Datenspeicherung in ~/Library/Application Support/Sporttag/
+- In-App Update-Hinweis mit manuellem Update-Mechanismus
+- GitHub Public Repo mit benutzerfreundlicher README
 
 ## Requirements
 
@@ -31,16 +42,22 @@ Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen basierend auf p
 
 ### Active
 
-(None — v1.0 complete, v2.0 not yet planned)
+- Native macOS Desktop-App mit Fenster (Electron/Tauri wrapper)
+- curl-basiertes Installationsscript fuer nicht-technische Benutzer
+- Persistente Datenbank in Application Support Ordner
+- Update-Benachrichtigung in der App (GitHub Releases API)
+- Manueller Update-Mechanismus (Download, Replace, Restart)
+- GitHub README mit Installationsanleitung fuer Lehrer
 
 ### Out of Scope
 
-- Benutzerrollen / Authentifizierung — v1 ist single-user, Lehrer machen alles (v2 candidate)
-- Schueler-Selbstanmeldung — kommt in v2
-- Integration mit Schul-IT-Systemen — nicht benoetigt fuer v1
+- Benutzerrollen / Authentifizierung — v2.0 fokussiert auf Distribution, Auth kommt spaeter
+- Schueler-Selbstanmeldung — kommt nach Distribution (v3 candidate)
+- Windows/Linux Support — v2.0 nur macOS, andere Plattformen spaeter
+- Automatische Updates im Hintergrund — bewusst manuell fuer Transparenz
+- Cloud-Deployment — bleibt lokal auf Lehrer-Mac
+- Integration mit Schul-IT-Systemen — nicht benoetigt
 - Bezahlung / Abrechnung — ausserhalb des Anwendungsfalls
-- Mehrere Sporttage gleichzeitig verwalten — ein Sporttag pro Instanz reicht
-- Navigation menu — pages accessible via URL, enhancement for future
 
 ## Context
 
@@ -56,15 +73,23 @@ Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen basierend auf p
 - Einmal jaehrlich im Winter
 - Listen werden am SMV-Brett ausgehaengt (Print-Output wichtig)
 
-**v2-Vision:**
+**v2.0-Vision (aktuell):**
+- Native macOS App statt npm-Projekt
+- Ein-Befehl-Installation fuer nicht-technische Lehrer
+- Keine Abhaengigkeit von Terminal im Alltag
+- App erscheint in /Applications wie normale Mac-Software
+
+**v3-Vision (spaeter):**
 - Schueler melden sich selbst an (kein Papier mehr)
 - Rollentrennung: Lehrer verwalten Veranstaltungen, Schueler nur Anmeldung
 - Authentifizierung erforderlich
 
 ## Constraints
 
-- **Tech Stack**: Next.js 16, SQLite/Drizzle, shadcn/ui (established in v1.0)
-- **Deployment**: Local/school network for v1, cloud possible for v2
+- **Tech Stack**: Next.js 16, SQLite/Drizzle, shadcn/ui + Desktop-Wrapper (Electron/Tauri)
+- **Platform**: macOS only for v2.0 (ARM + Intel)
+- **Distribution**: GitHub Public Repo mit Releases
+- **Installation**: Muss mit einem Terminal-Befehl funktionieren
 - **Output**: Print-ready A4 lists for SMV-Brett posting
 
 ## Key Decisions
@@ -82,4 +107,4 @@ Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen basierend auf p
 | Component reuse (AllocationStats) | Shared between /allocation and /output | Good |
 
 ---
-*Last updated: 2026-01-17 after v1.0 milestone*
+*Last updated: 2026-01-17 after starting v2.0 milestone*
