@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Creates self-contained build in .next/standalone
+  output: 'standalone',
+
+  // Prevent bundling Electron and native modules
+  serverExternalPackages: ['electron', 'better-sqlite3'],
 };
 
 export default nextConfig;
