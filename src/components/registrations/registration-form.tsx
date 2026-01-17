@@ -26,6 +26,7 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
   const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
   const firstNameRef = useRef<HTMLInputElement>(null)
+  const saveAndNewRef = useRef<HTMLInputElement>(null)
   const [state, formAction, pending] = useActionState(action, { errors: {} })
   const [saveAndNew, setSaveAndNew] = useState(true)
   const [priority1, setPriority1] = useState<string>('')
@@ -54,14 +55,12 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && e.shiftKey && !pending) {
       e.preventDefault()
-      setSaveAndNew(true)
-      // Submit form programmatically
-      const form = formRef.current
-      if (form) {
-        const formData = new FormData(form)
-        formData.set('saveAndNew', 'true')
-        formAction(formData)
+      // Set hidden input directly before submit (state update would be async)
+      if (saveAndNewRef.current) {
+        saveAndNewRef.current.value = 'true'
       }
+      setSaveAndNew(true)
+      formRef.current?.requestSubmit()
     }
   }
 
@@ -80,7 +79,7 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
       </CardHeader>
       <CardContent>
         <form ref={formRef} action={formAction} className="space-y-4" onKeyDown={handleKeyDown}>
-          <input type="hidden" name="saveAndNew" value={saveAndNew.toString()} />
+          <input ref={saveAndNewRef} type="hidden" name="saveAndNew" value={saveAndNew.toString()} />
 
           {state.errors?._form && (
             <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md">
