@@ -56,6 +56,8 @@ Recent decisions for v2.0:
 
 1. **Add Zuteilung reset button with confirmation** (ui) — 2026-01-17
 2. **Fix Shift+Enter focus when dropdown still open** (ui) — 2026-01-17
+3. **Add Einstellungen page for Schulname and Veranstaltungsname** (ui) — 2026-01-17
+4. **Datenschutz - Complete data destruction option** (feature) — 2026-01-17
 
 ### Blockers/Concerns
 
