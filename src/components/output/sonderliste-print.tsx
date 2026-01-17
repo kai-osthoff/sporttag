@@ -49,7 +49,7 @@ export function SonderlistePrint({ students }: SonderlistePrintProps) {
         '3. Wahl': s.priority3Name,
         Grund: s.reason,
       })),
-      'Sonderliste.csv'
+      'Zuteilung-offen.csv'
     )
   }
 
@@ -58,7 +58,7 @@ export function SonderlistePrint({ students }: SonderlistePrintProps) {
       <Card>
         <CardHeader className="flex flex-row items-start justify-between print:pb-2">
           <div>
-            <CardTitle className="print:text-xl">Sonderliste</CardTitle>
+            <CardTitle className="print:text-xl">Zuteilung offen</CardTitle>
             <CardDescription className="print:text-sm print:text-black">
               {sortedStudents.length} Schueler ohne Zuweisung | Erstellt:{' '}
               {generatedDate}
@@ -75,7 +75,7 @@ export function SonderlistePrint({ students }: SonderlistePrintProps) {
           {sortedStudents.length === 0 ? (
             <div className="text-center py-8">
               <p className="text-muted-foreground">
-                Keine Schueler auf der Sonderliste.
+                Keine Schueler mit offener Zuteilung.
               </p>
               <p className="text-sm text-muted-foreground mt-2">
                 Alle Schueler wurden erfolgreich zugewiesen.

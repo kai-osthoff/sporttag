@@ -52,7 +52,7 @@ export function AllocationDashboard({
           <div className="flex items-center gap-4">
             <Button variant="outline" asChild>
               <Link href="/allocation/sonderliste">
-                Sonderliste ({sonderlisteCount})
+                Zuteilung offen ({sonderlisteCount})
               </Link>
             </Button>
             <AllocationButton />

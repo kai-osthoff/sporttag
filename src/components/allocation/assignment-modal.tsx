@@ -113,7 +113,7 @@ export function AssignmentModal({
           >
             <div className="flex items-center justify-between">
               <span className="font-medium text-muted-foreground">
-                Keine Zuweisung (Sonderliste)
+                Keine Zuweisung (Zuteilung offen)
               </span>
             </div>
           </button>

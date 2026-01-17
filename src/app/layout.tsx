@@ -27,10 +27,13 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <MainNav />
-        {children}
+        <main className="flex-1">{children}</main>
+        <footer className="print:hidden border-t py-4 text-center text-sm text-muted-foreground">
+          Made with ❤️ in Oberstenfeld · By O7 Digital
+        </footer>
         <Toaster />
       </body>
     </html>

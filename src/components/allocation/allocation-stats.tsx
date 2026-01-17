@@ -56,7 +56,7 @@ export function AllocationStats({ stats }: AllocationStatsProps) {
       textColor: 'text-yellow-600',
     },
     {
-      label: 'Sonderliste',
+      label: 'Zuteilung offen',
       count: stats.sonderliste,
       color: 'bg-red-500',
       textColor: 'text-red-600',

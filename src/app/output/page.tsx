@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { db } from '@/db'
 import { events, students, allocations } from '@/db/schema'
-import { desc, isNotNull, isNull, sql } from 'drizzle-orm'
+import { desc, eq, isNotNull, isNull, sql } from 'drizzle-orm'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { AllocationStats } from '@/components/allocation/allocation-stats'
@@ -14,9 +14,11 @@ export default async function OutputPage() {
       id: events.id,
       name: events.name,
       capacity: events.capacity,
-      assignedCount: sql<number>`(SELECT COUNT(*) FROM students WHERE assigned_event_id = ${events.id})`,
+      assignedCount: sql<number>`COALESCE(COUNT(${students.id}), 0)`.as('assigned_count'),
     })
     .from(events)
+    .leftJoin(students, eq(students.assignedEventId, events.id))
+    .groupBy(events.id, events.name, events.capacity)
     .orderBy(events.name)
 
   // Count unassigned students
@@ -126,10 +128,10 @@ export default async function OutputPage() {
           </CardContent>
         </Card>
 
-        {/* Sonderliste */}
+        {/* Zuteilung offen */}
         <Card>
           <CardHeader>
-            <CardTitle>Sonderliste</CardTitle>
+            <CardTitle>Zuteilung offen</CardTitle>
             <CardDescription>
               Schueler ohne Zuweisung
             </CardDescription>
@@ -141,7 +143,7 @@ export default async function OutputPage() {
               asChild
             >
               <Link href="/output/sonderliste">
-                <span>Sonderliste anzeigen</span>
+                <span>Zuteilung offen anzeigen</span>
                 {unassignedCount > 0 && (
                   <span className="bg-orange-100 text-orange-800 px-2 py-0.5 rounded text-sm">
                     {unassignedCount}

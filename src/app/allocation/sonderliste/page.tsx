@@ -127,7 +127,7 @@ export default function SonderlistePage() {
       <div className="container mx-auto py-8">
         <Card>
           <CardHeader>
-            <CardTitle>Sonderliste</CardTitle>
+            <CardTitle>Zuteilung offen</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">Lade...</p>
@@ -142,7 +142,7 @@ export default function SonderlistePage() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle>Sonderliste</CardTitle>
+            <CardTitle>Zuteilung offen</CardTitle>
             <CardDescription>
               Schueler ohne Zuweisung: {unassignedStudents.length}
             </CardDescription>
@@ -172,7 +172,7 @@ export default function SonderlistePage() {
           {/* Unassigned students table */}
           {unassignedStudents.length === 0 ? (
             <div className="text-center py-8 text-muted-foreground">
-              <p>Keine Schueler auf der Sonderliste.</p>
+              <p>Keine Schueler mit offener Zuteilung.</p>
               <p className="text-sm mt-2">
                 Alle Schueler wurden erfolgreich zugewiesen.
               </p>

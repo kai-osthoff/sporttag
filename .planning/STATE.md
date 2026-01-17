@@ -40,9 +40,7 @@ See PROJECT.md Key Decisions table for full list with outcomes.
 
 ### Pending Todos
 
-2 todos in `.planning/todos/pending/`:
-- **Add footer with branding** — "Made with ❤️ in Oberstenfeld · By O7 Digital"
-- **Rename Sonderliste** — Change to friendlier term like "Zuteilung offen"
+No pending todos.
 
 ### Blockers/Concerns
 
