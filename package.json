@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "npx @electron/rebuild",
+    "rebuild": "npx @electron/rebuild",
     "electron:dev": "concurrently -k \"next dev -p 3456\" \"wait-on http://localhost:3456 && electron .\"",
     "electron:build": "next build && electron-builder --mac"
   },
@@ -35,6 +36,7 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
+    "@electron/rebuild": "^4.0.2",
     "@tailwindcss/postcss": "^4",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
