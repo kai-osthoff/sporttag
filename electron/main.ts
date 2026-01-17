@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import { spawn, ChildProcess } from 'child_process';
 import path from 'path';
+import windowStateKeeper from 'electron-window-state';
 
 // Fixed port for production (non-standard to avoid conflicts)
 const PORT = 3456;
@@ -8,6 +9,9 @@ const PORT = 3456;
 // Track processes
 let nextServer: ChildProcess | null = null;
 let mainWindow: BrowserWindow | null = null;
+
+// Track quit intent for macOS close-to-hide behavior
+let isQuitting = false;
 
 /**
  * Wait for the Next.js server to be ready
@@ -79,12 +83,20 @@ async function startNextServer(): Promise<void> {
 }
 
 /**
- * Create the main application window
+ * Create the main application window with state persistence
  */
 function createWindow(): void {
+  // Restore window position and size from previous session
+  const windowState = windowStateKeeper({
+    defaultWidth: 1200,
+    defaultHeight: 800,
+  });
+
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    x: windowState.x,
+    y: windowState.y,
+    width: windowState.width,
+    height: windowState.height,
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
@@ -92,7 +104,21 @@ function createWindow(): void {
     },
   });
 
-  mainWindow.loadURL(`http://localhost:${PORT}`);
+  // Let windowStateKeeper track position and size changes
+  windowState.manage(mainWindow);
+
+  // Determine URL based on development vs production mode
+  const isDev = !app.isPackaged;
+  const url = isDev ? 'http://localhost:3000' : `http://localhost:${PORT}`;
+  mainWindow.loadURL(url);
+
+  // macOS: Hide instead of close on X button (unless actually quitting)
+  mainWindow.on('close', (event) => {
+    if (process.platform === 'darwin' && !isQuitting) {
+      event.preventDefault();
+      mainWindow?.hide();
+    }
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -101,13 +127,24 @@ function createWindow(): void {
 
 // App lifecycle
 app.whenReady().then(async () => {
+  const isDev = !app.isPackaged;
+
   try {
-    await startNextServer();
+    if (!isDev) {
+      // Production: spawn standalone server
+      await startNextServer();
+    }
+    // Dev mode: Next.js dev server already running via concurrently
     createWindow();
   } catch (err) {
     console.error('Failed to initialize app:', err);
     app.quit();
   }
+});
+
+// Track when user triggers quit (Cmd+Q or menu)
+app.on('before-quit', () => {
+  isQuitting = true;
 });
 
 app.on('quit', () => {
@@ -126,8 +163,10 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-  // On macOS, re-create window when dock icon clicked
-  if (mainWindow === null) {
+  // On macOS, re-show window when dock icon clicked (or create if somehow null)
+  if (mainWindow) {
+    mainWindow.show();
+  } else {
     createWindow();
   }
 });
