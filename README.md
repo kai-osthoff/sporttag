@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sporttag
 
-## Getting Started
+Eine macOS-App fuer die faire Zuteilung von Schuelern zu Veranstaltungen am Sporttag.
 
-First, run the development server:
+Die App ermoeglicht dir, Veranstaltungen anzulegen, Schueler mit drei Wunschprioritaeten anzumelden und diese dann per Losverfahren fair auf die Veranstaltungen zu verteilen. Perfekt fuer Schulen, die ihren Sporttag organisieren moechten.
+
+## Installation
+
+Kopiere diesen Befehl und fuehre ihn im Terminal aus:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+curl -fsSL https://raw.githubusercontent.com/kai-osthoff/sporttag/main/scripts/install.sh | bash
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Die Installation dauert etwa 30 Sekunden. Danach startet Sporttag automatisch.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Terminal oeffnen
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Druecke `Cmd + Leertaste` (Spotlight oeffnet sich)
+2. Tippe `Terminal`
+3. Druecke `Enter`
 
-## Learn More
+### Befehl ausfuehren
 
-To learn more about Next.js, take a look at the following resources:
+1. Kopiere den Befehl oben mit `Cmd + C`
+2. Fuege ihn im Terminal ein mit `Cmd + V`
+3. Druecke `Enter`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Was passiert bei der Installation?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Das Script:
+- Erkennt automatisch deinen Mac-Typ (Apple Silicon oder Intel)
+- Laedt die passende Version von Sporttag herunter
+- Installiert die App nach /Applications
+- Entfernt die macOS-Sicherheitssperre
+- Startet Sporttag
 
-## Deploy on Vercel
+Funktioniert auf Apple Silicon (M-Chips) und Intel Macs.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Warum wird eine Sicherheitssperre entfernt?
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+macOS blockiert Apps, die nicht von Apple signiert sind. Eine solche Signatur kostet $99 pro Jahr - als kostenloses Open-Source-Projekt verzichten wir darauf.
+
+Das Script entfernt lediglich die Blockade fuer diese eine App. Dein Mac bleibt weiterhin geschuetzt. Du kannst den gesamten Quellcode hier auf GitHub einsehen.
+
+## Features
+
+- **Veranstaltungen verwalten** - Lege Sportarten mit Kapazitaetsgrenzen an
+- **Schueler anmelden** - Erfasse Name, Klasse und drei Wunschprioritaeten
+- **Faires Losverfahren** - Automatische Zuteilung basierend auf Prioritaeten
+- **Druckbare Listen** - Generiere Teilnehmerlisten fuers SMV-Brett
+
+## Datensicherheit
+
+- Alle Daten bleiben lokal auf deinem Mac
+- Keine Cloud, keine Internetverbindung noetig
+- Datenbank-Speicherort: `~/Library/Application Support/Sporttag/`
+
+## Updates
+
+Fuehre den Installationsbefehl einfach erneut aus - die neue Version wird automatisch installiert.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/kai-osthoff/sporttag/main/scripts/install.sh | bash
+```
+
+Deine Daten bleiben dabei erhalten.
+
+## Entwicklung
+
+Der Quellcode ist Open Source und auf GitHub verfuegbar:
+https://github.com/kai-osthoff/sporttag
+
+Feedback und Beitraege sind herzlich willkommen!
+
+---
+
+*Entwickelt fuer Schulen in Deutschland*
