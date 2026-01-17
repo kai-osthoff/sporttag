@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import { spawn, ChildProcess } from 'child_process';
 import path from 'path';
+import fs from 'fs';
 import windowStateKeeper from 'electron-window-state';
 
 // Fixed port for production (non-standard to avoid conflicts)
@@ -41,13 +42,27 @@ async function startNextServer(): Promise<void> {
     ? path.join(process.resourcesPath, 'standalone', 'server.js')
     : path.join(__dirname, '..', '.next', 'standalone', 'server.js');
 
-  // Database path: userData for production, project root for development
-  const dbPath = app.isPackaged
-    ? path.join(app.getPath('userData'), 'sporttag.db')
-    : path.join(__dirname, '..', 'sporttag.db');
+  // Determine database and migrations paths
+  let dbPath: string;
+  let migrationsPath: string;
+
+  if (app.isPackaged) {
+    // Production: create userData directory if it doesn't exist
+    const userData = app.getPath('userData');
+    fs.mkdirSync(userData, { recursive: true });
+    console.log(`Created/verified userData directory: ${userData}`);
+
+    dbPath = path.join(userData, 'sporttag.db');
+    migrationsPath = path.join(process.resourcesPath, 'standalone', 'src', 'db', 'migrations');
+  } else {
+    // Development: use project root
+    dbPath = path.join(__dirname, '..', 'sporttag.db');
+    migrationsPath = path.join(__dirname, '..', 'src', 'db', 'migrations');
+  }
 
   console.log(`Starting Next.js server at ${serverPath}`);
   console.log(`Database path: ${dbPath}`);
+  console.log(`Migrations path: ${migrationsPath}`);
 
   nextServer = spawn('node', [serverPath], {
     env: {
@@ -55,6 +70,7 @@ async function startNextServer(): Promise<void> {
       PORT: String(PORT),
       HOSTNAME: 'localhost',
       DB_PATH: dbPath,
+      MIGRATIONS_PATH: migrationsPath,
     },
     cwd: path.dirname(serverPath),
     stdio: ['ignore', 'pipe', 'pipe'],
