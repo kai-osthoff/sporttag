@@ -56,7 +56,7 @@ Plans:
 
 **Milestone Goal:** Native macOS Desktop-App mit Ein-Befehl-Installation fuer nicht-technische Lehrer
 
-- [ ] **Phase 5: Electron Shell** - Electron wrapper with Next.js standalone server
+- [x] **Phase 5: Electron Shell** - Electron wrapper with Next.js standalone server
 - [ ] **Phase 6: Database Migration** - SQLite in Application Support folder
 - [ ] **Phase 7: Build Pipeline** - DMG generation and GitHub Releases
 - [ ] **Phase 8: Installation + README** - curl installer and user documentation
@@ -77,8 +77,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Electron main process with embedded Next.js standalone server
-- [ ] 05-02-PLAN.md — macOS window behavior and development workflow
+- [x] 05-01-PLAN.md — Electron main process with embedded Next.js standalone server
+- [x] 05-02-PLAN.md — macOS window behavior and development workflow
 
 ### Phase 6: Database Migration
 **Goal**: Database persists in user-accessible location that survives app updates
@@ -148,7 +148,7 @@ Plans:
 | 2. Registration | v1.0 | 2/2 | Complete | 2026-01-16 |
 | 3. Allocation | v1.0 | 4/4 | Complete | 2026-01-16 |
 | 4. Output | v1.0 | 4/4 | Complete | 2026-01-17 |
-| 5. Electron Shell | v2.0 | 0/2 | Planned | - |
+| 5. Electron Shell | v2.0 | 2/2 | Complete | 2026-01-17 |
 | 6. Database Migration | v2.0 | 0/? | Not started | - |
 | 7. Build Pipeline | v2.0 | 0/? | Not started | - |
 | 8. Installation + README | v2.0 | 0/? | Not started | - |

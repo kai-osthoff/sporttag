@@ -9,11 +9,11 @@ Requirements for Desktop Distribution milestone. Each maps to roadmap phases.
 
 ### Desktop Packaging
 
-- [ ] **DESK-01**: App erscheint in /Applications als native macOS Anwendung
-- [ ] **DESK-02**: App zeigt eigenes Fenster mit Standard macOS Verhalten (Cmd+Q beendet, X minimiert)
-- [ ] **DESK-03**: App erscheint im Dock waehrend sie laeuft
-- [ ] **DESK-04**: Fensterposition und -groesse werden zwischen Sessions gespeichert
-- [ ] **DESK-05**: App funktioniert vollstaendig offline (keine Internetverbindung noetig fuer Kernfunktionen)
+- [x] **DESK-01**: App erscheint in /Applications als native macOS Anwendung
+- [x] **DESK-02**: App zeigt eigenes Fenster mit Standard macOS Verhalten (Cmd+Q beendet, X minimiert)
+- [x] **DESK-03**: App erscheint im Dock waehrend sie laeuft
+- [x] **DESK-04**: Fensterposition und -groesse werden zwischen Sessions gespeichert
+- [x] **DESK-05**: App funktioniert vollstaendig offline (keine Internetverbindung noetig fuer Kernfunktionen)
 
 ### Data Persistence
 
@@ -84,11 +84,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DESK-01 | Phase 5 | Pending |
-| DESK-02 | Phase 5 | Pending |
-| DESK-03 | Phase 5 | Pending |
-| DESK-04 | Phase 5 | Pending |
-| DESK-05 | Phase 5 | Pending |
+| DESK-01 | Phase 5 | Complete |
+| DESK-02 | Phase 5 | Complete |
+| DESK-03 | Phase 5 | Complete |
+| DESK-04 | Phase 5 | Complete |
+| DESK-05 | Phase 5 | Complete |
 | DATA-01 | Phase 6 | Pending |
 | DATA-02 | Phase 6 | Pending |
 | DATA-03 | Phase 6 | Pending |
