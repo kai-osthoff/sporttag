@@ -118,11 +118,10 @@ Plans:
   2. After installation, app opens without Gatekeeper warning
   3. README is in German and understandable for non-technical users
   4. README shows the curl command prominently for easy copying
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 08-01: TBD (curl installer script with xattr workaround)
-- [ ] 08-02: TBD (German README with installation guide)
+- [ ] 08-01-PLAN.md — Bash installer script and German README documentation
 
 ### Phase 9: Update Notification
 **Goal**: Users know when a new version is available
@@ -151,7 +150,7 @@ Plans:
 | 5. Electron Shell | v2.0 | 2/2 | Complete | 2026-01-17 |
 | 6. Database Migration | v2.0 | 1/1 | Complete | 2026-01-17 |
 | 7. Build Pipeline | v2.0 | 2/2 | Complete | 2026-01-17 |
-| 8. Installation + README | v2.0 | 0/? | Not started | - |
+| 8. Installation + README | v2.0 | 0/1 | Planned | - |
 | 9. Update Notification | v2.0 | 0/? | Not started | - |
 
 ---
