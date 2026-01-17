@@ -67,10 +67,10 @@ Plans:
 **Plans:** 4 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Schema extension, allocation algorithm, UI components (Dialog, Tabs)
-- [ ] 03-02-PLAN.md — Allocation server action and main dashboard page
-- [ ] 03-03-PLAN.md — Manual reassignment modal component
-- [ ] 03-04-PLAN.md — Sonderliste page and statistics integration
+- [x] 03-01-PLAN.md — Schema extension, allocation algorithm, UI components (Dialog, Tabs)
+- [x] 03-02-PLAN.md — Allocation server action and main dashboard page
+- [x] 03-03-PLAN.md — Manual reassignment modal component
+- [x] 03-04-PLAN.md — Sonderliste page and statistics integration
 
 ---
 
@@ -98,7 +98,7 @@ Plans:
 |-------|--------|-----------|
 | 1 - Foundation + Events | Complete | 2026-01-17 |
 | 2 - Registration | Complete | 2026-01-17 |
-| 3 - Allocation | Planned | -- |
+| 3 - Allocation | Complete | 2026-01-17 |
 | 4 - Output | Not started | -- |
 
 ---

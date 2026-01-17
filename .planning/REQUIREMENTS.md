@@ -25,13 +25,13 @@ Requirements fuer den ersten Release. Jedes Requirement wird einer Phase zugeord
 
 ### Zuteilung
 
-- [ ] **ALLOC-01**: System fuehrt Losverfahren durch (faire Zufallsreihenfolge)
-- [ ] **ALLOC-02**: Zuteilung respektiert Prioritaeten (1. Wahl wenn moeglich, sonst 2., sonst 3.)
-- [ ] **ALLOC-03**: Zuteilung respektiert Kapazitaetslimits der Veranstaltungen
-- [ ] **ALLOC-04**: Schueler ohne freien Platz in allen 3 Wuenschen landen auf Sonderliste
-- [ ] **ALLOC-05**: Lehrer kann Zuteilung per Button starten
-- [ ] **ALLOC-06**: Lehrer kann einzelne Schueler manuell einer Veranstaltung zuweisen
-- [ ] **ALLOC-07**: System zeigt Fairness-Statistik (% bekam 1./2./3. Wahl)
+- [x] **ALLOC-01**: System fuehrt Losverfahren durch (faire Zufallsreihenfolge)
+- [x] **ALLOC-02**: Zuteilung respektiert Prioritaeten (1. Wahl wenn moeglich, sonst 2., sonst 3.)
+- [x] **ALLOC-03**: Zuteilung respektiert Kapazitaetslimits der Veranstaltungen
+- [x] **ALLOC-04**: Schueler ohne freien Platz in allen 3 Wuenschen landen auf Sonderliste
+- [x] **ALLOC-05**: Lehrer kann Zuteilung per Button starten
+- [x] **ALLOC-06**: Lehrer kann einzelne Schueler manuell einer Veranstaltung zuweisen
+- [x] **ALLOC-07**: System zeigt Fairness-Statistik (% bekam 1./2./3. Wahl)
 
 ### Ausgabe
 
@@ -95,13 +95,13 @@ Welche Phase deckt welches Requirement ab.
 | REG-04 | Phase 2 | Complete |
 | REG-05 | Phase 2 | Complete |
 | REG-06 | Phase 2 | Complete |
-| ALLOC-01 | Phase 3 | Pending |
-| ALLOC-02 | Phase 3 | Pending |
-| ALLOC-03 | Phase 3 | Pending |
-| ALLOC-04 | Phase 3 | Pending |
-| ALLOC-05 | Phase 3 | Pending |
-| ALLOC-06 | Phase 3 | Pending |
-| ALLOC-07 | Phase 3 | Pending |
+| ALLOC-01 | Phase 3 | Complete |
+| ALLOC-02 | Phase 3 | Complete |
+| ALLOC-03 | Phase 3 | Complete |
+| ALLOC-04 | Phase 3 | Complete |
+| ALLOC-05 | Phase 3 | Complete |
+| ALLOC-06 | Phase 3 | Complete |
+| ALLOC-07 | Phase 3 | Complete |
 | OUT-01 | Phase 4 | Pending |
 | OUT-02 | Phase 4 | Pending |
 | OUT-03 | Phase 4 | Pending |

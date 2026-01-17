@@ -5,14 +5,14 @@
 See: .planning/PROJECT.md
 
 **Core value:** Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen per Losverfahren
-**Current focus:** Phase 3 (Allocation) - Complete
+**Current focus:** Phase 3 complete -- Ready for Phase 4 (Output)
 
 ## Current Position
 
-Phase: 3 of 4 (Allocation)
+Phase: 3 of 4 (Allocation) -- COMPLETE
 Plan: 4 of 4 complete
-Status: Phase complete
-Last activity: 2026-01-17 -- Completed 03-04-PLAN.md (Allocation Interface Completion)
+Status: Phase complete, verified
+Last activity: 2026-01-17 -- Phase 3 verified (6/6 must-haves passed)
 
 Progress: [================----] 80% (8 of ~10 plans across 4 phases)
 
@@ -55,8 +55,7 @@ Progress: [================----] 80% (8 of ~10 plans across 4 phases)
 
 ### Pending Todos
 
-- Capacity display needs JOIN query for actual registrations (shows allocated count in Phase 3)
-- Modal needs EventForModal.assignedCount computed from database
+(None - capacity and modal todos addressed in Phase 3)
 
 ### Blockers/Concerns
 
