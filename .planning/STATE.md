@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md
 
 **Core value:** Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen per Losverfahren
-**Current focus:** Phase 3 (Allocation) - Plan 03 complete
+**Current focus:** Phase 3 (Allocation) - Complete
 
 ## Current Position
 
 Phase: 3 of 4 (Allocation)
-Plan: 3 of 3 complete
+Plan: 4 of 4 complete
 Status: Phase complete
-Last activity: 2026-01-17 -- Completed 03-03-PLAN.md (Manual Reassignment Modal)
+Last activity: 2026-01-17 -- Completed 03-04-PLAN.md (Allocation Interface Completion)
 
-Progress: [===============-----] 75% (7 of ~9 plans across 4 phases)
+Progress: [================----] 80% (8 of ~10 plans across 4 phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
-- Average duration: 2.7min
+- Total plans completed: 8
+- Average duration: 3min
 
 **By Phase:**
 
@@ -28,7 +28,7 @@ Progress: [===============-----] 75% (7 of ~9 plans across 4 phases)
 |-------|-------|-------|----------|
 | 01-foundation-events | 2 | 9min | 4.5min |
 | 02-registration | 2 | 4min | 2min |
-| 03-allocation | 3 | 6min | 2min |
+| 03-allocation | 4 | 11min | 2.75min |
 
 ## Accumulated Context
 
@@ -49,6 +49,9 @@ Progress: [===============-----] 75% (7 of ~9 plans across 4 phases)
 - 2026-01-17: Stats stored as JSON blob in allocations table for simplicity
 - 2026-01-17: Allow full event assignment with warning (per CONTEXT.md decision)
 - 2026-01-17: Priority badges with distinct colors (blue/green/yellow for 1./2./3. Wahl)
+- 2026-01-17: API route for Sonderliste data (client component needs server data)
+- 2026-01-17: Server/client composition pattern for allocation dashboard
+- 2026-01-17: Simple div-based percentage bars for stats visualization
 
 ### Pending Todos
 
@@ -61,6 +64,6 @@ Progress: [===============-----] 75% (7 of ~9 plans across 4 phases)
 
 ## Session Continuity
 
-Last session: 2026-01-17 13:05
-Stopped at: Completed 03-03-PLAN.md (Manual Reassignment Modal)
-Resume file: Phase 4 plans (Output)
+Last session: 2026-01-17 13:13
+Stopped at: Completed 03-04-PLAN.md (Allocation Interface Completion)
+Resume file: Phase 4 plans (Output) - start planning
