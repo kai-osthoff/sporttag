@@ -1,7 +1,8 @@
-import { contextBridge } from 'electron';
+import { contextBridge, ipcRenderer } from 'electron';
 
-// Minimal context bridge for Electron detection
-// No IPC needed since Server Actions handle all data operations
+// Context bridge for Electron detection and IPC communication
 contextBridge.exposeInMainWorld('electronAPI', {
   isElectron: true,
+  getVersion: () => ipcRenderer.invoke('app:get-version'),
+  openExternal: (url: string) => ipcRenderer.invoke('shell:open-external', url),
 });
