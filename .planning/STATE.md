@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md
 
 **Core value:** Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen per Losverfahren
-**Current focus:** Phase 3 (Allocation) - Plan 01 complete
+**Current focus:** Phase 3 (Allocation) - Plan 03 complete
 
 ## Current Position
 
 Phase: 3 of 4 (Allocation)
-Plan: 1 of 3 complete
-Status: In progress
-Last activity: 2026-01-17 -- Completed 03-01-PLAN.md (Allocation Domain Model)
+Plan: 3 of 3 complete
+Status: Phase complete
+Last activity: 2026-01-17 -- Completed 03-03-PLAN.md (Manual Reassignment Modal)
 
-Progress: [============--------] 62% (5 of ~8 plans across 4 phases)
+Progress: [===============-----] 75% (7 of ~9 plans across 4 phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 3.4min
+- Total plans completed: 7
+- Average duration: 2.7min
 
 **By Phase:**
 
@@ -28,7 +28,7 @@ Progress: [============--------] 62% (5 of ~8 plans across 4 phases)
 |-------|-------|-------|----------|
 | 01-foundation-events | 2 | 9min | 4.5min |
 | 02-registration | 2 | 4min | 2min |
-| 03-allocation | 1 | 4min | 4min |
+| 03-allocation | 3 | 6min | 2min |
 
 ## Accumulated Context
 
@@ -45,10 +45,13 @@ Progress: [============--------] 62% (5 of ~8 plans across 4 phases)
 - 2026-01-17: Mulberry32 inline PRNG for seeded randomness (no external dependency)
 - 2026-01-17: Pure function allocation algorithm for testability and reproducibility
 - 2026-01-17: Map<studentId, eventId | null> for efficient assignment lookups
+- 2026-01-17: Allow full event assignment with warning (per CONTEXT.md decision)
+- 2026-01-17: Priority badges with distinct colors (blue/green/yellow for 1./2./3. Wahl)
 
 ### Pending Todos
 
 - Capacity display needs JOIN query for actual registrations (shows allocated count in Phase 3)
+- Modal needs EventForModal.assignedCount computed from database
 
 ### Blockers/Concerns
 
@@ -56,6 +59,6 @@ Progress: [============--------] 62% (5 of ~8 plans across 4 phases)
 
 ## Session Continuity
 
-Last session: 2026-01-17 13:03
-Stopped at: Completed 03-01-PLAN.md (Allocation Domain Model)
-Resume file: 03-02-PLAN.md (Allocation Actions)
+Last session: 2026-01-17 13:05
+Stopped at: Completed 03-03-PLAN.md (Manual Reassignment Modal)
+Resume file: Phase 4 plans (Output)
