@@ -64,7 +64,13 @@ Plans:
 5. Teacher can manually reassign individual students after automatic allocation
 6. System shows statistics: percentage of students who got 1st/2nd/3rd choice
 
-**Plans:** (created by /gsd:plan-phase)
+**Plans:** 4 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Schema extension, allocation algorithm, UI components (Dialog, Tabs)
+- [ ] 03-02-PLAN.md — Allocation server action and main dashboard page
+- [ ] 03-03-PLAN.md — Manual reassignment modal component
+- [ ] 03-04-PLAN.md — Sonderliste page and statistics integration
 
 ---
 
@@ -92,7 +98,7 @@ Plans:
 |-------|--------|-----------|
 | 1 - Foundation + Events | Complete | 2026-01-17 |
 | 2 - Registration | Complete | 2026-01-17 |
-| 3 - Allocation | Not started | -- |
+| 3 - Allocation | Planned | -- |
 | 4 - Output | Not started | -- |
 
 ---
