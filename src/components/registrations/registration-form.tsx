@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { useActionState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -22,6 +23,13 @@ interface RegistrationFormProps {
 
 export function RegistrationForm({ action, events }: RegistrationFormProps) {
   const [state, formAction, pending] = useActionState(action, { errors: {} })
+  const [priority1, setPriority1] = useState<string>('')
+  const [priority2, setPriority2] = useState<string>('')
+  const [priority3, setPriority3] = useState<string>('')
+
+  // Filter events for each priority dropdown
+  const eventsForPriority2 = events.filter(e => String(e.id) !== priority1)
+  const eventsForPriority3 = events.filter(e => String(e.id) !== priority1 && String(e.id) !== priority2)
 
   return (
     <Card>
@@ -82,7 +90,16 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
 
             <div className="space-y-2">
               <Label htmlFor="priority1Id">1. Prioritaet *</Label>
-              <Select name="priority1Id">
+              <Select
+                name="priority1Id"
+                value={priority1}
+                onValueChange={(value) => {
+                  setPriority1(value)
+                  // Clear subsequent selections if they conflict
+                  if (value === priority2) setPriority2('')
+                  if (value === priority3) setPriority3('')
+                }}
+              >
                 <SelectTrigger id="priority1Id" className="w-full">
                   <SelectValue placeholder="1. Wahl auswaehlen..." />
                 </SelectTrigger>
@@ -101,12 +118,20 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
 
             <div className="space-y-2">
               <Label htmlFor="priority2Id">2. Prioritaet *</Label>
-              <Select name="priority2Id">
+              <Select
+                name="priority2Id"
+                value={priority2}
+                onValueChange={(value) => {
+                  setPriority2(value)
+                  // Clear third selection if it conflicts
+                  if (value === priority3) setPriority3('')
+                }}
+              >
                 <SelectTrigger id="priority2Id" className="w-full">
                   <SelectValue placeholder="2. Wahl auswaehlen..." />
                 </SelectTrigger>
                 <SelectContent>
-                  {events.map((event) => (
+                  {eventsForPriority2.map((event) => (
                     <SelectItem key={event.id} value={String(event.id)}>
                       {event.name}
                     </SelectItem>
@@ -120,12 +145,16 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
 
             <div className="space-y-2">
               <Label htmlFor="priority3Id">3. Prioritaet *</Label>
-              <Select name="priority3Id">
+              <Select
+                name="priority3Id"
+                value={priority3}
+                onValueChange={setPriority3}
+              >
                 <SelectTrigger id="priority3Id" className="w-full">
                   <SelectValue placeholder="3. Wahl auswaehlen..." />
                 </SelectTrigger>
                 <SelectContent>
-                  {events.map((event) => (
+                  {eventsForPriority3.map((event) => (
                     <SelectItem key={event.id} value={String(event.id)}>
                       {event.name}
                     </SelectItem>
