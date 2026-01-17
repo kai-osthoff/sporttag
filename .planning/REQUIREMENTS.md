@@ -25,9 +25,9 @@ Requirements for Desktop Distribution milestone. Each maps to roadmap phases.
 
 - [ ] **INST-01**: Ein curl-Befehl im Terminal installiert die App vollstaendig
 - [ ] **INST-02**: Installation funktioniert ohne Gatekeeper-Warnungen (xattr Workaround)
-- [ ] **INST-03**: DMG-Datei steht auf GitHub Releases zum manuellen Download bereit
-- [ ] **INST-04**: DMG zeigt visuelle Anleitung (Drag to Applications)
-- [ ] **INST-05**: Installation funktioniert auf ARM (Apple Silicon) und Intel Macs
+- [x] **INST-03**: DMG-Datei steht auf GitHub Releases zum manuellen Download bereit
+- [x] **INST-04**: DMG zeigt visuelle Anleitung (Drag to Applications)
+- [x] **INST-05**: Installation funktioniert auf ARM (Apple Silicon) und Intel Macs
 
 ### Updates
 
@@ -38,10 +38,10 @@ Requirements for Desktop Distribution milestone. Each maps to roadmap phases.
 
 ### Distribution
 
-- [ ] **DIST-01**: GitHub Repository ist public
+- [x] **DIST-01**: GitHub Repository ist public
 - [ ] **DIST-02**: README enthaelt deutsche Installationsanleitung fuer nicht-technische User
 - [ ] **DIST-03**: README zeigt curl-Befehl zum Kopieren
-- [ ] **DIST-04**: GitHub Releases enthalten DMG fuer jede Version
+- [x] **DIST-04**: GitHub Releases enthalten DMG fuer jede Version
 
 ## v2.1+ Requirements
 
@@ -94,17 +94,17 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DATA-03 | Phase 6 | Complete |
 | INST-01 | Phase 8 | Pending |
 | INST-02 | Phase 8 | Pending |
-| INST-03 | Phase 7 | Pending |
-| INST-04 | Phase 7 | Pending |
-| INST-05 | Phase 7 | Pending |
+| INST-03 | Phase 7 | Complete |
+| INST-04 | Phase 7 | Complete |
+| INST-05 | Phase 7 | Complete |
 | UPDT-01 | Phase 9 | Pending |
 | UPDT-02 | Phase 9 | Pending |
 | UPDT-03 | Phase 9 | Pending |
 | UPDT-04 | Phase 9 | Pending |
-| DIST-01 | Phase 7 | Pending |
+| DIST-01 | Phase 7 | Complete |
 | DIST-02 | Phase 8 | Pending |
 | DIST-03 | Phase 8 | Pending |
-| DIST-04 | Phase 7 | Pending |
+| DIST-04 | Phase 7 | Complete |
 
 **Coverage:**
 - v2.0 requirements: 21 total
@@ -113,4 +113,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-17*
-*Last updated: 2026-01-17 after Phase 6 completion*
+*Last updated: 2026-01-17 after Phase 7 completion*

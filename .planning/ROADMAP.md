@@ -58,7 +58,7 @@ Plans:
 
 - [x] **Phase 5: Electron Shell** - Electron wrapper with Next.js standalone server
 - [x] **Phase 6: Database Migration** - SQLite in Application Support folder
-- [ ] **Phase 7: Build Pipeline** - DMG generation and GitHub Releases
+- [x] **Phase 7: Build Pipeline** - DMG generation and GitHub Releases
 - [ ] **Phase 8: Installation + README** - curl installer and user documentation
 - [ ] **Phase 9: Update Notification** - In-app banner for new versions
 
@@ -106,8 +106,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 07-01-PLAN.md — Universal DMG build configuration and local build script
-- [ ] 07-02-PLAN.md — GitHub Actions workflow for tag-triggered releases
+- [x] 07-01-PLAN.md — Universal DMG build configuration and local build script
+- [x] 07-02-PLAN.md — GitHub Actions workflow for tag-triggered releases
 
 ### Phase 8: Installation + README
 **Goal**: Teachers can install the app with one terminal command
@@ -150,7 +150,7 @@ Plans:
 | 4. Output | v1.0 | 4/4 | Complete | 2026-01-17 |
 | 5. Electron Shell | v2.0 | 2/2 | Complete | 2026-01-17 |
 | 6. Database Migration | v2.0 | 1/1 | Complete | 2026-01-17 |
-| 7. Build Pipeline | v2.0 | 0/2 | In progress | - |
+| 7. Build Pipeline | v2.0 | 2/2 | Complete | 2026-01-17 |
 | 8. Installation + README | v2.0 | 0/? | Not started | - |
 | 9. Update Notification | v2.0 | 0/? | Not started | - |
 
