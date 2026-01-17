@@ -40,7 +40,8 @@ See PROJECT.md Key Decisions table for full list with outcomes.
 
 ### Pending Todos
 
-(None — v1.0 complete)
+1 todo in `.planning/todos/pending/`:
+- **Dynamic priority filtering** — Filter already-selected events from subsequent priority dropdowns
 
 ### Blockers/Concerns
 
