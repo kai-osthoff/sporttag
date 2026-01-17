@@ -46,10 +46,14 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
       setPriority1('')
       setPriority2('')
       setPriority3('')
-      // Focus first field for next entry (slight delay ensures DOM is ready)
+      // Blur current element and focus first field
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur()
+      }
+      // Focus first field for next entry (delay ensures DOM is ready after blur)
       setTimeout(() => {
         firstNameRef.current?.focus()
-      }, 0)
+      }, 10)
     }
   }, [state.success, state.savedStudent])
 
