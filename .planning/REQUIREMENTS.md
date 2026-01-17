@@ -9,10 +9,10 @@ Requirements fuer den ersten Release. Jedes Requirement wird einer Phase zugeord
 
 ### Veranstaltungsverwaltung
 
-- [ ] **EVENT-01**: Lehrer kann Veranstaltung anlegen mit Name, Beschreibung und Kapazitaet
-- [ ] **EVENT-02**: Lehrer kann bestehende Veranstaltung bearbeiten
-- [ ] **EVENT-03**: Lehrer kann Veranstaltung loeschen
-- [ ] **EVENT-04**: System zeigt Liste aller Veranstaltungen mit aktueller Kapazitaet
+- [x] **EVENT-01**: Lehrer kann Veranstaltung anlegen mit Name, Beschreibung und Kapazitaet
+- [x] **EVENT-02**: Lehrer kann bestehende Veranstaltung bearbeiten
+- [x] **EVENT-03**: Lehrer kann Veranstaltung loeschen
+- [x] **EVENT-04**: System zeigt Liste aller Veranstaltungen mit aktueller Kapazitaet
 
 ### Registrierung
 
@@ -85,10 +85,10 @@ Welche Phase deckt welches Requirement ab.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| EVENT-01 | Phase 1 | Pending |
-| EVENT-02 | Phase 1 | Pending |
-| EVENT-03 | Phase 1 | Pending |
-| EVENT-04 | Phase 1 | Pending |
+| EVENT-01 | Phase 1 | Complete |
+| EVENT-02 | Phase 1 | Complete |
+| EVENT-03 | Phase 1 | Complete |
+| EVENT-04 | Phase 1 | Complete |
 | REG-01 | Phase 2 | Pending |
 | REG-02 | Phase 2 | Pending |
 | REG-03 | Phase 2 | Pending |

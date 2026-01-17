@@ -25,8 +25,8 @@ This roadmap delivers the Sporttag-Anmeldeplattform in 4 phases following the na
 **Plans:** 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Project setup with Next.js 16, SQLite/Drizzle, shadcn/ui
-- [ ] 01-02-PLAN.md — Event CRUD operations (create, list, edit, delete)
+- [x] 01-01-PLAN.md — Project setup with Next.js 16, SQLite/Drizzle, shadcn/ui
+- [x] 01-02-PLAN.md — Event CRUD operations (create, list, edit, delete)
 
 ---
 
@@ -86,7 +86,7 @@ Plans:
 
 | Phase | Status | Completed |
 |-------|--------|-----------|
-| 1 - Foundation + Events | Planned | -- |
+| 1 - Foundation + Events | Complete | 2026-01-17 |
 | 2 - Registration | Not started | -- |
 | 3 - Allocation | Not started | -- |
 | 4 - Output | Not started | -- |
