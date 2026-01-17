@@ -54,7 +54,7 @@ Recent decisions for v2.0:
 
 ### Pending Todos
 
-No pending todos.
+1. **Add Zuteilung reset button with confirmation** (ui) — 2026-01-17
 
 ### Blockers/Concerns
 
