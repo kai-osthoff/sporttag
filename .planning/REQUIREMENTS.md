@@ -84,33 +84,33 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DESK-01 | Phase 1 | Pending |
-| DESK-02 | Phase 1 | Pending |
-| DESK-03 | Phase 1 | Pending |
-| DESK-04 | Phase 1 | Pending |
-| DESK-05 | Phase 1 | Pending |
-| DATA-01 | Phase 2 | Pending |
-| DATA-02 | Phase 2 | Pending |
-| DATA-03 | Phase 2 | Pending |
-| INST-01 | Phase 4 | Pending |
-| INST-02 | Phase 4 | Pending |
-| INST-03 | Phase 3 | Pending |
-| INST-04 | Phase 3 | Pending |
-| INST-05 | Phase 3 | Pending |
-| UPDT-01 | Phase 5 | Pending |
-| UPDT-02 | Phase 5 | Pending |
-| UPDT-03 | Phase 5 | Pending |
-| UPDT-04 | Phase 5 | Pending |
-| DIST-01 | Phase 3 | Pending |
-| DIST-02 | Phase 4 | Pending |
-| DIST-03 | Phase 4 | Pending |
-| DIST-04 | Phase 3 | Pending |
+| DESK-01 | Phase 5 | Pending |
+| DESK-02 | Phase 5 | Pending |
+| DESK-03 | Phase 5 | Pending |
+| DESK-04 | Phase 5 | Pending |
+| DESK-05 | Phase 5 | Pending |
+| DATA-01 | Phase 6 | Pending |
+| DATA-02 | Phase 6 | Pending |
+| DATA-03 | Phase 6 | Pending |
+| INST-01 | Phase 8 | Pending |
+| INST-02 | Phase 8 | Pending |
+| INST-03 | Phase 7 | Pending |
+| INST-04 | Phase 7 | Pending |
+| INST-05 | Phase 7 | Pending |
+| UPDT-01 | Phase 9 | Pending |
+| UPDT-02 | Phase 9 | Pending |
+| UPDT-03 | Phase 9 | Pending |
+| UPDT-04 | Phase 9 | Pending |
+| DIST-01 | Phase 7 | Pending |
+| DIST-02 | Phase 8 | Pending |
+| DIST-03 | Phase 8 | Pending |
+| DIST-04 | Phase 7 | Pending |
 
 **Coverage:**
-- v2.0 requirements: 18 total
-- Mapped to phases: 18
-- Unmapped: 0 ✓
+- v2.0 requirements: 21 total
+- Mapped to phases: 21
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-01-17*
-*Last updated: 2026-01-17 after initial definition*
+*Last updated: 2026-01-17 after roadmap creation*

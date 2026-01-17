@@ -4,39 +4,53 @@
 
 See: .planning/PROJECT.md (updated 2026-01-17)
 
-**Core value:** Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen per Losverfahren
-**Current focus:** v1.0 MVP complete — ready for next milestone planning
+**Core value:** Native macOS App fuer faire, automatisierte Zuteilung — installierbar mit einem Terminal-Befehl
+**Current focus:** Phase 5: Electron Shell
 
 ## Current Position
 
-Phase: 4 of 4 complete (v1.0 MVP shipped)
-Plan: All complete
-Status: Milestone shipped
-Last activity: 2026-01-17 — v1.0 milestone complete
+Phase: 5 of 9 (Electron Shell)
+Plan: 0 of ? in current phase
+Status: Ready to plan
+Last activity: 2026-01-17 — v2.0 roadmap created
 
-Progress: [====================] 100% (12 of 12 plans across 4 phases)
+Progress: [============........] 57% (12 of 21 plans across v1.0+v2.0, v2.0 plans TBD)
 
 ## Performance Metrics
 
-**v1.0 Velocity:**
+**v1.0 Velocity (reference):**
 - Total plans completed: 12
 - Average duration: 2.5min per plan
-- Total milestone time: ~30min execution + planning
+- Total milestone time: ~30min execution
+
+**v2.0 (in progress):**
+- Total plans completed: 0
+- Estimated plans: ~8 (based on phase structure)
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation-events | 2 | 9min | 4.5min |
+| 01-foundation | 2 | 9min | 4.5min |
 | 02-registration | 2 | 4min | 2min |
 | 03-allocation | 4 | 11min | 2.75min |
 | 04-output | 4 | 8.4min | 2.1min |
+| 05-electron | - | - | - |
+| 06-database | - | - | - |
+| 07-build | - | - | - |
+| 08-install | - | - | - |
+| 09-updates | - | - | - |
 
 ## Accumulated Context
 
 ### Decisions
 
-See PROJECT.md Key Decisions table for full list with outcomes.
+See PROJECT.md Key Decisions table for full list.
+
+Recent decisions for v2.0:
+- Electron over Tauri (preserves better-sqlite3 + Server Actions)
+- curl + xattr over Apple Developer ID (saves $99/year)
+- Manual updates over auto-update (simpler, more transparent)
 
 ### Pending Todos
 
@@ -48,6 +62,6 @@ No pending todos.
 
 ## Session Continuity
 
-Last session: 2026-01-17 14:30
-Stopped at: v1.0 milestone completed and archived
-Resume file: None — start fresh with /gsd:new-milestone for v2.0
+Last session: 2026-01-17
+Stopped at: v2.0 roadmap created, ready to plan Phase 5
+Resume file: None — run /gsd:plan-phase 5 to continue

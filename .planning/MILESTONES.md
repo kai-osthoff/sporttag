@@ -22,8 +22,26 @@
 - 4 phases, 12 plans, ~50 tasks
 - 2 days from project start to ship
 
-**Git range:** `c9398cf` → `9578d2f`
+**Git range:** `c9398cf` -> `9578d2f`
 
-**What's next:** v2.0 with student self-registration and authentication
+---
+
+## v2.0 Desktop Distribution (In Progress)
+
+**Goal:** Native macOS Desktop-App mit Ein-Befehl-Installation fuer nicht-technische Lehrer
+
+**Phases:** 5-9 (5 phases, ~8 plans estimated)
+
+**Target features:**
+
+- Native macOS App (.app Bundle) mit eigenem Fenster
+- Ein-Befehl-Installation via curl (wie Homebrew)
+- Persistente Datenspeicherung in ~/Library/Application Support/Sporttag/
+- In-App Update-Hinweis mit manuellem Update-Mechanismus
+- GitHub Public Repo mit benutzerfreundlicher README
+
+**Requirements:** 21 total (DESK: 5, DATA: 3, INST: 5, UPDT: 4, DIST: 4)
+
+**Started:** 2026-01-17
 
 ---
