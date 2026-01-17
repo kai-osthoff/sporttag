@@ -103,11 +103,11 @@ Plans:
   3. App runs on both Apple Silicon (M1/M2/M3) and Intel Macs
   4. GitHub Releases page contains downloadable DMG
   5. Repository is public (anyone can access releases)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 07-01: TBD (electron-builder configuration)
-- [ ] 07-02: TBD (DMG customization + GitHub Releases)
+- [ ] 07-01-PLAN.md — Universal DMG build configuration and local build script
+- [ ] 07-02-PLAN.md — GitHub Actions workflow for tag-triggered releases
 
 ### Phase 8: Installation + README
 **Goal**: Teachers can install the app with one terminal command
@@ -150,7 +150,7 @@ Plans:
 | 4. Output | v1.0 | 4/4 | Complete | 2026-01-17 |
 | 5. Electron Shell | v2.0 | 2/2 | Complete | 2026-01-17 |
 | 6. Database Migration | v2.0 | 1/1 | Complete | 2026-01-17 |
-| 7. Build Pipeline | v2.0 | 0/? | Not started | - |
+| 7. Build Pipeline | v2.0 | 0/2 | In progress | - |
 | 8. Installation + README | v2.0 | 0/? | Not started | - |
 | 9. Update Notification | v2.0 | 0/? | Not started | - |
 
