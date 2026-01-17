@@ -3,9 +3,9 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { db } from '@/db'
-import { events } from '@/db/schema'
+import { events, students } from '@/db/schema'
 import { eventSchema } from '@/lib/validations/events'
-import { eq } from 'drizzle-orm'
+import { eq, or, sql } from 'drizzle-orm'
 
 export type ActionState = {
   errors?: {
@@ -91,10 +91,27 @@ export async function updateEvent(
 }
 
 export async function deleteEvent(id: number): Promise<ActionState> {
-  // Note: In Phase 2+, check for registrations before delete
-  // For now, allow delete without registration check
-
+  // Check for registrations referencing this event
   try {
+    const registrationCount = await db
+      .select({ count: sql`count(*)` })
+      .from(students)
+      .where(
+        or(
+          eq(students.priority1Id, id),
+          eq(students.priority2Id, id),
+          eq(students.priority3Id, id)
+        )
+      )
+
+    if (Number(registrationCount[0].count) > 0) {
+      return {
+        errors: {
+          _form: ['Veranstaltung kann nicht geloescht werden - es existieren Anmeldungen']
+        },
+      }
+    }
+
     await db.delete(events).where(eq(events.id, id))
   } catch (error) {
     return {
