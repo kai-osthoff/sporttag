@@ -1,8 +1,8 @@
 export interface StudentWithPriorities {
   id: number
   priority1Id: number
-  priority2Id: number
-  priority3Id: number
+  priority2Id: number | null
+  priority3Id: number | null
   assignedEventId: number | null
   assignmentType: 'auto' | 'manual' | null
 }

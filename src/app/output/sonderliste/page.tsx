@@ -41,7 +41,7 @@ export default async function OutputSonderlistePage() {
       { id: student.priority1Id, name: student.priority1Name },
       { id: student.priority2Id, name: student.priority2Name },
       { id: student.priority3Id, name: student.priority3Name },
-    ]
+    ].filter((p): p is { id: number; name: string } => p.id !== null)
 
     const fullPriorities = priorities.filter((p) => {
       const event = capacityMap.get(p.id)
@@ -49,7 +49,7 @@ export default async function OutputSonderlistePage() {
     })
 
     let reason: string
-    if (fullPriorities.length === 3) {
+    if (fullPriorities.length === priorities.length && priorities.length > 0) {
       reason = 'Alle Wahlen voll'
     } else if (fullPriorities.length > 0) {
       reason = `${fullPriorities.map((p) => p.name).join(', ')} voll`

@@ -17,12 +17,15 @@ export type RegistrationState = {
     _form?: string[]
   }
   success?: boolean
+  savedStudent?: string
 }
 
 export async function createRegistration(
   prevState: RegistrationState,
   formData: FormData
 ): Promise<RegistrationState> {
+  const saveAndNew = formData.get('saveAndNew') === 'true'
+
   const rawData = {
     firstName: formData.get('firstName'),
     lastName: formData.get('lastName'),
@@ -40,6 +43,8 @@ export async function createRegistration(
     }
   }
 
+  const studentName = `${validatedFields.data.firstName} ${validatedFields.data.lastName}`
+
   try {
     await db.insert(students).values({
       firstName: validatedFields.data.firstName,
@@ -56,5 +61,13 @@ export async function createRegistration(
   }
 
   revalidatePath('/registrations')
+
+  if (saveAndNew) {
+    return {
+      success: true,
+      savedStudent: studentName,
+    }
+  }
+
   redirect('/registrations?success=true')
 }

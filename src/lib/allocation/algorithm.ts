@@ -118,7 +118,8 @@ export function allocate(input: AllocationInput): AllocationResult {
   const afterRound2: number[] = []
   for (const studentId of round2) {
     const student = studentMap.get(studentId)!
-    if (!tryAssign(student.priority2Id, studentId, remaining, assignments)) {
+    // Skip if no second priority set
+    if (student.priority2Id === null || !tryAssign(student.priority2Id, studentId, remaining, assignments)) {
       afterRound2.push(studentId)
     }
   }
@@ -128,7 +129,8 @@ export function allocate(input: AllocationInput): AllocationResult {
   const afterRound3: number[] = []
   for (const studentId of round3) {
     const student = studentMap.get(studentId)!
-    if (!tryAssign(student.priority3Id, studentId, remaining, assignments)) {
+    // Skip if no third priority set
+    if (student.priority3Id === null || !tryAssign(student.priority3Id, studentId, remaining, assignments)) {
       afterRound3.push(studentId)
     }
   }

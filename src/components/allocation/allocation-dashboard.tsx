@@ -27,21 +27,16 @@ export function AllocationDashboard({
   const [modalOpen, setModalOpen] = useState(false)
 
   const handleStudentClick = (student: AssignedStudent) => {
-    // Only allow click if we have the priority data
-    if (student.priority1Id !== undefined &&
-        student.priority2Id !== undefined &&
-        student.priority3Id !== undefined) {
-      setSelectedStudent({
-        id: student.id,
-        firstName: student.firstName,
-        lastName: student.lastName,
-        priority1Id: student.priority1Id,
-        priority2Id: student.priority2Id,
-        priority3Id: student.priority3Id,
-        assignedEventId: student.assignedEventId ?? null,
-      })
-      setModalOpen(true)
-    }
+    setSelectedStudent({
+      id: student.id,
+      firstName: student.firstName,
+      lastName: student.lastName,
+      priority1Id: student.priority1Id,
+      priority2Id: student.priority2Id,
+      priority3Id: student.priority3Id,
+      assignedEventId: student.assignedEventId,
+    })
+    setModalOpen(true)
   }
 
   return (

@@ -14,10 +14,10 @@ export interface AssignedStudent {
   class: string
   assignedEventName: string | null
   assignmentType: 'auto' | 'manual' | null
-  priority1Id?: number
-  priority2Id?: number
-  priority3Id?: number
-  assignedEventId?: number | null
+  priority1Id: number
+  priority2Id: number | null
+  priority3Id: number | null
+  assignedEventId: number | null
 }
 
 interface StudentAssignmentListProps {

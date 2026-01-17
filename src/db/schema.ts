@@ -17,8 +17,8 @@ export const students = sqliteTable('students', {
   lastName: text('last_name').notNull(),
   class: text('class').notNull(),
   priority1Id: integer('priority_1_id').notNull().references(() => events.id),
-  priority2Id: integer('priority_2_id').notNull().references(() => events.id),
-  priority3Id: integer('priority_3_id').notNull().references(() => events.id),
+  priority2Id: integer('priority_2_id').references(() => events.id),
+  priority3Id: integer('priority_3_id').references(() => events.id),
   // Allocation tracking columns
   assignedEventId: integer('assigned_event_id').references(() => events.id),
   assignmentType: text('assignment_type').$type<'auto' | 'manual'>(),

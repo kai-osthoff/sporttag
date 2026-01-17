@@ -1,5 +1,11 @@
 import { z } from 'zod'
 
+// Helper to parse optional priority (empty string or missing = null)
+const optionalPriority = z.preprocess(
+  (val) => (val === '' || val === null || val === undefined ? null : val),
+  z.coerce.number().int().min(1).nullable()
+)
+
 export const registrationSchema = z
   .object({
     firstName: z
@@ -18,18 +24,15 @@ export const registrationSchema = z
       .number()
       .int()
       .min(1, '1. Prioritaet ist erforderlich'),
-    priority2Id: z.coerce
-      .number()
-      .int()
-      .min(1, '2. Prioritaet ist erforderlich'),
-    priority3Id: z.coerce
-      .number()
-      .int()
-      .min(1, '3. Prioritaet ist erforderlich'),
+    priority2Id: optionalPriority,
+    priority3Id: optionalPriority,
   })
   .refine(
     (data) => {
-      const priorities = [data.priority1Id, data.priority2Id, data.priority3Id]
+      // Only check uniqueness among selected (non-null) priorities
+      const priorities = [data.priority1Id, data.priority2Id, data.priority3Id].filter(
+        (p): p is number => p !== null
+      )
       return new Set(priorities).size === priorities.length
     },
     {

@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useActionState } from 'react'
+import { useState, useEffect, useRef, useActionState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { toast } from 'sonner'
 import type { RegistrationState } from '@/lib/actions/registrations'
 import type { Event } from '@/db/schema'
 
@@ -22,7 +23,11 @@ interface RegistrationFormProps {
 }
 
 export function RegistrationForm({ action, events }: RegistrationFormProps) {
+  const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
+  const firstNameRef = useRef<HTMLInputElement>(null)
   const [state, formAction, pending] = useActionState(action, { errors: {} })
+  const [saveAndNew, setSaveAndNew] = useState(true)
   const [priority1, setPriority1] = useState<string>('')
   const [priority2, setPriority2] = useState<string>('')
   const [priority3, setPriority3] = useState<string>('')
@@ -31,13 +36,52 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
   const eventsForPriority2 = events.filter(e => String(e.id) !== priority1)
   const eventsForPriority3 = events.filter(e => String(e.id) !== priority1 && String(e.id) !== priority2)
 
+  // Reset form after successful save when using "Save and New"
+  useEffect(() => {
+    if (state.success && state.savedStudent) {
+      toast.success(`${state.savedStudent} registriert`)
+      // Reset form
+      formRef.current?.reset()
+      setPriority1('')
+      setPriority2('')
+      setPriority3('')
+      // Focus first field for next entry
+      firstNameRef.current?.focus()
+    }
+  }, [state.success, state.savedStudent])
+
+  // Handle SHIFT+ENTER for save and new
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && e.shiftKey && !pending) {
+      e.preventDefault()
+      setSaveAndNew(true)
+      // Submit form programmatically
+      const form = formRef.current
+      if (form) {
+        const formData = new FormData(form)
+        formData.set('saveAndNew', 'true')
+        formAction(formData)
+      }
+    }
+  }
+
+  const handleSaveAndNew = () => {
+    setSaveAndNew(true)
+  }
+
+  const handleSaveAndClose = () => {
+    setSaveAndNew(false)
+  }
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Schueler registrieren</CardTitle>
       </CardHeader>
       <CardContent>
-        <form action={formAction} className="space-y-4">
+        <form ref={formRef} action={formAction} className="space-y-4" onKeyDown={handleKeyDown}>
+          <input type="hidden" name="saveAndNew" value={saveAndNew.toString()} />
+
           {state.errors?._form && (
             <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md">
               {state.errors._form[0]}
@@ -48,10 +92,11 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
             <div className="space-y-2">
               <Label htmlFor="firstName">Vorname *</Label>
               <Input
+                ref={firstNameRef}
                 id="firstName"
                 name="firstName"
                 placeholder="Max"
-                required
+                autoFocus
               />
               {state.errors?.firstName && (
                 <p className="text-sm text-destructive">{state.errors.firstName[0]}</p>
@@ -64,7 +109,6 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
                 id="lastName"
                 name="lastName"
                 placeholder="Mustermann"
-                required
               />
               {state.errors?.lastName && (
                 <p className="text-sm text-destructive">{state.errors.lastName[0]}</p>
@@ -78,7 +122,6 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
               id="class"
               name="class"
               placeholder="5a"
-              required
             />
             {state.errors?.class && (
               <p className="text-sm text-destructive">{state.errors.class[0]}</p>
@@ -117,7 +160,7 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="priority2Id">2. Prioritaet *</Label>
+              <Label htmlFor="priority2Id">2. Prioritaet</Label>
               <Select
                 name="priority2Id"
                 value={priority2}
@@ -128,7 +171,7 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
                 }}
               >
                 <SelectTrigger id="priority2Id" className="w-full">
-                  <SelectValue placeholder="2. Wahl auswaehlen..." />
+                  <SelectValue placeholder="2. Wahl auswaehlen (optional)..." />
                 </SelectTrigger>
                 <SelectContent>
                   {eventsForPriority2.map((event) => (
@@ -144,14 +187,14 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="priority3Id">3. Prioritaet *</Label>
+              <Label htmlFor="priority3Id">3. Prioritaet</Label>
               <Select
                 name="priority3Id"
                 value={priority3}
                 onValueChange={setPriority3}
               >
                 <SelectTrigger id="priority3Id" className="w-full">
-                  <SelectValue placeholder="3. Wahl auswaehlen..." />
+                  <SelectValue placeholder="3. Wahl auswaehlen (optional)..." />
                 </SelectTrigger>
                 <SelectContent>
                   {eventsForPriority3.map((event) => (
@@ -167,14 +210,21 @@ export function RegistrationForm({ action, events }: RegistrationFormProps) {
             </div>
           </div>
 
-          <div className="flex gap-2">
-            <Button type="submit" disabled={pending}>
-              {pending ? 'Registrieren...' : 'Schueler registrieren'}
+          <div className="flex gap-2 pt-2">
+            <Button type="submit" disabled={pending} onClick={handleSaveAndNew}>
+              {pending ? 'Speichern...' : 'Speichern & Neu'}
             </Button>
-            <Button type="button" variant="outline" asChild>
+            <Button type="submit" variant="outline" disabled={pending} onClick={handleSaveAndClose}>
+              Speichern & Schliessen
+            </Button>
+            <Button type="button" variant="ghost" asChild>
               <a href="/registrations">Abbrechen</a>
             </Button>
           </div>
+
+          <p className="text-xs text-muted-foreground">
+            Tipp: SHIFT+ENTER zum schnellen Speichern & Neu
+          </p>
         </form>
       </CardContent>
     </Card>
