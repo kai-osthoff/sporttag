@@ -6,13 +6,13 @@ This roadmap covers v2.0 Desktop Distribution: transforming the existing Next.js
 
 ## Milestones
 
-- ✅ **v1.0 MVP** - Phases 1-4 (shipped 2026-01-17)
-- 🚧 **v2.0 Desktop Distribution** - Phases 5-9 (in progress)
+- v1.0 MVP - Phases 1-4 (shipped 2026-01-17)
+- v2.0 Desktop Distribution - Phases 5-9 (in progress)
 
 ## Phases
 
 <details>
-<summary>✅ v1.0 MVP (Phases 1-4) - SHIPPED 2026-01-17</summary>
+<summary>v1.0 MVP (Phases 1-4) - SHIPPED 2026-01-17</summary>
 
 ### Phase 1: Foundation + Events
 **Goal**: Project setup and event management
@@ -52,7 +52,7 @@ Plans:
 
 </details>
 
-### 🚧 v2.0 Desktop Distribution (In Progress)
+### v2.0 Desktop Distribution (In Progress)
 
 **Milestone Goal:** Native macOS Desktop-App mit Ein-Befehl-Installation fuer nicht-technische Lehrer
 
@@ -74,11 +74,11 @@ Plans:
   3. Cmd+Q quits the app completely, X button hides window to Dock
   4. Window position and size restore correctly after restart
   5. All v1.0 features work without internet connection
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 05-01: TBD (Electron main process + Next.js standalone)
-- [ ] 05-02: TBD (Window management + macOS conventions)
+- [ ] 05-01-PLAN.md — Electron main process with embedded Next.js standalone server
+- [ ] 05-02-PLAN.md — macOS window behavior and development workflow
 
 ### Phase 6: Database Migration
 **Goal**: Database persists in user-accessible location that survives app updates
@@ -148,7 +148,7 @@ Plans:
 | 2. Registration | v1.0 | 2/2 | Complete | 2026-01-16 |
 | 3. Allocation | v1.0 | 4/4 | Complete | 2026-01-16 |
 | 4. Output | v1.0 | 4/4 | Complete | 2026-01-17 |
-| 5. Electron Shell | v2.0 | 0/? | Not started | - |
+| 5. Electron Shell | v2.0 | 0/2 | Planned | - |
 | 6. Database Migration | v2.0 | 0/? | Not started | - |
 | 7. Build Pipeline | v2.0 | 0/? | Not started | - |
 | 8. Installation + README | v2.0 | 0/? | Not started | - |
