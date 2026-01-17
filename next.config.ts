@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
 
   // Prevent bundling Electron and native modules
   serverExternalPackages: ['electron', 'better-sqlite3'],
+
+  // Disable image optimization to prevent sharp native modules from being bundled
+  // (fixes electron-builder universal binary creation conflict)
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;

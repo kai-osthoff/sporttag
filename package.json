@@ -10,7 +10,8 @@
     "lint": "eslint",
     "rebuild:electron": "npx @electron/rebuild",
     "electron:dev": "concurrently -k \"next dev -p 3456\" \"wait-on http://localhost:3456 && electron .\"",
-    "electron:build": "next build && electron-builder --mac"
+    "electron:build": "next build && electron-builder --mac",
+    "build:dmg": "npm run build && npx electron-builder --mac --publish never"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
