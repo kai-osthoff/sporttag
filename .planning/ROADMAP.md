@@ -88,10 +88,10 @@ Plans:
   1. Database file exists at ~/Library/Application Support/Sporttag/sporttag.db
   2. Fresh install creates the directory and database automatically
   3. Replacing app bundle with new version preserves all existing data
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 06-01: TBD (Database path configuration + migration)
+- [ ] 06-01-PLAN.md — userData directory creation, migration runner, and extraResources config
 
 ### Phase 7: Build Pipeline
 **Goal**: Automated build produces distributable DMG for ARM and Intel Macs
@@ -149,7 +149,7 @@ Plans:
 | 3. Allocation | v1.0 | 4/4 | Complete | 2026-01-16 |
 | 4. Output | v1.0 | 4/4 | Complete | 2026-01-17 |
 | 5. Electron Shell | v2.0 | 2/2 | Complete | 2026-01-17 |
-| 6. Database Migration | v2.0 | 0/? | Not started | - |
+| 6. Database Migration | v2.0 | 0/1 | Planned | - |
 | 7. Build Pipeline | v2.0 | 0/? | Not started | - |
 | 8. Installation + README | v2.0 | 0/? | Not started | - |
 | 9. Update Notification | v2.0 | 0/? | Not started | - |
