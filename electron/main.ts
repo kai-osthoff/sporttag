@@ -1,8 +1,19 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain, shell } from 'electron';
 import { spawn, ChildProcess } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 import windowStateKeeper from 'electron-window-state';
+
+// IPC handlers for update notification
+ipcMain.handle('app:get-version', () => app.getVersion());
+
+ipcMain.handle('shell:open-external', (_event, url: string) => {
+  // Security: Only allow GitHub URLs for this app
+  if (url.startsWith('https://github.com/kai-osthoff/sporttag')) {
+    return shell.openExternal(url);
+  }
+  throw new Error('Invalid URL - only GitHub sporttag URLs allowed');
+});
 
 // Fixed port for production (non-standard to avoid conflicts)
 const PORT = 3456;
