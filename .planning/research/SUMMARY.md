@@ -1,177 +1,169 @@
 # Project Research Summary
 
-**Project:** Sporttag-Anmeldeplattform
-**Domain:** School event registration with lottery-based allocation
+**Project:** Sporttag-Anmeldeplattform v2.0 Desktop Distribution
+**Domain:** macOS desktop application packaging for Next.js + SQLite web app
 **Researched:** 2026-01-17
 **Confidence:** HIGH
 
 ## Executive Summary
 
-This is a straightforward school administration tool: a registration system for ~250 students selecting from ~7 sports day events, with a lottery allocation when demand exceeds capacity. The recommended approach is a **monolithic three-tier architecture** using **Next.js 15 + SQLite + Drizzle** — a stack optimized for simplicity and school IT deployment. The core complexity lies not in the UI or data model, but in the **lottery algorithm** which must be fair, reproducible, and auditable.
+Sporttag v2.0 transforms the existing web application into a native macOS desktop app for non-technical teachers. The research strongly recommends **Electron with embedded Next.js server** over Tauri. While Tauri offers better performance (10MB vs 150MB bundle, 30MB vs 250MB RAM), it requires rewriting 60% of the codebase because it cannot run Server Actions or use better-sqlite3. Electron preserves the existing stack with minimal changes (~10% of code affected).
 
-The research strongly recommends building v1 as a **teacher-mediated system** (no student self-registration) to avoid authentication complexity. The stack choices prioritize zero external dependencies: no database server, no auth provider, single Docker container deployment. This makes the system viable for school environments with limited IT support.
+The recommended approach is: (1) configure Next.js for standalone output, (2) embed the standalone server in an Electron utility process, (3) store the database in `~/Library/Application Support/Sporttag/`, (4) distribute via DMG with a curl-based installer that removes quarantine attributes, and (5) implement update notifications via electron-updater checking GitHub Releases.
 
-The primary risk is **fairness disputes**. Parents will challenge lottery outcomes. Mitigation requires: storing the random seed, logging every allocation decision, and providing a verification mechanism. Secondary risks include race conditions during concurrent registration and the "all choices full" edge case where students cannot be assigned to any of their preferences.
+The primary risks are Gatekeeper blocking unsigned apps (mitigated by curl installer removing quarantine), database loss during updates (mitigated by storing data outside the app bundle), and ARM/Intel architecture mismatch (mitigated by building Universal Binary). Apple may tighten restrictions on unsigned apps in future macOS versions, so budget for Apple Developer ID ($99/year) if distribution scales beyond a single school.
 
 ## Key Findings
 
 ### Recommended Stack
 
-A modern TypeScript stack optimized for form-heavy workflows and simple deployment:
+Electron wins decisively over Tauri for this project despite Tauri's superior performance metrics. The deciding factor is **better-sqlite3 compatibility**: Electron's Node.js runtime runs the existing database layer directly, while Tauri would require rewriting all database operations in Rust.
 
 **Core technologies:**
-- **Next.js 15.5:** Full-stack React framework — Server Actions for forms, API routes, single deployment unit
-- **SQLite + better-sqlite3:** Zero-config database — single file backup, appropriate for ~250 users/year
-- **Drizzle ORM:** Type-safe SQL — lightweight, no code generation, excellent SQLite support
-- **React Hook Form + Zod:** Form handling — mature, minimal re-renders, shared client/server validation
-- **shadcn/ui + Tailwind:** UI components — copy-paste components, full customization, print-friendly
-- **react-to-print:** Print output — handles print media queries for physical posting
+- **Electron ^34.0.0:** Desktop wrapper with Node.js runtime that preserves existing better-sqlite3 + Drizzle stack
+- **electron-builder ^26.0.0:** Build tooling for DMG generation, native module handling, and GitHub Releases publishing
+- **electron-updater ^6.0.0:** Battle-tested auto-update mechanism with GitHub Releases integration
+- **Next.js standalone output:** Production-optimized self-contained build that runs embedded in Electron
 
-**Anti-recommendations:** Avoid Firebase/Supabase (data privacy), MongoDB (overkill), Prisma (heavier than needed), client-side-only lottery (not auditable).
+**Avoid:**
+- Tauri (requires Rust database rewrite)
+- Homebrew Cask (requires code signing)
+- PKG installer (overkill for school distribution)
 
 ### Expected Features
 
 **Must have (table stakes):**
-- Event management: CRUD for ~7 sports events with capacities
-- Registration form: Teacher enters student name, class, 3 priorities
-- Form validation: No duplicates, all 3 priorities required
-- Lottery allocation: Random order, priority-respecting, capacity-enforced
-- Unassigned detection: Explicit list for students where all choices are full
-- Three output lists: Per event, per class, unassigned students
-- Print-friendly output: Large fonts, clear headers, designed for physical posting
-- CSV export: All lists exportable for other school systems
+- App in /Applications with Dock icon (users expect "real" app behavior)
+- Data persistence in ~/Library/Application Support/ (survives app updates)
+- Standard macOS window behavior (X hides, Cmd+Q quits)
+- Works offline (already works with local SQLite)
+- No scary Gatekeeper warnings (requires curl installer workaround)
 
-**Should have (v1 nice-to-have):**
-- Allocation statistics: Show % got 1st/2nd/3rd choice
-- Registration deadline control: Open/close registration period
-- Edit before deadline: Allow changes to registrations
+**Should have (differentiators):**
+- In-app update notification banner (check GitHub Releases on launch)
+- Visual DMG installation instructions (background image with arrow)
+- German-language dialogs throughout
+- Window state persistence between sessions
 
-**Defer (v2+):**
-- Student self-registration (requires auth)
-- Email notifications
-- CSV import of student roster
-- Real-time capacity display
-- Multi-language support
-- Waitlist auto-management
+**Defer to post-v2.0:**
+- Full auto-updater (start with notification + manual download)
+- Windows/Linux support
+- Database backup UI in-app
+- Apple Developer ID code signing (use curl + xattr workaround for now)
 
 ### Architecture Approach
 
-A monolithic three-tier architecture is the clear choice for this scale. The system divides into: **Presentation Layer** (event management, registration forms, allocation reports), **Business Logic Layer** (event service, registration service, allocation engine), and **Data Layer** (events, students, classes, registrations, allocations).
+The architecture embeds Next.js as a standalone server running in an Electron utility process, with the renderer loading the app via localhost. This preserves Server Actions, SSR, and all existing database code. The main process handles window management, auto-update checks, and spawns the Next.js server with environment variables for database path.
 
 **Major components:**
-1. **Event Management** — CRUD for sports events, locks after allocation
-2. **Student/Class Management** — Student roster, class groupings, manual entry for v1
-3. **Registration Service** — Captures 3 priorities per student, validates no duplicates
-4. **Allocation Engine** — Fisher-Yates shuffle + priority-weighted assignment, stores seed + decisions
-5. **Report Generator** — Event lists, class lists, unassigned list, print styling
+1. **Electron Main Process** — app lifecycle, window management, spawns Next.js server
+2. **Utility Process (Next.js Server)** — runs standalone build with Drizzle + better-sqlite3
+3. **Renderer (Chromium)** — displays Next.js app, communicates via HTTP
+4. **SQLite Database** — stored in userData directory, accessed only by utility process
+5. **Auto-Updater** — checks GitHub Releases, notifies user, handles download/install
 
-**Data model recommendation:** Normalized registrations table (student_id, priority_1/2/3_event_id) with CHECK constraints for distinct priorities. Separate allocation_runs table to track lottery executions with seed and statistics.
+**Key configuration changes:**
+- `next.config.ts`: Add `output: 'standalone'` and `serverExternalPackages: ['electron', 'better-sqlite3']`
+- `src/db/index.ts`: Use `process.env.DB_PATH || 'sporttag.db'` for configurable database location
+- New `electron/` directory: main.ts, preload.ts, updater.ts
 
 ### Critical Pitfalls
 
-1. **Race conditions in registration** — Multiple concurrent submissions can overbook events. Prevention: Use database constraints (UNIQUE on student), pessimistic locking for capacity checks. Address in Phase 1.
+1. **Gatekeeper blocks unsigned app (D1)** — macOS Sequoia requires System Settings navigation for unsigned apps. Mitigate with curl installer that removes quarantine via `xattr -cr /Applications/Sporttag.app`.
 
-2. **Non-reproducible lottery results** — Parents will challenge outcomes. Prevention: Store the random seed explicitly, use deterministic PRNG, log every allocation decision with reason, provide verification function. Address in Phase 2.
+2. **Database lost on update (D2)** — NEVER store database inside app bundle. Use `app.getPath('userData')` from day one. The `.app` directory is completely replaced on update.
 
-3. **Silent failure on "all choices full"** — Algorithm must explicitly handle students who cannot be placed. Prevention: Create explicit "unassigned" status and special list for manual handling; never auto-assign to non-preferred events. Address in Phase 2.
+3. **Architecture mismatch (D3)** — Build Universal Binary 2 (ARM + Intel) or provide separate downloads with architecture detection in curl script. Intel support matters until macOS 27 (2026).
 
-4. **No audit trail for decisions** — "Why didn't my child get their first choice?" Prevention: Log each decision with capacity state at time of decision, store lottery order per student. Address in Phase 2.
+4. **Next.js Server Actions don't work with static export (D9)** — This is why we chose Electron over Tauri. With Electron + standalone output, Server Actions work normally.
 
-5. **Print output unusable** — Screen-optimized PDFs are unreadable when posted. Prevention: Design specifically for posting context (14pt+ fonts, clear section headers), test by actually printing. Address in Phase 3.
+5. **Native module rebuild required** — better-sqlite3 must be rebuilt for Electron's Node version. Add `"postinstall": "electron-builder install-app-deps"` to package.json.
 
 ## Implications for Roadmap
 
 Based on research, suggested phase structure:
 
-### Phase 1: Data Foundation
-**Rationale:** Everything depends on the data model. Get the schema right first with proper constraints.
-**Delivers:** Working database with events, students, classes. Basic admin UI for CRUD operations.
-**Addresses:** Event management, student data entry (table stakes)
-**Avoids:** Priority order ambiguity, duplicate registrations (use DB constraints from day 1)
-**Stack:** Next.js setup, SQLite + Drizzle, basic shadcn/ui components
+### Phase 1: Electron Shell + Static Server
+**Rationale:** Must establish that Next.js + Electron works before any other work. Architecture decision has cascading effects.
+**Delivers:** Electron app that launches and displays Next.js UI
+**Addresses:** Basic desktop packaging, verifies Server Actions work in Electron context
+**Avoids:** D9 (SSR incompatibility) by validating standalone build early
 
-### Phase 2: Registration Flow
-**Rationale:** Registration is the core input to the system. Must be solid before lottery.
-**Delivers:** Complete registration form with validation, registration list view, deadline control.
-**Addresses:** 3-priority selection, form validation, edit before deadline (table stakes)
-**Avoids:** Race conditions (pessimistic locking), form validation UX issues (inline validation)
-**Stack:** React Hook Form + Zod, form components
+### Phase 2: Database Location Migration
+**Rationale:** Must fix database path before any user data is created in wrong location
+**Delivers:** Database in `~/Library/Application Support/Sporttag/`, backward-compatible env var approach
+**Uses:** Electron's `app.getPath('userData')`, environment variable injection
+**Avoids:** D2 (database lost on update) permanently
 
-### Phase 3: Allocation Engine
-**Rationale:** The differentiating feature. Most complex logic. Requires careful design for fairness.
-**Delivers:** Lottery algorithm, allocation run management, audit trail, unassigned list generation.
-**Addresses:** Random lottery, priority-respecting allocation, unassigned detection (table stakes)
-**Avoids:** Non-reproducible results, silent edge case failures, missing audit trail
-**Stack:** Custom algorithm (Fisher-Yates), allocation_runs table with seed storage
-**Note:** This phase requires explicit handling of the audit trail requirement.
+### Phase 3: Build + Distribution Pipeline
+**Rationale:** Need reliable build before testing with real users
+**Delivers:** DMG installer, electron-builder configuration, GitHub Releases integration
+**Implements:** Native module rebuild, Universal Binary, DMG customization
+**Avoids:** D3 (architecture mismatch)
 
-### Phase 4: Reports and Output
-**Rationale:** Makes allocation results usable. Critical for actual event day.
-**Delivers:** Event lists, class lists, print-friendly output, CSV export.
-**Addresses:** Output lists, print output, export (table stakes)
-**Avoids:** Unusable print output (design for posting, test physically)
-**Stack:** TanStack Table, react-to-print, CSS print media queries
+### Phase 4: Installation Script
+**Rationale:** Gatekeeper bypass is critical for non-technical users
+**Delivers:** curl installer that downloads DMG, copies to /Applications, removes quarantine
+**Addresses:** Table stakes feature "no scary warnings"
+**Avoids:** D1 (Gatekeeper blocks), D4 (curl security concerns)
 
-### Phase 5: Polish and Deploy
-**Rationale:** Production readiness. Deployment artifact for school IT.
-**Delivers:** Docker container, statistics dashboard, documentation.
-**Addresses:** Basic statistics, deployment (table stakes)
-**Stack:** Docker standalone output, final testing
+### Phase 5: Update Notification
+**Rationale:** Once stable, add update mechanism for future releases
+**Delivers:** In-app banner checking GitHub Releases, link to download new version
+**Implements:** electron-updater for notification (not full auto-download yet)
+**Avoids:** D6 (update failures) by keeping updates manual initially
 
 ### Phase Ordering Rationale
 
-- **Data -> Registration -> Allocation -> Output** mirrors the actual user workflow
-- Architecture research confirms this dependency chain: Events must exist before registration, registrations must exist before allocation, allocation must complete before reports
-- Pitfall research confirms: build concurrency handling into Phase 1/2, not retrofitted later
-- Stack research confirms: all components work together (Drizzle -> RHF/Zod -> shadcn -> print)
+- **Phases 1-2 must be sequential:** Database location depends on Electron working
+- **Phase 3 enables testing:** Cannot test with users without working builds
+- **Phase 4 unblocks deployment:** Gatekeeper is the #1 blocker for teacher adoption
+- **Phase 5 is nice-to-have:** v2.0 can ship without auto-updates; manual DMG replacement works
 
 ### Research Flags
 
 Phases likely needing deeper research during planning:
-- **Phase 3 (Allocation Engine):** Most complex logic. Need to finalize algorithm choice (single-pass vs multi-round), audit trail schema, and verification mechanism. Research the exact logging format needed to answer "why this assignment?"
-- **Phase 4 (Print Output):** CSS print styling has quirks. Research print media queries, page break handling, and accessibility requirements for posted documents in German schools.
+- **Phase 3 (Build Pipeline):** Universal Binary build process, native module signing, DMG customization options
+- **Phase 5 (Updates):** Differential updates vs full replacement, handling database schema migrations
 
 Phases with standard patterns (skip research-phase):
-- **Phase 1 (Data Foundation):** Well-documented Next.js + Drizzle + SQLite setup
-- **Phase 2 (Registration Flow):** Standard form handling with RHF + Zod, many examples available
-- **Phase 5 (Deploy):** Docker standalone is officially documented by Next.js
+- **Phase 1 (Electron Shell):** Well-documented, use next-electron-rsc patterns
+- **Phase 2 (Database Location):** Standard Electron userData pattern
+- **Phase 4 (Installation Script):** Standard curl+xattr pattern
 
 ## Confidence Assessment
 
 | Area | Confidence | Notes |
 |------|------------|-------|
-| Stack | HIGH | All technologies verified via npm, official docs, multiple comparison sources |
-| Features | MEDIUM | Based on event registration best practices, some inferred from enterprise systems |
-| Architecture | HIGH | Well-established patterns for this scale, multiple authoritative sources |
-| Pitfalls | HIGH | Multiple sources cross-referenced, specific to lottery/registration domain |
+| Stack | HIGH | Electron vs Tauri tradeoffs well-documented; better-sqlite3 compatibility verified |
+| Features | HIGH | Apple HIG and macOS conventions are authoritative |
+| Architecture | HIGH | Electron utility process pattern verified in multiple sources |
+| Pitfalls | HIGH | Gatekeeper behavior documented by Apple; community patterns consistent |
 
 **Overall confidence:** HIGH
 
 ### Gaps to Address
 
-- **Allocation algorithm details:** Single-pass vs multi-round? Research recommends single-pass for simplicity, but multi-round may be fairer. Decide during Phase 3 planning.
-- **Waitlist handling:** Research identifies this as important but deferred to v2. Confirm with stakeholders if v1 needs any waitlist capability.
-- **GDPR compliance specifics:** Research notes requirements but detailed implementation (data retention, deletion, access requests) needs school policy review.
-- **School IT environment:** Specific deployment constraints (ports, firewall, local vs cloud) unknown. Clarify before Phase 5.
+- **Apple Developer ID:** Research did not determine if $99/year is worth it for single-school deployment. Decision can be deferred; curl workaround is sufficient for initial release.
+- **IT department policies:** Unknown if German schools have MDM policies that would prefer PKG format. Unlikely for small school deployment.
+- **Multi-user machines:** Research did not address shared Mac scenarios in computer labs. Database in userData is per-user, which may be desired behavior.
+- **Nextron vs manual setup:** STACK-DESKTOP.md mentioned Nextron but assessed it as MEDIUM confidence (less actively maintained). May need to evaluate during Phase 1 implementation.
 
 ## Sources
 
 ### Primary (HIGH confidence)
-- Next.js 15.5 Release Notes — framework capabilities, deployment options
-- SQLite vs PostgreSQL comparisons (DataCamp, Bytebase) — database selection
-- Drizzle ORM documentation — ORM features, SQLite support
-- Fisher-Yates shuffle (Wikipedia, Bost.ocks.org) — algorithm correctness
-- Fair Random Assignment (Wikipedia) — lottery fairness properties
+- [Electron app.getPath() documentation](https://www.electronjs.org/docs/latest/api/app) — userData location, app lifecycle
+- [Next.js standalone output](https://nextjs.org/docs/app/api-reference/config/next-config-js/output) — build configuration
+- [electron-builder auto-update](https://www.electron.build/auto-update.html) — GitHub Releases integration
+- [Apple Gatekeeper documentation](https://support.apple.com/guide/security/gatekeeper-and-runtime-protection-sec5599b66df/web) — security requirements
 
 ### Secondary (MEDIUM confidence)
-- React Hook Form vs TanStack Form comparisons — form library selection
-- shadcn/ui ecosystem guides — component library capabilities
-- Event registration best practices (Bizzabo, Sched) — feature expectations
-- MIT ESP Lottery FAQ — school lottery implementation patterns
+- [DoltHub Electron vs Tauri (2025)](https://www.dolthub.com/blog/2025-11-13-electron-vs-tauri/) — framework comparison
+- [next-electron-rsc](https://github.com/kirill-konshin/next-electron-rsc) — RSC in Electron patterns
+- [better-sqlite3 Electron integration](https://dev.to/arindam1997007/a-step-by-step-guide-to-integrating-better-sqlite3-with-electron-js-app-using-create-react-app-3k16) — native module rebuild
 
 ### Tertiary (LOW confidence)
-- GDPR school compliance guides — general guidance, needs school-specific review
-- Print accessibility guides (Harvard, Penn State) — may not apply to German context
+- [Nextron](https://github.com/saltyshiomix/nextron) — Next.js + Electron boilerplate; less actively updated, may need verification
 
 ---
 *Research completed: 2026-01-17*

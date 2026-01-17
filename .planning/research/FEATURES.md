@@ -1,16 +1,366 @@
 # Features Research: Sporttag Registration Platform
 
 **Domain:** School event registration with capacity-limited lottery allocation
-**Researched:** 2026-01-16
+**Researched:** 2026-01-16 (v1.0), 2026-01-17 (v2.0 Desktop Distribution)
 **Confidence:** MEDIUM (based on WebSearch findings from multiple sources, cross-verified patterns)
 
 ---
 
-## Table Stakes
+## v1.0 Features (Shipped)
 
-Features users expect. Missing = product feels incomplete or unusable.
+### Table Stakes (Delivered)
 
-### Registration & Data Input
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Student data entry (name, class) | Done | Teacher enters students |
+| 3-priority selection | Done | Mandatory selection of exactly 3 events |
+| Event listing with capacity display | Done | Event name, description, max capacity |
+| Form validation | Done | All 3 priorities required, no duplicates |
+| Confirmation feedback | Done | Success message post-submission |
+| Random lottery mechanism | Done | Mulberry32 PRNG for reproducibility |
+| Priority-respecting allocation | Done | Try 1st choice first, then 2nd, then 3rd |
+| Capacity enforcement | Done | Hard limit per event |
+| Unassigned student detection | Done | "Sonderliste" for students with all full choices |
+| Event roster lists | Done | Per-event participant lists |
+| Class lists | Done | Per-class assignment overview |
+| Unassigned students list | Done | Sonderliste for manual handling |
+| Export to CSV | Done | German UTF-8 BOM format |
+| Print-friendly format | Done | A4 portrait, 1.5cm margins |
+| Event management (CRUD) | Done | Create, edit, delete events |
+| Run allocation button | Done | One-click allocation execution |
+| Basic statistics | Done | 1./2./3. Wahl distribution |
+
+### Differentiators (Delivered in v1.0)
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Re-run allocation | Done | Clear and re-allocate with new seed |
+| Manual reassignment | Done | Admin assigns specific students manually |
+| Fairness metrics display | Done | Show % got 1st/2nd/3rd choice |
+
+---
+
+## v2.0 Features: macOS Desktop Distribution
+
+**Focus:** Packaging existing web app as native macOS desktop application for non-technical teacher users.
+
+### Table Stakes
+
+Features users expect. Missing = product feels incomplete or unprofessional.
+
+| Feature | Why Expected | Complexity | Notes |
+|---------|--------------|------------|-------|
+| **App icon in Dock** | Basic macOS app behavior - users expect to see the app in Dock when running | Low | Standard with Tauri/Electron |
+| **App appears in /Applications** | Mac users install apps here; anything else feels "not a real app" | Low | DMG drag-and-drop handles this |
+| **Window close (X) hides, Cmd+Q quits** | macOS convention: closing window != quitting app | Medium | Configure LSUIElement correctly |
+| **Window state persistence** | App remembers size/position between launches | Low | Built into Tauri window config |
+| **Standard menu bar** | File, Edit, Window, Help menus expected | Low | Default with desktop wrappers |
+| **Retina display support** | Sharp text/icons on modern Macs | Low | Web content auto-scales |
+| **Native file dialogs** | Save/Open dialogs should look native | Low | Tauri provides native dialogs |
+| **App works offline** | No internet should not break core functionality | Low | Already works - SQLite local DB |
+| **Code signed app** | No scary "unidentified developer" warnings | Medium | Requires Apple Developer Account ($99/year) |
+| **Notarized app** | No "Apple couldn't verify" dialogs | Medium | Required for smooth first launch |
+| **Data in ~/Library/Application Support/** | Standard location for app data on macOS | Low | Configure at build time |
+| **Graceful first launch** | App opens directly to usable state, no setup wizard | Low | Existing app already does this |
+
+**Sources:**
+- [Apple Human Interface Guidelines - Designing for macOS](https://developer.apple.com/design/human-interface-guidelines/designing-for-macos)
+- [Apple - Notarizing macOS software](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution)
+
+### Differentiators
+
+Features that set product apart. Not expected, but valued.
+
+| Feature | Value Proposition | Complexity | Notes |
+|---------|-------------------|------------|-------|
+| **In-app update notification** | Teacher doesn't need to check GitHub manually | Medium | Check GitHub Releases API on launch |
+| **One-click update download** | Opens browser to download new DMG | Low | Simple link to GitHub release |
+| **Visual installation instructions in DMG** | Background image showing drag-to-Applications | Low | Standard DMG customization |
+| **Automatic database migration** | App handles schema changes silently | Medium | Drizzle migrations on startup |
+| **Data backup/export** | Teacher can backup their data before updates | Medium | Export SQLite file |
+| **"Hilfe" menu with documentation link** | Quick access to README/docs | Low | Menu item linking to GitHub wiki |
+| **German system integration** | Respects macOS language settings | Low | App already fully German |
+| **Quick launch from Spotlight** | Type "Sporttag" to find app | Low | Automatic with /Applications install |
+
+### Anti-Features for v2.0
+
+Features to explicitly NOT build. Common mistakes in this domain.
+
+| Anti-Feature | Why Avoid | What to Do Instead |
+|--------------|-----------|-------------------|
+| **Automatic background updates** | Non-transparent; teachers want control; adds complexity | In-app notification + manual download |
+| **Menu bar-only app** | Confusing for non-technical users; app needs visible window | Standard Dock app with window |
+| **Auto-start on login** | Annoys users; app used once/year | Let teachers add to Login Items manually if desired |
+| **Crash reporting telemetry** | Privacy concerns; German schools sensitive about data | None, or explicit opt-in only |
+| **Cloud sync** | Adds complexity; data should stay local | Local SQLite only |
+| **License key/activation** | Creates friction; app is free | No licensing |
+| **Installer wizard (.pkg)** | Overkill for simple app; DMG drag-drop is friendlier | DMG with visual instructions |
+| **Custom window chrome** | Looks non-native; confuses users | Use standard macOS title bar |
+| **Multiple windows** | App is single-purpose; multiple windows add confusion | Single window app |
+| **Touch Bar support** | Deprecated; not worth effort | Skip entirely |
+| **System tray/menu bar icon** | App doesn't need persistent background presence | Dock icon only |
+| **Windows/Linux in v2.0** | Splits focus; teachers have Macs | macOS-only, defer others |
+| **Self-signed certificate** | Users see scary warnings; defeats purpose of "professional app" | Proper Apple Developer signing |
+
+---
+
+## First-Launch Experience
+
+### What Users Expect
+
+Based on [Apple Human Interface Guidelines - Launching](https://developers.apple.com/design/human-interface-guidelines/patterns/launching):
+
+1. **Instant usability**: App opens to main screen, not a welcome wizard
+2. **No permission dialogs** (unless absolutely necessary)
+3. **No sign-in required**: Single-user local app
+4. **State from previous session**: If app was open before, restore window position
+5. **Quick win opportunity**: User can immediately start adding events
+
+### Sporttag-Specific First Launch
+
+For v2.0, the first launch should:
+- Open to the main dashboard (same as current web app)
+- Database created silently in ~/Library/Application Support/Sporttag/
+- No onboarding tour needed (UI is self-explanatory)
+- Window appears centered, reasonable default size (1024x768 or similar)
+
+### What NOT to Do
+
+- No "What's New" popup on first launch
+- No tour/walkthrough (teachers discover by doing)
+- No analytics opt-in dialog
+- No "Rate this app" prompts
+
+**Source:** [macOS User Onboarding Best Practices](https://screencharm.com/blog/user-onboarding-best-practices)
+
+---
+
+## Installation Experience
+
+### The DMG Standard
+
+[Standard macOS installation pattern](https://www.howtogeek.com/177619/how-to-install-applications-on-a-mac-everything-you-need-to-know/):
+
+1. User downloads .dmg file
+2. Double-click opens Finder window
+3. Window shows: App icon + arrow + Applications folder alias
+4. User drags app to Applications
+5. User ejects DMG (optional)
+6. User launches from /Applications or Spotlight
+
+### For Non-Technical Teachers
+
+The curl installation script (as specified in PROJECT.md) should:
+
+```bash
+# Example: curl -fsSL https://github.com/user/sporttag/releases/latest/download/install.sh | bash
+```
+
+What the script does:
+1. Download latest .dmg from GitHub Releases
+2. Mount DMG silently
+3. Copy .app to /Applications (may need admin password)
+4. Unmount DMG
+5. Delete downloaded DMG
+6. Print success message with "Open Sporttag from Applications or Spotlight"
+
+### Gatekeeper Considerations
+
+Without proper signing/notarization, users see:
+- "Sporttag can't be opened because Apple cannot verify it"
+- Requires System Settings > Privacy & Security > Open Anyway
+
+**Recommendation**: Pay for Apple Developer Program ($99/year) to avoid this friction entirely. The target users (non-technical teachers) will be confused by security warnings.
+
+**Sources:**
+- [Tauri DMG Distribution](https://v2.tauri.app/distribute/dmg/)
+- [Apple Developer ID](https://developer.apple.com/developer-id/)
+
+---
+
+## App Behavior Expectations
+
+### Dock Behavior
+
+- App icon appears in Dock when running
+- Clicking Dock icon brings window to front
+- Right-click Dock icon shows standard options (Options > Keep in Dock)
+- Badge: Not needed (no notifications to show)
+
+### Window Behavior
+
+- Single window application
+- Close button (red X) should hide window, not quit app (macOS convention)
+- Cmd+Q quits the app
+- Cmd+H hides the app
+- Cmd+M minimizes to Dock
+- Window position/size remembered between sessions
+- Full screen support (green button works)
+
+**Source:** [Apple Support - Manage windows on your Mac](https://support.apple.com/guide/mac-help/work-with-app-windows-mchlp2469/mac)
+
+### Menu Bar
+
+Standard macOS menu bar with:
+
+| Menu | Items |
+|------|-------|
+| **Sporttag** | About Sporttag, Check for Updates..., Quit Sporttag |
+| **File** | (empty or disabled - no file operations) |
+| **Edit** | Undo, Redo, Cut, Copy, Paste, Select All |
+| **View** | (optional: zoom controls) |
+| **Window** | Minimize, Zoom, Close Window |
+| **Hilfe** | Sporttag Hilfe (opens GitHub README) |
+
+---
+
+## Update Notification UX
+
+### Non-Intrusive Pattern
+
+Based on [Smashing Magazine - Notification UX Design](https://www.smashingmagazine.com/2025/07/design-guidelines-better-notifications-ux/):
+
+1. **On app launch**: Check GitHub Releases API for newer version
+2. **If update available**: Show subtle banner at top of app
+   - "Version X.Y verfuegbar. [Jetzt herunterladen]"
+   - Banner dismissible (X button)
+   - Does NOT block app usage
+3. **Click downloads**: Opens browser to GitHub release page
+4. **User manually**: Downloads new DMG, drags to /Applications (overwrites)
+5. **Restart app**: New version running
+
+### What NOT to Do
+
+- No modal dialogs blocking work
+- No forced updates
+- No auto-download in background
+- No "Update now or later" nagging
+- No badge count on Dock icon
+
+### Update Check Frequency
+
+- On app launch only (not periodically in background)
+- Cache result for 24 hours (don't spam GitHub API)
+- Graceful failure if offline (silently skip check)
+
+**Source:** [Tauri Updater Plugin](https://v2.tauri.app/plugin/updater/)
+
+---
+
+## Data Persistence
+
+### Location
+
+```
+~/Library/Application Support/Sporttag/
+  sporttag.db          # SQLite database
+  sporttag.db-wal      # WAL file (if using WAL mode)
+  sporttag.db-shm      # Shared memory file
+```
+
+### Migration from Web App
+
+If teachers used the web app locally (npm run dev), their data is in project directory:
+- Provide migration: Copy sporttag.db from old location on first launch
+- Or: Document manual migration in README
+
+### Backup
+
+Consider adding "Datenbank exportieren" menu item:
+- Copies sporttag.db to user-chosen location
+- Provides peace of mind before updates
+
+---
+
+## Feature Dependencies for v2.0
+
+```
+Code Signing ─────────────────────────────┐
+                                          ▼
+Notarization ──────────────────────► Smooth First Launch
+                                          ▲
+DMG with Visual Instructions ─────────────┘
+
+GitHub Releases ──► Update Check ──► Update Notification Banner
+
+Database in Application Support ──► Automatic Migration ──► Data Persistence
+```
+
+---
+
+## MVP Recommendation for v2.0
+
+### Must Have (Week 1-2)
+
+1. **Tauri wrapper** packaging existing Next.js app
+2. **Proper code signing** (Apple Developer Program)
+3. **Notarization** (automated via CI)
+4. **DMG with drag-to-Applications visual**
+5. **Database in ~/Library/Application Support/**
+6. **Single window, standard menu bar**
+7. **curl install script**
+8. **GitHub README with installation instructions**
+
+### Should Have (Week 2-3)
+
+9. **Update notification banner** (GitHub Releases API check)
+10. **"Hilfe" menu item** linking to documentation
+11. **Window state persistence**
+
+### Defer to Post-v2.0
+
+- Windows/Linux support
+- Auto-updater (full Tauri updater plugin)
+- Database backup UI
+- Data migration from web app
+- Localization beyond German
+
+---
+
+## Confidence Assessment
+
+| Area | Confidence | Reason |
+|------|------------|--------|
+| Table stakes features | HIGH | Based on Apple HIG and standard macOS conventions |
+| Installation experience | HIGH | DMG pattern is well-documented, curl scripts common |
+| Update notification UX | MEDIUM | Pattern clear, implementation details vary |
+| Code signing requirements | HIGH | Apple documentation explicit |
+| Anti-features list | MEDIUM | Based on project scope, could be revisited |
+
+---
+
+## Sources
+
+### Apple Official
+
+- [Apple Human Interface Guidelines - Launching](https://developers.apple.com/design/human-interface-guidelines/patterns/launching)
+- [Designing for macOS](https://developer.apple.com/design/human-interface-guidelines/designing-for-macos)
+- [Notarizing macOS software](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution)
+- [Developer ID signing](https://developer.apple.com/developer-id/)
+- [Apple Support - Manage windows](https://support.apple.com/guide/mac-help/work-with-app-windows-mchlp2469/mac)
+
+### Framework Documentation
+
+- [Tauri DMG Distribution](https://v2.tauri.app/distribute/dmg/)
+- [Tauri macOS Code Signing](https://v2.tauri.app/distribute/sign/macos/)
+- [Tauri Updater Plugin](https://v2.tauri.app/plugin/updater/)
+
+### UX Research
+
+- [Smashing Magazine - Notification UX Design](https://www.smashingmagazine.com/2025/07/design-guidelines-better-notifications-ux/)
+- [macOS User Onboarding Best Practices](https://screencharm.com/blog/user-onboarding-best-practices)
+- [How to Install Applications on Mac](https://www.howtogeek.com/177619/how-to-install-applications-on-a-mac-everything-you-need-to-know/)
+
+### Comparison Resources
+
+- [Tauri vs Electron 2025](https://www.raftlabs.com/blog/tauri-vs-electron-pros-cons/)
+- [DoltHub - Electron vs Tauri](https://www.dolthub.com/blog/2025-11-13-electron-vs-tauri/)
+
+---
+
+## v1.0 Original Research (Reference)
+
+### Registration & Data Input (v1.0)
 
 | Feature | Why Expected | Complexity | Notes |
 |---------|--------------|------------|-------|
@@ -23,7 +373,7 @@ Features users expect. Missing = product feels incomplete or unusable.
 
 **Source:** Event registration best practices from [Bizzabo](https://www.bizzabo.com/blog/event-registration-system-features-guide), [Sched](https://sched.com/blog/event-registration-software-for-schools-guide/)
 
-### Allocation Engine
+### Allocation Engine (v1.0)
 
 | Feature | Why Expected | Complexity | Notes |
 |---------|--------------|------------|-------|
@@ -34,7 +384,7 @@ Features users expect. Missing = product feels incomplete or unusable.
 
 **Source:** [MIT ESP Lottery FAQ](https://esp.mit.edu/learn/lotteryFAQ.html), [Wikipedia - Fair Random Assignment](https://en.wikipedia.org/wiki/Fair_random_assignment), [Avela Match](https://avela.org/match)
 
-### Output & Reporting
+### Output & Reporting (v1.0)
 
 | Feature | Why Expected | Complexity | Notes |
 |---------|--------------|------------|-------|
@@ -46,67 +396,7 @@ Features users expect. Missing = product feels incomplete or unusable.
 
 **Source:** [ClassJuggler](https://www.classjuggler.com/cj/pub/poweruser.html), [University of Illinois Registrar](https://registrar.illinois.edu/faculty-staff/class-list-roster/)
 
-### Administration
-
-| Feature | Why Expected | Complexity | Notes |
-|---------|--------------|------------|-------|
-| **Event management** (CRUD) | Admin must configure available events | Low | Create, edit, delete events with capacities |
-| **Registration deadline control** | Prevents late submissions | Low | Open/close registration period |
-| **Run allocation button** | Trigger the lottery | Low | One-click allocation execution |
-| **View all registrations** | Admin oversight | Low | Dashboard of submitted preferences |
-| **Basic statistics** | Understanding demand | Low | Count registrations, preferences per event |
-
----
-
-## Differentiators
-
-Features that add value but are not expected. Nice-to-have for v2+.
-
-### Enhanced User Experience
-
-| Feature | Value Proposition | Complexity | Notes |
-|---------|-------------------|------------|-------|
-| **Real-time capacity indicators** | Students see remaining slots while selecting | Medium | Updates as others register (requires live data) |
-| **Drag-and-drop priority ordering** | More intuitive than dropdowns | Medium | UX improvement for priority selection |
-| **Multi-language support** | Accessibility for diverse student body | Medium | German + English at minimum |
-| **Mobile-responsive design** | Access from any device | Medium | Important for student self-registration (v2) |
-| **Email confirmations** | Professional touch, paper trail | Medium | Automated emails on registration and allocation |
-
-### Advanced Allocation
-
-| Feature | Value Proposition | Complexity | Notes |
-|---------|-------------------|------------|-------|
-| **Allocation preview/simulation** | Admin can see results before publishing | Medium | "Dry run" mode |
-| **Re-run allocation** | Handle mistakes or changes | Medium | Clear and re-allocate |
-| **Partial manual override** | Handle special cases | Medium | Admin assigns specific students manually |
-| **Waitlist management** | When students drop out | High | Auto-promote from waitlist |
-| **Fairness metrics display** | Transparency about allocation | Medium | Show % got 1st/2nd/3rd choice |
-
-**Source:** [RWTHmoodle Fair Allocation](https://help.itc.rwth-aachen.de/en/service/8d9eb2f36eea4fcaa9abd0e1ca008b22/article/13834895b26249519666ce52457f676c/)
-
-### Enhanced Reporting
-
-| Feature | Value Proposition | Complexity | Notes |
-|---------|-------------------|------------|-------|
-| **Visual analytics dashboard** | Quick insights for admin | Medium | Charts showing preference distribution |
-| **Historical comparison** | Track trends year over year | High | Compare with previous Sporttag events |
-| **Audit trail** | Accountability | Medium | Log who changed what when |
-
-### Data Management
-
-| Feature | Value Proposition | Complexity | Notes |
-|---------|-------------------|------------|-------|
-| **CSV import of student roster** | Faster setup than manual entry | Medium | Bulk upload students from school system |
-| **Integration with school management system** | Eliminate duplicate data entry | High | API connection to existing student database |
-| **QR code check-in on event day** | Modern attendance tracking | High | Separate concern from registration |
-
-**Source:** [Age of Learning CSV Import](https://support.aofl.com/hc/en-us/articles/22902204065421-How-to-Roster-Students-and-Classes-via-Spreadsheet-CSV-Import)
-
----
-
-## Anti-Features
-
-Features to deliberately NOT build. Common mistakes in this domain.
+### v1.0 Anti-Features (Still Applicable)
 
 | Anti-Feature | Why Avoid | What to Do Instead |
 |--------------|-----------|-------------------|
@@ -118,143 +408,3 @@ Features to deliberately NOT build. Common mistakes in this domain.
 | **Chat/messaging features** | Scope creep; use existing school communication | Link to existing channels |
 | **Gamification (badges, leaderboards)** | Inappropriate for registration task | Keep functional, not fun |
 | **Machine learning "smart" allocation** | Unnecessary complexity; hard to explain | Transparent random lottery |
-| **Multi-event registration** | Over-engineered for single Sporttag | One event per student |
-| **Notification push system** | Over-engineering for annual event | Email sufficient |
-| **Complex role hierarchy** | YAGNI - one admin role enough for v1 | Single admin role initially |
-| **User accounts with passwords** | Friction for one-time annual use | Session-based or teacher-mediated |
-
-**Rationale:** These anti-features come from observing enterprise registration systems ([Cvent](https://www.saasworthy.com/list/event-registration-ticketing-software), [Bizzabo](https://www.bizzabo.com/blog/event-registration-system-features-guide)) that solve different problems at different scale. A school Sporttag needs simplicity and transparency, not enterprise features.
-
----
-
-## Feature Dependencies
-
-```
-Registration Flow Dependencies:
-  Events configured → Registration opens → Students register → Deadline → Allocation runs → Results published
-
-Specific Dependencies:
-  Event CRUD ──────────────────┐
-                               ├──→ Registration Form ──→ Allocation Engine ──→ Output Lists
-  Student Data Entry ──────────┘
-
-v1 → v2 Dependencies:
-  v1: Teacher data entry ──→ v2: Student self-registration (requires user management)
-  v1: Basic auth ──→ v2: School SSO integration (optional enhancement)
-
-Export Dependencies:
-  Allocation complete → Event lists exportable
-  Allocation complete → Class lists exportable
-  Allocation complete → Unassigned list exportable
-```
-
-### Dependency Matrix
-
-| Feature | Depends On | Blocks |
-|---------|------------|--------|
-| Event listing | Event CRUD | Registration form |
-| Registration form | Event listing, student data | Allocation |
-| Allocation engine | All registrations submitted, deadline passed | Output lists |
-| Event roster export | Allocation complete | - |
-| Class list export | Allocation complete | - |
-| Unassigned list | Allocation complete | Manual handling |
-| Statistics | Registrations exist | - |
-
----
-
-## MVP Recommendation
-
-Based on research, recommended MVP scope for v1:
-
-### Must Include (Table Stakes)
-
-1. **Event management** - Admin creates ~7 events with name, description, capacity
-2. **Registration form** - Teacher enters student name, class, 3 priorities
-3. **Form validation** - Ensures all fields complete, no duplicate priorities
-4. **Basic allocation engine** - Random lottery respecting priorities and capacities
-5. **Unassigned detection** - Identifies students who couldn't be placed
-6. **Three output lists** - Per event, per class, unassigned students
-7. **CSV export** - All three lists exportable
-
-### Defer to v2
-
-- **Student self-registration** - Requires user management, adds complexity
-- **Email notifications** - Nice but not critical for teacher-mediated flow
-- **CSV import** - Teachers can enter ~250 students manually for v1
-- **Real-time capacity display** - Polling/websockets add complexity
-- **Audit trail** - Not critical for v1
-- **Multi-language** - German-only acceptable for v1
-
-### Explicitly Exclude (Anti-Features)
-
-- Payment processing
-- Complex user authentication
-- Gamification
-- ML-based allocation
-- Waitlist auto-management
-- Push notifications
-
----
-
-## Allocation Algorithm Approaches
-
-Research identified several approaches for fair allocation:
-
-### Recommended: Random Serial Dictatorship (Simplified)
-
-**How it works:**
-1. Randomize student order (lottery)
-2. For each student in order:
-   - Try to assign to 1st choice (if capacity available)
-   - Else try 2nd choice
-   - Else try 3rd choice
-   - Else mark as unassigned
-
-**Why this approach:**
-- Simple to implement
-- Simple to explain to stakeholders
-- Provably fair (random order = equal chance)
-- Handles the spec's edge case naturally (unassigned list)
-
-**Source:** [Wikipedia - Fair Random Assignment](https://en.wikipedia.org/wiki/Fair_random_assignment)
-
-### Alternative: Deferred Acceptance (DA)
-
-More sophisticated, used by Philadelphia schools and Wharton (CourseMatch). Guarantees "stable" matching but more complex to implement. **Not recommended** for MVP given simple requirements.
-
-**Source:** [Philadelphia School District](https://www.philasd.org/studentplacement/school-selection/), [MIT - Lotteries in Student Assignment](https://economics.mit.edu/sites/default/files/publications/Lotteries%20in%20Student%20Assignment%20The%20Equivalence%20of.pdf)
-
----
-
-## Edge Cases to Handle
-
-| Edge Case | Handling Strategy |
-|-----------|-------------------|
-| All 3 choices full | Add to unassigned list for manual handling |
-| Student submits twice | Later submission overwrites (or prevent) |
-| Event capacity = 0 | Validation prevents or hide event |
-| No events configured | Block registration, show error |
-| Registration after deadline | Reject submission |
-| < 3 priorities selected | Form validation prevents submission |
-| Duplicate priorities | Form validation prevents |
-| More students than total event capacity | Math guarantees some unassigned; surface clearly |
-
----
-
-## Sources
-
-### High Confidence (Official Documentation)
-- [MIT ESP Lottery FAQ](https://esp.mit.edu/learn/lotteryFAQ.html)
-- [Wikipedia - Fair Random Assignment](https://en.wikipedia.org/wiki/Fair_random_assignment)
-- [Wikipedia - Course Allocation](https://en.wikipedia.org/wiki/Course_allocation)
-- [RWTHmoodle Fair Allocation](https://help.itc.rwth-aachen.de/en/service/8d9eb2f36eea4fcaa9abd0e1ca008b22/article/13834895b26249519666ce52457f676c/)
-
-### Medium Confidence (Industry Sources)
-- [Sched - Event Registration for Schools](https://sched.com/blog/event-registration-software-for-schools-guide/)
-- [Bizzabo - Event Registration Features](https://www.bizzabo.com/blog/event-registration-system-features-guide)
-- [Avela Match - Lottery Software](https://avela.org/match)
-- [ClassJuggler - Admin Features](https://www.classjuggler.com/cj/pub/poweruser.html)
-
-### Low Confidence (General Web Search)
-- Various blog posts on registration best practices
-- Stack Overflow discussions on allocation algorithms
