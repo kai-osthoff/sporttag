@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 
 ## Current Position
 
-Phase: 6 of 9 (Database Migration) - COMPLETE
-Plan: 1 of 1 in current phase
-Status: Phase complete
-Last activity: 2026-01-17 — Completed 06-01-PLAN.md
+Phase: 7 of 9 (Build Pipeline) - IN PROGRESS
+Plan: 1 of 2 in current phase
+Status: Plan 07-01 complete
+Last activity: 2026-01-17 — Completed 07-01-PLAN.md
 
-Progress: [===============.....] 75% (15 of 20 plans across v1.0+v2.0)
+Progress: [================....] 80% (16 of 20 plans across v1.0+v2.0)
 
 ## Performance Metrics
 
@@ -24,7 +24,7 @@ Progress: [===============.....] 75% (15 of 20 plans across v1.0+v2.0)
 - Total milestone time: ~30min execution
 
 **v2.0 (in progress):**
-- Total plans completed: 3
+- Total plans completed: 4
 - Estimated plans: 8 (based on phase structure)
 
 **By Phase:**
@@ -37,7 +37,7 @@ Progress: [===============.....] 75% (15 of 20 plans across v1.0+v2.0)
 | 04-output | 4 | 8.4min | 2.1min |
 | 05-electron | 2 | 19min | 9.5min |
 | 06-database | 1 | 1.8min | 1.8min |
-| 07-build | - | - | - |
+| 07-build | 1 | 14min | 14min |
 | 08-install | - | - | - |
 | 09-updates | - | - | - |
 
@@ -59,6 +59,10 @@ Recent decisions for v2.0:
 - MIGRATIONS_PATH env var for bundled migration files location (06-01)
 - Automatic migration on app startup (synchronous with better-sqlite3) (06-01)
 - Graceful migration failure handling (log but don't crash) (06-01)
+- Separate DMGs per architecture instead of universal binary (better-sqlite3 limitation) (07-01)
+- macOS 12.0 minimum system version (Monterey, covers 2017+ Macs) (07-01)
+- Dark gray background (#2d2d2d) for DMG installer appearance (07-01)
+- images.unoptimized in next.config.ts to prevent sharp conflicts (07-01)
 
 ### Pending Todos
 
@@ -70,10 +74,10 @@ Recent decisions for v2.0:
 
 ### Blockers/Concerns
 
-(None)
+- Universal binary not achievable locally (better-sqlite3 in standalone) - GitHub Actions 07-02 may address this
 
 ## Session Continuity
 
-Last session: 2026-01-17T17:42Z
-Stopped at: Completed 06-01-PLAN.md (Database Persistence)
-Resume file: None (Phase 6 complete, proceed to Phase 7: Build Pipeline)
+Last session: 2026-01-17T18:39Z
+Stopped at: Completed 07-01-PLAN.md (DMG Build Configuration)
+Resume file: None (Continue to 07-02 GitHub Actions)
