@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-17)
 
 **Core value:** Native macOS App fuer faire, automatisierte Zuteilung — installierbar mit einem Terminal-Befehl
-**Current focus:** Phase 9: Update Notification
+**Current focus:** v2.0 Complete - Maintenance Mode
 
 ## Current Position
 
-Phase: 9 of 9 (Update Notification)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-17 — Completed 09-01-PLAN.md
+Phase: 9 of 9 (Update Notification) - COMPLETE
+Plan: 2 of 2 in current phase - COMPLETE
+Status: v2.0 milestone complete
+Last activity: 2026-01-17 — Completed 09-02-PLAN.md
 
-Progress: [===================.] 95% (19 of 20 plans across v1.0+v2.0)
+Progress: [====================] 100% (20 of 20 plans across v1.0+v2.0)
 
 ## Performance Metrics
 
@@ -23,9 +23,9 @@ Progress: [===================.] 95% (19 of 20 plans across v1.0+v2.0)
 - Average duration: 2.5min per plan
 - Total milestone time: ~30min execution
 
-**v2.0 (in progress):**
-- Total plans completed: 7
-- Estimated plans: 8 (based on phase structure)
+**v2.0 (complete):**
+- Total plans completed: 8
+- Total v2.0 duration: ~56min execution
 
 **By Phase:**
 
@@ -39,7 +39,7 @@ Progress: [===================.] 95% (19 of 20 plans across v1.0+v2.0)
 | 06-database | 1 | 1.8min | 1.8min |
 | 07-build | 2 | 29min | 14.5min |
 | 08-install | 1 | 2min | 2min |
-| 09-updates | 1 | 2min | 2min |
+| 09-updates | 2 | 4min | 2min |
 
 ## Accumulated Context
 
@@ -71,6 +71,8 @@ Recent decisions for v2.0:
 - GitHub-only URL restriction for shell.openExternal security (09-01)
 - semver.coerce() to handle 'v' prefix from GitHub tags (09-01)
 - IPC channel naming: namespace:action pattern (09-01)
+- Session-only dismissal for update banner via React state (09-02)
+- 10 second timeout for GitHub API requests (09-02)
 
 ### Pending Todos
 
@@ -87,9 +89,9 @@ Recent decisions for v2.0:
 
 ## Session Continuity
 
-Last session: 2026-01-17T20:52Z
-Stopped at: Completed 09-01-PLAN.md (Electron IPC & Version Utilities)
-Resume file: None (Continue to 09-02-PLAN.md)
+Last session: 2026-01-17T20:55Z
+Stopped at: Completed 09-02-PLAN.md (Update Notification UI) - v2.0 COMPLETE
+Resume file: None (v2.0 milestone complete)
 
 ## Release Information
 
