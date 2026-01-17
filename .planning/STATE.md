@@ -45,6 +45,8 @@ Progress: [===============-----] 75% (7 of ~9 plans across 4 phases)
 - 2026-01-17: Mulberry32 inline PRNG for seeded randomness (no external dependency)
 - 2026-01-17: Pure function allocation algorithm for testability and reproducibility
 - 2026-01-17: Map<studentId, eventId | null> for efficient assignment lookups
+- 2026-01-17: useTransition for allocation button (simpler than useActionState for non-form triggers)
+- 2026-01-17: Stats stored as JSON blob in allocations table for simplicity
 - 2026-01-17: Allow full event assignment with warning (per CONTEXT.md decision)
 - 2026-01-17: Priority badges with distinct colors (blue/green/yellow for 1./2./3. Wahl)
 
