@@ -60,7 +60,7 @@ Plans:
 - [x] **Phase 6: Database Migration** - SQLite in Application Support folder
 - [x] **Phase 7: Build Pipeline** - DMG generation and GitHub Releases
 - [x] **Phase 8: Installation + README** - curl installer and user documentation
-- [ ] **Phase 9: Update Notification** - In-app banner for new versions
+- [x] **Phase 9: Update Notification** - In-app banner for new versions
 
 ## Phase Details
 
@@ -135,8 +135,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 09-01-PLAN.md — Electron IPC extension and version comparison utility
-- [ ] 09-02-PLAN.md — Update check hook and banner component
+- [x] 09-01-PLAN.md — Electron IPC extension and version comparison utility
+- [x] 09-02-PLAN.md — Update check hook and banner component
 
 ## Progress
 
@@ -152,7 +152,7 @@ Plans:
 | 6. Database Migration | v2.0 | 1/1 | Complete | 2026-01-17 |
 | 7. Build Pipeline | v2.0 | 2/2 | Complete | 2026-01-17 |
 | 8. Installation + README | v2.0 | 1/1 | Complete | 2026-01-17 |
-| 9. Update Notification | v2.0 | 0/2 | Not started | - |
+| 9. Update Notification | v2.0 | 2/2 | Complete | 2026-01-17 |
 
 ---
 *Roadmap created: 2026-01-17*

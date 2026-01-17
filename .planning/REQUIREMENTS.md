@@ -31,10 +31,10 @@ Requirements for Desktop Distribution milestone. Each maps to roadmap phases.
 
 ### Updates
 
-- [ ] **UPDT-01**: App prueft bei Start ob neue Version auf GitHub Releases verfuegbar ist
-- [ ] **UPDT-02**: Bei neuer Version erscheint dezenter Hinweis-Banner in der App
-- [ ] **UPDT-03**: Banner enthaelt Link zum Download der neuen Version
-- [ ] **UPDT-04**: User kann Banner wegklicken (nicht modal/blockierend)
+- [x] **UPDT-01**: App prueft bei Start ob neue Version auf GitHub Releases verfuegbar ist
+- [x] **UPDT-02**: Bei neuer Version erscheint dezenter Hinweis-Banner in der App
+- [x] **UPDT-03**: Banner enthaelt Link zum Download der neuen Version
+- [x] **UPDT-04**: User kann Banner wegklicken (nicht modal/blockierend)
 
 ### Distribution
 
@@ -97,10 +97,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INST-03 | Phase 7 | Complete |
 | INST-04 | Phase 7 | Complete |
 | INST-05 | Phase 7 | Complete |
-| UPDT-01 | Phase 9 | Pending |
-| UPDT-02 | Phase 9 | Pending |
-| UPDT-03 | Phase 9 | Pending |
-| UPDT-04 | Phase 9 | Pending |
+| UPDT-01 | Phase 9 | Complete |
+| UPDT-02 | Phase 9 | Complete |
+| UPDT-03 | Phase 9 | Complete |
+| UPDT-04 | Phase 9 | Complete |
 | DIST-01 | Phase 7 | Complete |
 | DIST-02 | Phase 8 | Complete |
 | DIST-03 | Phase 8 | Complete |
@@ -113,4 +113,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-17*
-*Last updated: 2026-01-17 after Phase 8 completion*
+*Last updated: 2026-01-17 after Phase 9 completion*
