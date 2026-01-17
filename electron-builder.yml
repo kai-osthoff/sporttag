@@ -1,0 +1,36 @@
+appId: "de.sporttag.app"
+productName: "Sporttag"
+
+directories:
+  output: dist
+  buildResources: resources
+
+# Include compiled Electron files
+files:
+  - "electron/**/*.js"
+  - "!electron/**/*.ts"
+  - "!**/*.map"
+
+# Copy standalone build to resources
+extraResources:
+  - from: ".next/standalone"
+    to: "standalone"
+    filter:
+      - "**/*"
+  - from: ".next/static"
+    to: "standalone/.next/static"
+  - from: "public"
+    to: "standalone/public"
+
+# Native modules unpacked from ASAR for better-sqlite3
+asarUnpack:
+  - "**/node_modules/better-sqlite3/**/*"
+
+mac:
+  category: "public.app-category.education"
+  target:
+    - target: dmg
+      arch:
+        - arm64
+        - x64
+  identity: null
