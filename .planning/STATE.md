@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 
 ## Current Position
 
-Phase: 8 of 9 (Installation Scripts)
-Plan: 1 of 1 in current phase
-Status: Phase 08 complete
-Last activity: 2026-01-17 — Completed 08-01-PLAN.md
+Phase: 9 of 9 (Update Notification)
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-01-17 — Completed 09-01-PLAN.md
 
-Progress: [==================..] 90% (18 of 20 plans across v1.0+v2.0)
+Progress: [===================.] 95% (19 of 20 plans across v1.0+v2.0)
 
 ## Performance Metrics
 
@@ -24,7 +24,7 @@ Progress: [==================..] 90% (18 of 20 plans across v1.0+v2.0)
 - Total milestone time: ~30min execution
 
 **v2.0 (in progress):**
-- Total plans completed: 6
+- Total plans completed: 7
 - Estimated plans: 8 (based on phase structure)
 
 **By Phase:**
@@ -39,7 +39,7 @@ Progress: [==================..] 90% (18 of 20 plans across v1.0+v2.0)
 | 06-database | 1 | 1.8min | 1.8min |
 | 07-build | 2 | 29min | 14.5min |
 | 08-install | 1 | 2min | 2min |
-| 09-updates | - | - | - |
+| 09-updates | 1 | 2min | 2min |
 
 ## Accumulated Context
 
@@ -68,6 +68,9 @@ Recent decisions for v2.0:
 - /usr/bin/uname -m for architecture detection (not GNU coreutils) (08-01)
 - ae/oe/ue encoding for German README (ASCII-safe) (08-01)
 - Informal Du-Form in README for friendly teacher tone (08-01)
+- GitHub-only URL restriction for shell.openExternal security (09-01)
+- semver.coerce() to handle 'v' prefix from GitHub tags (09-01)
+- IPC channel naming: namespace:action pattern (09-01)
 
 ### Pending Todos
 
@@ -84,9 +87,9 @@ Recent decisions for v2.0:
 
 ## Session Continuity
 
-Last session: 2026-01-17T19:56Z
-Stopped at: Completed 08-01-PLAN.md (Installation Script + README)
-Resume file: None (Continue to 09-updates phase)
+Last session: 2026-01-17T20:52Z
+Stopped at: Completed 09-01-PLAN.md (Electron IPC & Version Utilities)
+Resume file: None (Continue to 09-02-PLAN.md)
 
 ## Release Information
 
