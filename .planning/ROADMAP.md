@@ -22,7 +22,11 @@ This roadmap delivers the Sporttag-Anmeldeplattform in 4 phases following the na
 3. Teacher can edit any existing event's details
 4. Teacher can delete an event that has no registrations
 
-**Plans:** (created by /gsd:plan-phase)
+**Plans:** 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project setup with Next.js 16, SQLite/Drizzle, shadcn/ui
+- [ ] 01-02-PLAN.md — Event CRUD operations (create, list, edit, delete)
 
 ---
 
@@ -82,7 +86,7 @@ This roadmap delivers the Sporttag-Anmeldeplattform in 4 phases following the na
 
 | Phase | Status | Completed |
 |-------|--------|-----------|
-| 1 - Foundation + Events | Not started | -- |
+| 1 - Foundation + Events | Planned | -- |
 | 2 - Registration | Not started | -- |
 | 3 - Allocation | Not started | -- |
 | 4 - Output | Not started | -- |
