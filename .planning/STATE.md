@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 5 of 9 (Electron Shell)
-Plan: 0 of ? in current phase
-Status: Ready to plan
-Last activity: 2026-01-17 — v2.0 roadmap created
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-01-17 — Completed 05-01-PLAN.md
 
-Progress: [============........] 57% (12 of 21 plans across v1.0+v2.0, v2.0 plans TBD)
+Progress: [=============.......] 65% (13 of 20 plans across v1.0+v2.0)
 
 ## Performance Metrics
 
@@ -24,8 +24,8 @@ Progress: [============........] 57% (12 of 21 plans across v1.0+v2.0, v2.0 plan
 - Total milestone time: ~30min execution
 
 **v2.0 (in progress):**
-- Total plans completed: 0
-- Estimated plans: ~8 (based on phase structure)
+- Total plans completed: 1
+- Estimated plans: 8 (based on phase structure)
 
 **By Phase:**
 
@@ -35,7 +35,7 @@ Progress: [============........] 57% (12 of 21 plans across v1.0+v2.0, v2.0 plan
 | 02-registration | 2 | 4min | 2min |
 | 03-allocation | 4 | 11min | 2.75min |
 | 04-output | 4 | 8.4min | 2.1min |
-| 05-electron | - | - | - |
+| 05-electron | 1 | 4min | 4min |
 | 06-database | - | - | - |
 | 07-build | - | - | - |
 | 08-install | - | - | - |
@@ -51,6 +51,8 @@ Recent decisions for v2.0:
 - Electron over Tauri (preserves better-sqlite3 + Server Actions)
 - curl + xattr over Apple Developer ID (saves $99/year)
 - Manual updates over auto-update (simpler, more transparent)
+- Port 3456 for embedded server (avoid conflicts with dev servers)
+- DB_PATH env var for production/development database path switching
 
 ### Pending Todos
 
@@ -65,6 +67,6 @@ Recent decisions for v2.0:
 
 ## Session Continuity
 
-Last session: 2026-01-17
-Stopped at: v2.0 roadmap created, ready to plan Phase 5
-Resume file: None — run /gsd:plan-phase 5 to continue
+Last session: 2026-01-17T15:33Z
+Stopped at: Completed 05-01-PLAN.md (Electron Shell Setup)
+Resume file: .planning/phases/05-electron-shell/05-02-PLAN.md
