@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md
 
 **Core value:** Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen per Losverfahren
-**Current focus:** Phase 2 complete -- Ready for Phase 3 (Allocation)
+**Current focus:** Phase 3 (Allocation) - Plan 01 complete
 
 ## Current Position
 
-Phase: 2 of 4 (Registration) -- COMPLETE
-Plan: 2 of 2 complete
-Status: Phase complete
-Last activity: 2026-01-17 -- Completed 02-02-PLAN.md (Registration Form)
+Phase: 3 of 4 (Allocation)
+Plan: 1 of 3 complete
+Status: In progress
+Last activity: 2026-01-17 -- Completed 03-01-PLAN.md (Allocation Domain Model)
 
-Progress: [==========----------] 50% (4 of ~8 plans across 4 phases)
+Progress: [============--------] 62% (5 of ~8 plans across 4 phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 3.25min
+- Total plans completed: 5
+- Average duration: 3.4min
 
 **By Phase:**
 
@@ -28,6 +28,7 @@ Progress: [==========----------] 50% (4 of ~8 plans across 4 phases)
 |-------|-------|-------|----------|
 | 01-foundation-events | 2 | 9min | 4.5min |
 | 02-registration | 2 | 4min | 2min |
+| 03-allocation | 1 | 4min | 4min |
 
 ## Accumulated Context
 
@@ -41,6 +42,9 @@ Progress: [==========----------] 50% (4 of ~8 plans across 4 phases)
 - 2026-01-17: Used fixed light theme for Sonner (avoids theme provider complexity)
 - 2026-01-17: Used z.coerce.number() for priority IDs (FormData returns strings)
 - 2026-01-17: Used SQL subqueries for priority name lookup (simpler than Drizzle relations)
+- 2026-01-17: Mulberry32 inline PRNG for seeded randomness (no external dependency)
+- 2026-01-17: Pure function allocation algorithm for testability and reproducibility
+- 2026-01-17: Map<studentId, eventId | null> for efficient assignment lookups
 
 ### Pending Todos
 
@@ -52,6 +56,6 @@ Progress: [==========----------] 50% (4 of ~8 plans across 4 phases)
 
 ## Session Continuity
 
-Last session: 2026-01-17 10:45
-Stopped at: Completed Phase 2 (Registration)
-Resume file: Phase 3 plans (allocation)
+Last session: 2026-01-17 13:03
+Stopped at: Completed 03-01-PLAN.md (Allocation Domain Model)
+Resume file: 03-02-PLAN.md (Allocation Actions)
