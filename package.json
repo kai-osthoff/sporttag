@@ -8,8 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "npx @electron/rebuild",
-    "rebuild": "npx @electron/rebuild",
+    "rebuild:electron": "npx @electron/rebuild",
     "electron:dev": "concurrently -k \"next dev -p 3456\" \"wait-on http://localhost:3456 && electron .\"",
     "electron:build": "next build && electron-builder --mac"
   },
