@@ -71,6 +71,7 @@ Recent decisions for v2.0:
 3. **Add Einstellungen page for Schulname and Veranstaltungsname** (ui) — 2026-01-17
 4. **Datenschutz - Complete data destruction option** (feature) — 2026-01-17
 5. **Add Buy Me a Coffee button** (ui) — 2026-01-17
+6. **Add release-please-action for automated releases** (tooling) — 2026-01-17
 
 ### Blockers/Concerns
 
