@@ -10,17 +10,17 @@ See: .planning/PROJECT.md
 ## Current Position
 
 Phase: 4 of 4 (Output) -- IN PROGRESS
-Plan: 1 of 4 complete
+Plan: 3 of 4 complete
 Status: In progress
-Last activity: 2026-01-17 -- Completed 04-01-PLAN.md (Print & Export Infrastructure)
+Last activity: 2026-01-17 -- Completed 04-03-PLAN.md (Per-Class Lists & Enhanced Sonderliste)
 
-Progress: [==================--] 90% (9 of ~10 plans across 4 phases)
+Progress: [===================–] 95% (11 of ~12 plans across 4 phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
-- Average duration: 2.7min
+- Total plans completed: 11
+- Average duration: 2.6min
 
 **By Phase:**
 
@@ -29,7 +29,7 @@ Progress: [==================--] 90% (9 of ~10 plans across 4 phases)
 | 01-foundation-events | 2 | 9min | 4.5min |
 | 02-registration | 2 | 4min | 2min |
 | 03-allocation | 4 | 11min | 2.75min |
-| 04-output | 1 | 1.6min | 1.6min |
+| 04-output | 3 | 5.7min | 1.9min |
 
 ## Accumulated Context
 
@@ -56,6 +56,9 @@ Progress: [==================--] 90% (9 of ~10 plans across 4 phases)
 - 2026-01-17: Tailwind v4 @custom-variant print for print styles (cleaner than custom utilities)
 - 2026-01-17: UTF-8 BOM and semicolon CSV format for German Excel compatibility
 - 2026-01-17: A4 portrait with 1.5cm margins for print output
+- 2026-01-17: Group class selector by Klassenstufe for easier navigation
+- 2026-01-17: Server-side reason calculation for unassigned students
+- 2026-01-17: Sort by Vorname first, then Nachname (German name conventions)
 
 ### Pending Todos
 
@@ -67,6 +70,6 @@ Progress: [==================--] 90% (9 of ~10 plans across 4 phases)
 
 ## Session Continuity
 
-Last session: 2026-01-17 12:57
-Stopped at: Completed 04-01-PLAN.md (Print & Export Infrastructure)
+Last session: 2026-01-17 13:01
+Stopped at: Completed 04-03-PLAN.md (Per-Class Lists & Enhanced Sonderliste)
 Resume file: None
