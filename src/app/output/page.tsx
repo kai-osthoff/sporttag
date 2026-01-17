@@ -4,6 +4,8 @@ import { events, students, allocations } from '@/db/schema'
 import { desc, isNotNull, isNull, sql } from 'drizzle-orm'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { AllocationStats } from '@/components/allocation/allocation-stats'
+import type { AllocationStats as AllocationStatsType } from '@/lib/allocation/types'
 
 export default async function OutputPage() {
   // Fetch events with assigned student counts
@@ -32,13 +34,18 @@ export default async function OutputPage() {
     .groupBy(students.class)
     .orderBy(students.class)
 
-  // Check if allocation has been run
+  // Check if allocation has been run and get stats
   const latestAllocation = await db
     .select()
     .from(allocations)
-    .orderBy(desc(allocations.createdAt))
+    .where(sql`${allocations.status} = 'completed'`)
+    .orderBy(desc(allocations.completedAt))
     .limit(1)
-    .then((r) => r[0])
+    .get()
+
+  const stats: AllocationStatsType | null = latestAllocation?.stats
+    ? JSON.parse(latestAllocation.stats)
+    : null
 
   const hasAllocation = !!latestAllocation
 
@@ -63,6 +70,10 @@ export default async function OutputPage() {
           </CardContent>
         </Card>
       )}
+
+      <div className="mb-6">
+        <AllocationStats stats={stats} />
+      </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Per-Event Lists */}
