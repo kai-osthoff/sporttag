@@ -27,7 +27,7 @@ CREATE TABLE `__new_students` (
 	FOREIGN KEY (`assigned_event_id`) REFERENCES `events`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
-INSERT INTO `__new_students`("id", "first_name", "last_name", "class", "priority_1_id", "priority_2_id", "priority_3_id", "assigned_event_id", "assignment_type", "assigned_at", "created_at", "updated_at") SELECT "id", "first_name", "last_name", "class", "priority_1_id", "priority_2_id", "priority_3_id", "assigned_event_id", "assignment_type", "assigned_at", "created_at", "updated_at" FROM `students`;--> statement-breakpoint
+INSERT INTO `__new_students`("id", "first_name", "last_name", "class", "priority_1_id", "priority_2_id", "priority_3_id", "created_at", "updated_at") SELECT "id", "first_name", "last_name", "class", "priority_1_id", "priority_2_id", "priority_3_id", "created_at", "updated_at" FROM `students`;--> statement-breakpoint
 DROP TABLE `students`;--> statement-breakpoint
 ALTER TABLE `__new_students` RENAME TO `students`;--> statement-breakpoint
 PRAGMA foreign_keys=ON;
