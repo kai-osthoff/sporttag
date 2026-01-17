@@ -1,15 +1,11 @@
-import Link from 'next/link'
 import { db } from '@/db'
-import { students, allocations } from '@/db/schema'
-import { sql, desc, isNotNull } from 'drizzle-orm'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { AllocationButton } from '@/components/allocation/allocation-button'
-import { StudentAssignmentList } from '@/components/allocation/student-assignment-list'
+import { students, allocations, events } from '@/db/schema'
+import { sql, desc, isNotNull, isNull } from 'drizzle-orm'
+import { AllocationDashboard } from '@/components/allocation/allocation-dashboard'
 import type { AllocationStats } from '@/lib/allocation/types'
 
 export default async function AllocationPage() {
-  // Query students with their assigned event name using SQL subquery
+  // Query students with their assigned event name and priority data for modal
   const assignedStudents = await db
     .select({
       id: students.id,
@@ -18,6 +14,10 @@ export default async function AllocationPage() {
       class: students.class,
       assignedEventName: sql<string>`(SELECT name FROM events WHERE id = ${students.assignedEventId})`,
       assignmentType: students.assignmentType,
+      priority1Id: students.priority1Id,
+      priority2Id: students.priority2Id,
+      priority3Id: students.priority3Id,
+      assignedEventId: students.assignedEventId,
     })
     .from(students)
     .where(isNotNull(students.assignedEventId))
@@ -36,73 +36,31 @@ export default async function AllocationPage() {
     ? JSON.parse(latestAllocation.stats)
     : null
 
-  // Calculate percentages for display
-  const formatPercent = (value: number, total: number): string => {
-    if (total === 0) return '0%'
-    return `${((value / total) * 100).toFixed(0)}%`
-  }
+  // Query events with capacity for the modal
+  const eventsForModal = await db
+    .select({
+      id: events.id,
+      name: events.name,
+      capacity: events.capacity,
+      assignedCount: sql<number>`(SELECT COUNT(*) FROM students WHERE assigned_event_id = ${events.id})`,
+    })
+    .from(events)
+    .orderBy(events.name)
+
+  // Count unassigned students for Sonderliste link
+  const sonderlisteResult = await db
+    .select({ count: sql<number>`COUNT(*)` })
+    .from(students)
+    .where(isNull(students.assignedEventId))
+    .get()
+  const sonderlisteCount = sonderlisteResult?.count ?? 0
 
   return (
-    <div className="container mx-auto py-8">
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
-          <div>
-            <CardTitle>Zuteilung</CardTitle>
-            <CardDescription>
-              Automatische Zuweisung der Schueler zu Veranstaltungen per Losverfahren
-            </CardDescription>
-          </div>
-          <AllocationButton />
-        </CardHeader>
-        <CardContent>
-          {/* Stats summary if allocation exists */}
-          {stats && (
-            <div className="mb-6 p-4 bg-muted rounded-lg">
-              <h3 className="font-medium mb-2">Letzte Zuteilung</h3>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-sm">
-                <div>
-                  <span className="text-muted-foreground">Gesamt:</span>{' '}
-                  <span className="font-medium">{stats.total}</span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">1. Wahl:</span>{' '}
-                  <span className="font-medium text-blue-600">
-                    {stats.got1stChoice} ({formatPercent(stats.got1stChoice, stats.total)})
-                  </span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">2. Wahl:</span>{' '}
-                  <span className="font-medium text-green-600">
-                    {stats.got2ndChoice} ({formatPercent(stats.got2ndChoice, stats.total)})
-                  </span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">3. Wahl:</span>{' '}
-                  <span className="font-medium text-yellow-600">
-                    {stats.got3rdChoice} ({formatPercent(stats.got3rdChoice, stats.total)})
-                  </span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">Sonderliste:</span>{' '}
-                  <span className="font-medium text-red-600">
-                    {stats.sonderliste} ({formatPercent(stats.sonderliste, stats.total)})
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Student assignment list */}
-          <StudentAssignmentList students={assignedStudents} />
-
-          {/* Link to Sonderliste */}
-          <div className="mt-6 flex justify-end">
-            <Button variant="outline" asChild>
-              <Link href="/allocation/sonderliste">Sonderliste anzeigen</Link>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    <AllocationDashboard
+      assignedStudents={assignedStudents}
+      stats={stats}
+      events={eventsForModal}
+      sonderlisteCount={sonderlisteCount}
+    />
   )
 }

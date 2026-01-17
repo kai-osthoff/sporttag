@@ -7,20 +7,25 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-interface AssignedStudent {
+export interface AssignedStudent {
   id: number
   firstName: string
   lastName: string
   class: string
   assignedEventName: string | null
   assignmentType: 'auto' | 'manual' | null
+  priority1Id?: number
+  priority2Id?: number
+  priority3Id?: number
+  assignedEventId?: number | null
 }
 
 interface StudentAssignmentListProps {
   students: AssignedStudent[]
+  onStudentClick?: (student: AssignedStudent) => void
 }
 
-export function StudentAssignmentList({ students }: StudentAssignmentListProps) {
+export function StudentAssignmentList({ students, onStudentClick }: StudentAssignmentListProps) {
   if (students.length === 0) {
     return (
       <div className="text-center py-8 text-muted-foreground">
@@ -44,7 +49,12 @@ export function StudentAssignmentList({ students }: StudentAssignmentListProps) 
       </TableHeader>
       <TableBody>
         {students.map((student) => (
-          <TableRow key={student.id} data-student-id={student.id}>
+          <TableRow
+            key={student.id}
+            data-student-id={student.id}
+            className={onStudentClick ? 'cursor-pointer hover:bg-muted/50' : ''}
+            onClick={onStudentClick ? () => onStudentClick(student) : undefined}
+          >
             <TableCell className="font-medium">
               {student.lastName}, {student.firstName}
             </TableCell>
