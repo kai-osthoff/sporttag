@@ -2,25 +2,26 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md
+See: .planning/PROJECT.md (updated 2026-01-17)
 
 **Core value:** Faire, automatisierte Zuteilung von Schuelern zu Veranstaltungen per Losverfahren
-**Current focus:** All 4 phases complete -- Milestone v1.0 ready for audit
+**Current focus:** v1.0 MVP complete — ready for next milestone planning
 
 ## Current Position
 
-Phase: 4 of 4 (Output) -- COMPLETE
-Plan: 4 of 4 complete
-Status: Phase complete
-Last activity: 2026-01-17 -- Completed 04-04-PLAN.md (Output Dashboard Statistics)
+Phase: 4 of 4 complete (v1.0 MVP shipped)
+Plan: All complete
+Status: Milestone shipped
+Last activity: 2026-01-17 — v1.0 milestone complete
 
 Progress: [====================] 100% (12 of 12 plans across 4 phases)
 
 ## Performance Metrics
 
-**Velocity:**
+**v1.0 Velocity:**
 - Total plans completed: 12
-- Average duration: 2.5min
+- Average duration: 2.5min per plan
+- Total milestone time: ~30min execution + planning
 
 **By Phase:**
 
@@ -35,38 +36,11 @@ Progress: [====================] 100% (12 of 12 plans across 4 phases)
 
 ### Decisions
 
-- 2026-01-17: 4 phases (quick depth) - combined foundation with events to reduce phases from research-suggested 5
-- 2026-01-17: Used src/ directory structure (Next.js default)
-- 2026-01-17: Foreign keys enabled via pragma for referential integrity
-- 2026-01-17: Used useActionState hook for form state management
-- 2026-01-17: Used .bind(null, id) pattern for passing event ID to updateEvent action
-- 2026-01-17: Used fixed light theme for Sonner (avoids theme provider complexity)
-- 2026-01-17: Used z.coerce.number() for priority IDs (FormData returns strings)
-- 2026-01-17: Used SQL subqueries for priority name lookup (simpler than Drizzle relations)
-- 2026-01-17: Mulberry32 inline PRNG for seeded randomness (no external dependency)
-- 2026-01-17: Pure function allocation algorithm for testability and reproducibility
-- 2026-01-17: Map<studentId, eventId | null> for efficient assignment lookups
-- 2026-01-17: useTransition for allocation button (simpler than useActionState for non-form triggers)
-- 2026-01-17: Stats stored as JSON blob in allocations table for simplicity
-- 2026-01-17: Allow full event assignment with warning (per CONTEXT.md decision)
-- 2026-01-17: Priority badges with distinct colors (blue/green/yellow for 1./2./3. Wahl)
-- 2026-01-17: API route for Sonderliste data (client component needs server data)
-- 2026-01-17: Server/client composition pattern for allocation dashboard
-- 2026-01-17: Simple div-based percentage bars for stats visualization
-- 2026-01-17: Tailwind v4 @custom-variant print for print styles (cleaner than custom utilities)
-- 2026-01-17: UTF-8 BOM and semicolon CSV format for German Excel compatibility
-- 2026-01-17: A4 portrait with 1.5cm margins for print output
-- 2026-01-17: Group class selector by Klassenstufe for easier navigation
-- 2026-01-17: Server-side reason calculation for unassigned students
-- 2026-01-17: Sort by Vorname first, then Nachname (German name conventions)
-- 2026-01-17: Server/client composition for per-event lists (server fetches, client displays/exports)
-- 2026-01-17: Three-column participant table (Vorname, Nachname, Klasse) for SMV-Brett
-- 2026-01-17: Component reuse pattern (AllocationStats shared between /allocation and /output)
-- 2026-01-17: Stats card placed above list grid for visual hierarchy on output dashboard
+See PROJECT.md Key Decisions table for full list with outcomes.
 
 ### Pending Todos
 
-(None - capacity and modal todos addressed in Phase 3)
+(None — v1.0 complete)
 
 ### Blockers/Concerns
 
@@ -74,6 +48,6 @@ Progress: [====================] 100% (12 of 12 plans across 4 phases)
 
 ## Session Continuity
 
-Last session: 2026-01-17 13:15
-Stopped at: Completed 04-04-PLAN.md (Output Dashboard Statistics) - Phase 4 complete
-Resume file: None
+Last session: 2026-01-17 14:30
+Stopped at: v1.0 milestone completed and archived
+Resume file: None — start fresh with /gsd:new-milestone for v2.0
