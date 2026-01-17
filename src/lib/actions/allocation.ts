@@ -76,27 +76,25 @@ export async function runAllocation(): Promise<AllocationState> {
       preserveManual: true,
     })
 
-    // Persist all assignments atomically using transaction
-    await db.transaction(async (tx) => {
-      for (const [studentId, eventId] of result.assignments) {
-        await tx.update(students)
-          .set({
-            assignedEventId: eventId,
-            assignmentType: 'auto',
-            assignedAt: new Date(),
-          })
-          .where(eq(students.id, studentId))
-      }
-
-      // Update allocation record with completed status
-      await tx.update(allocations)
+    // Persist all assignments (better-sqlite3 is sync, so no transaction wrapper needed)
+    for (const [studentId, eventId] of result.assignments) {
+      await db.update(students)
         .set({
-          status: 'completed',
-          stats: JSON.stringify(result.stats),
-          completedAt: new Date(),
+          assignedEventId: eventId,
+          assignmentType: 'auto',
+          assignedAt: new Date(),
         })
-        .where(eq(allocations.id, allocationId))
-    })
+        .where(eq(students.id, studentId))
+    }
+
+    // Update allocation record with completed status
+    await db.update(allocations)
+      .set({
+        status: 'completed',
+        stats: JSON.stringify(result.stats),
+        completedAt: new Date(),
+      })
+      .where(eq(allocations.id, allocationId))
 
     revalidatePath('/allocation')
     return {
