@@ -32,7 +32,7 @@ export default function RootLayout({
         <MainNav />
         <main className="flex-1">{children}</main>
         <footer className="print:hidden border-t py-4 text-center text-sm text-muted-foreground">
-          Made with ❤️ in Oberstenfeld · By O7 Digital
+          Made with ❤️ in Oberstenfeld
         </footer>
         <Toaster />
       </body>
