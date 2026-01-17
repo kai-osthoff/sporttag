@@ -55,6 +55,7 @@ Recent decisions for v2.0:
 ### Pending Todos
 
 1. **Add Zuteilung reset button with confirmation** (ui) — 2026-01-17
+2. **Fix Shift+Enter focus when dropdown still open** (ui) — 2026-01-17
 
 ### Blockers/Concerns
 
