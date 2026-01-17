@@ -21,6 +21,9 @@ extraResources:
     to: "standalone/.next/static"
   - from: "public"
     to: "standalone/public"
+  # Include migration files for schema updates
+  - from: "src/db/migrations"
+    to: "standalone/src/db/migrations"
 
 # Native modules unpacked from ASAR for better-sqlite3
 asarUnpack:
