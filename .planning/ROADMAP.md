@@ -59,7 +59,7 @@ Plans:
 - [x] **Phase 5: Electron Shell** - Electron wrapper with Next.js standalone server
 - [x] **Phase 6: Database Migration** - SQLite in Application Support folder
 - [x] **Phase 7: Build Pipeline** - DMG generation and GitHub Releases
-- [ ] **Phase 8: Installation + README** - curl installer and user documentation
+- [x] **Phase 8: Installation + README** - curl installer and user documentation
 - [ ] **Phase 9: Update Notification** - In-app banner for new versions
 
 ## Phase Details
@@ -121,7 +121,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 08-01-PLAN.md — Bash installer script and German README documentation
+- [x] 08-01-PLAN.md — Bash installer script and German README documentation
 
 ### Phase 9: Update Notification
 **Goal**: Users know when a new version is available
@@ -150,7 +150,7 @@ Plans:
 | 5. Electron Shell | v2.0 | 2/2 | Complete | 2026-01-17 |
 | 6. Database Migration | v2.0 | 1/1 | Complete | 2026-01-17 |
 | 7. Build Pipeline | v2.0 | 2/2 | Complete | 2026-01-17 |
-| 8. Installation + README | v2.0 | 0/1 | Planned | - |
+| 8. Installation + README | v2.0 | 1/1 | Complete | 2026-01-17 |
 | 9. Update Notification | v2.0 | 0/? | Not started | - |
 
 ---

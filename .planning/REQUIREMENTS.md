@@ -23,8 +23,8 @@ Requirements for Desktop Distribution milestone. Each maps to roadmap phases.
 
 ### Installation
 
-- [ ] **INST-01**: Ein curl-Befehl im Terminal installiert die App vollstaendig
-- [ ] **INST-02**: Installation funktioniert ohne Gatekeeper-Warnungen (xattr Workaround)
+- [x] **INST-01**: Ein curl-Befehl im Terminal installiert die App vollstaendig
+- [x] **INST-02**: Installation funktioniert ohne Gatekeeper-Warnungen (xattr Workaround)
 - [x] **INST-03**: DMG-Datei steht auf GitHub Releases zum manuellen Download bereit
 - [x] **INST-04**: DMG zeigt visuelle Anleitung (Drag to Applications)
 - [x] **INST-05**: Installation funktioniert auf ARM (Apple Silicon) und Intel Macs
@@ -39,8 +39,8 @@ Requirements for Desktop Distribution milestone. Each maps to roadmap phases.
 ### Distribution
 
 - [x] **DIST-01**: GitHub Repository ist public
-- [ ] **DIST-02**: README enthaelt deutsche Installationsanleitung fuer nicht-technische User
-- [ ] **DIST-03**: README zeigt curl-Befehl zum Kopieren
+- [x] **DIST-02**: README enthaelt deutsche Installationsanleitung fuer nicht-technische User
+- [x] **DIST-03**: README zeigt curl-Befehl zum Kopieren
 - [x] **DIST-04**: GitHub Releases enthalten DMG fuer jede Version
 
 ## v2.1+ Requirements
@@ -92,8 +92,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DATA-01 | Phase 6 | Complete |
 | DATA-02 | Phase 6 | Complete |
 | DATA-03 | Phase 6 | Complete |
-| INST-01 | Phase 8 | Pending |
-| INST-02 | Phase 8 | Pending |
+| INST-01 | Phase 8 | Complete |
+| INST-02 | Phase 8 | Complete |
 | INST-03 | Phase 7 | Complete |
 | INST-04 | Phase 7 | Complete |
 | INST-05 | Phase 7 | Complete |
@@ -102,8 +102,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UPDT-03 | Phase 9 | Pending |
 | UPDT-04 | Phase 9 | Pending |
 | DIST-01 | Phase 7 | Complete |
-| DIST-02 | Phase 8 | Pending |
-| DIST-03 | Phase 8 | Pending |
+| DIST-02 | Phase 8 | Complete |
+| DIST-03 | Phase 8 | Complete |
 | DIST-04 | Phase 7 | Complete |
 
 **Coverage:**
@@ -113,4 +113,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-17*
-*Last updated: 2026-01-17 after Phase 7 completion*
+*Last updated: 2026-01-17 after Phase 8 completion*

@@ -5,7 +5,7 @@
 See: .planning/PROJECT.md (updated 2026-01-17)
 
 **Core value:** Native macOS App fuer faire, automatisierte Zuteilung — installierbar mit einem Terminal-Befehl
-**Current focus:** Phase 8: Installation Scripts
+**Current focus:** Phase 9: Update Notification
 
 ## Current Position
 
