@@ -9,18 +9,18 @@ See: .planning/PROJECT.md
 
 ## Current Position
 
-Phase: 4 of 4 (Output) -- IN PROGRESS
-Plan: 3 of 4 complete
-Status: In progress
-Last activity: 2026-01-17 -- Completed 04-02-PLAN.md (Per-Event Participant Lists)
+Phase: 4 of 4 (Output) -- COMPLETE
+Plan: 4 of 4 complete
+Status: Phase complete
+Last activity: 2026-01-17 -- Completed 04-04-PLAN.md (Output Dashboard Statistics)
 
-Progress: [===================–] 95% (11 of ~12 plans across 4 phases)
+Progress: [====================] 100% (12 of 12 plans across 4 phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
-- Average duration: 2.7min
+- Total plans completed: 12
+- Average duration: 2.5min
 
 **By Phase:**
 
@@ -29,7 +29,7 @@ Progress: [===================–] 95% (11 of ~12 plans across 4 phases)
 | 01-foundation-events | 2 | 9min | 4.5min |
 | 02-registration | 2 | 4min | 2min |
 | 03-allocation | 4 | 11min | 2.75min |
-| 04-output | 3 | 7.4min | 2.47min |
+| 04-output | 4 | 8.4min | 2.1min |
 
 ## Accumulated Context
 
@@ -61,6 +61,8 @@ Progress: [===================–] 95% (11 of ~12 plans across 4 phases)
 - 2026-01-17: Sort by Vorname first, then Nachname (German name conventions)
 - 2026-01-17: Server/client composition for per-event lists (server fetches, client displays/exports)
 - 2026-01-17: Three-column participant table (Vorname, Nachname, Klasse) for SMV-Brett
+- 2026-01-17: Component reuse pattern (AllocationStats shared between /allocation and /output)
+- 2026-01-17: Stats card placed above list grid for visual hierarchy on output dashboard
 
 ### Pending Todos
 
@@ -72,6 +74,6 @@ Progress: [===================–] 95% (11 of ~12 plans across 4 phases)
 
 ## Session Continuity
 
-Last session: 2026-01-17 13:03
-Stopped at: Completed 04-02-PLAN.md (Per-Event Participant Lists)
+Last session: 2026-01-17 13:15
+Stopped at: Completed 04-04-PLAN.md (Output Dashboard Statistics) - Phase 4 complete
 Resume file: None
