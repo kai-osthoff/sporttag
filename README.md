@@ -1,5 +1,7 @@
 # Sporttag
 
+[![Buy me a Pizza](https://img.shields.io/badge/Buy%20me%20a-Pizza%20🍕-FFDD00?style=flat-square)](https://buymeacoffee.com/kai.osthoff)
+
 Eine macOS-App fuer die faire Zuteilung von Schuelern zu Veranstaltungen am Sporttag.
 
 Die App ermoeglicht dir, Veranstaltungen anzulegen, Schueler mit drei Wunschprioritaeten anzumelden und diese dann per Losverfahren fair auf die Veranstaltungen zu verteilen. Perfekt fuer Schulen, die ihren Sporttag organisieren moechten.
@@ -96,6 +98,16 @@ Der Quellcode ist Open Source und auf GitHub verfuegbar:
 https://github.com/kai-osthoff/sporttag
 
 Feedback und Beitraege sind herzlich willkommen!
+
+## Lizenz
+
+Dieses Projekt steht unter der [GNU Affero General Public License v3.0](LICENSE).
+
+**Fuer Lehrkraefte und Schulen:** Kostenlos nutzbar, auch Anpassungen (Forks) sind erlaubt.
+
+**Fuer kommerzielle Softwareanbieter:** Wenn du Sporttag in ein kommerzielles Produkt einbinden moechtest, ohne deinen Quellcode unter AGPL zu veroeffentlichen, kontaktiere mich fuer eine kommerzielle Lizenz:
+
+📧 [kai.osthoff@gmail.com](mailto:kai.osthoff@gmail.com)
 
 ---
 
