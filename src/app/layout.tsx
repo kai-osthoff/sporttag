@@ -40,12 +40,10 @@ export default function RootLayout({
           <AppVersion />
           <span className="opacity-40">·</span>
           <a
-            href="https://buymeacoffee.com/kai.osthoff"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/unterstuetzen"
             className="hover:text-foreground transition-colors"
           >
-            🍕 Buy me a Pizza
+            🍕 Unterstuetze die Entwicklung
           </a>
         </footer>
         <Toaster />

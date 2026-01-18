@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import {
   Dialog,
   DialogContent,
@@ -11,14 +12,13 @@ import {
 import { Button } from '@/components/ui/button';
 import { useUsageTracker } from '@/hooks/use-usage-tracker';
 
-const BMC_URL = 'https://buymeacoffee.com/kai.osthoff';
-
 export function PizzaReminderDialog() {
+  const router = useRouter();
   const { shouldShowReminder, dismiss, snooze, markDonated } = useUsageTracker();
 
-  const handleBuyPizza = () => {
+  const handleLearnMore = () => {
     markDonated();
-    window.open(BMC_URL, '_blank', 'noopener,noreferrer');
+    router.push('/unterstuetzen');
   };
 
   return (
@@ -35,8 +35,8 @@ export function PizzaReminderDialog() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex-col gap-2 sm:flex-col">
-          <Button onClick={handleBuyPizza} className="w-full bg-[#FFDD00] text-black hover:bg-[#FFDD00]/90">
-            🍕 Buy me a Pizza
+          <Button onClick={handleLearnMore} className="w-full bg-[#FFDD00] text-black hover:bg-[#FFDD00]/90">
+            🍕 Mehr erfahren
           </Button>
           <div className="flex gap-2 w-full">
             <Button variant="outline" onClick={snooze} className="flex-1">
