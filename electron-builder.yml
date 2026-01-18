@@ -5,11 +5,17 @@ directories:
   output: dist
   buildResources: resources
 
-# Include compiled Electron files
+# Include compiled Electron files and their dependencies
 files:
   - "electron/**/*.js"
   - "!electron/**/*.ts"
   - "!**/*.map"
+  # Include node_modules needed by electron main process
+  - "node_modules/electron-window-state/**/*"
+  - "node_modules/jsonfile/**/*"
+  - "node_modules/mkdirp/**/*"
+  - "node_modules/minimist/**/*"
+  - "node_modules/graceful-fs/**/*"
   # Exclude native modules that cause universal binary conflicts
   # (Next.js bundles these but the standalone build in extraResources is self-contained)
   - "!**/node_modules/@img/**/*"
@@ -49,7 +55,7 @@ mac:
         - x64
 
 dmg:
-  volumeName: "Sporttag"
+  title: "Sporttag"
   backgroundColor: "#2d2d2d"
   window:
     width: 660
