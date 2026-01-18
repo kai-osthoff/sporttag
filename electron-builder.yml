@@ -49,6 +49,7 @@ mac:
         - x64
 
 dmg:
+  volumeName: "Sporttag"
   backgroundColor: "#2d2d2d"
   window:
     width: 660

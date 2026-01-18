@@ -9,9 +9,10 @@ MOUNT_POINT="/Volumes/Sporttag"
 
 # Aufraeumen bei Beendigung
 cleanup() {
-    if [ -d "$MOUNT_POINT" ]; then
-        /usr/bin/hdiutil detach "$MOUNT_POINT" -quiet 2>/dev/null || true
-    fi
+    # Alle Sporttag-Volumes entfernen
+    for vol in /Volumes/Sporttag*; do
+        [ -d "$vol" ] && /usr/bin/hdiutil detach "$vol" -quiet 2>/dev/null || true
+    done
     rm -f "$TEMP_DMG"
 }
 trap cleanup EXIT
@@ -62,8 +63,19 @@ echo ""
 # Installation
 echo "Installiere nach /Applications..."
 /usr/bin/hdiutil attach "${TEMP_DMG}" -nobrowse -quiet
-/usr/bin/rsync -a "${MOUNT_POINT}/${APP_NAME}.app" /Applications/
-/usr/bin/hdiutil detach "${MOUNT_POINT}" -quiet
+
+# Finde den tatsaechlichen Mount-Punkt (Volume-Name enthaelt Version)
+# Warte kurz bis Volume gemountet ist, dann finde es
+sleep 1
+ACTUAL_MOUNT=$(ls -d /Volumes/Sporttag* 2>/dev/null | head -1)
+
+if [ -z "$ACTUAL_MOUNT" ]; then
+    echo "Fehler: DMG konnte nicht gemountet werden" >&2
+    exit 1
+fi
+
+/usr/bin/rsync -a "${ACTUAL_MOUNT}/${APP_NAME}.app" /Applications/
+/usr/bin/hdiutil detach "${ACTUAL_MOUNT}" -quiet
 
 echo ""
 
