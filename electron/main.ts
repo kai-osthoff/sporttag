@@ -49,9 +49,10 @@ async function waitForServer(url: string, maxAttempts = 30): Promise<void> {
  */
 async function startNextServer(): Promise<void> {
   // Determine server.js path based on packaged vs development
+  // Note: Next.js standalone preserves full project path structure
   const serverPath = app.isPackaged
-    ? path.join(process.resourcesPath, 'standalone', 'server.js')
-    : path.join(__dirname, '..', '.next', 'standalone', 'server.js');
+    ? path.join(process.resourcesPath, 'standalone', 'githubrepos', 'sporttag', 'server.js')
+    : path.join(__dirname, '..', '.next', 'standalone', 'githubrepos', 'sporttag', 'server.js');
 
   // Determine database and migrations paths
   let dbPath: string;
@@ -64,7 +65,7 @@ async function startNextServer(): Promise<void> {
     console.log(`Created/verified userData directory: ${userData}`);
 
     dbPath = path.join(userData, 'sporttag.db');
-    migrationsPath = path.join(process.resourcesPath, 'standalone', 'src', 'db', 'migrations');
+    migrationsPath = path.join(process.resourcesPath, 'standalone', 'githubrepos', 'sporttag', 'src', 'db', 'migrations');
   } else {
     // Development: use project root
     dbPath = path.join(__dirname, '..', 'sporttag.db');

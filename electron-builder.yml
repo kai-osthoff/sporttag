@@ -17,15 +17,16 @@ files:
   - "!**/node_modules/@next/swc*/**/*"
 
 # Copy standalone build to resources
+# Note: Next.js preserves full project path structure (githubrepos/sporttag/)
 extraResources:
   - from: ".next/standalone"
     to: "standalone"
     filter:
       - "**/*"
   - from: ".next/static"
-    to: "standalone/.next/static"
+    to: "standalone/githubrepos/sporttag/.next/static"
   - from: "public"
-    to: "standalone/public"
+    to: "standalone/githubrepos/sporttag/public"
   # Include migration files for schema updates
   - from: "src/db/migrations"
     to: "standalone/src/db/migrations"

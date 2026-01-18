@@ -53,7 +53,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var electron_1 = require("electron");
 var child_process_1 = require("child_process");
 var path_1 = __importDefault(require("path"));
+var fs_1 = __importDefault(require("fs"));
 var electron_window_state_1 = __importDefault(require("electron-window-state"));
+// IPC handlers for update notification
+electron_1.ipcMain.handle('app:get-version', function () { return electron_1.app.getVersion(); });
+electron_1.ipcMain.handle('shell:open-external', function (_event, url) {
+    // Security: Only allow GitHub URLs for this app
+    if (url.startsWith('https://github.com/kai-osthoff/sporttag')) {
+        return electron_1.shell.openExternal(url);
+    }
+    throw new Error('Invalid URL - only GitHub sporttag URLs allowed');
+});
 // Fixed port for production (non-standard to avoid conflicts)
 var PORT = 3456;
 // Track processes
@@ -106,21 +116,31 @@ function waitForServer(url_1) {
  */
 function startNextServer() {
     return __awaiter(this, void 0, void 0, function () {
-        var serverPath, dbPath;
+        var serverPath, dbPath, migrationsPath, userData;
         var _a, _b;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
                     serverPath = electron_1.app.isPackaged
-                        ? path_1.default.join(process.resourcesPath, 'standalone', 'server.js')
-                        : path_1.default.join(__dirname, '..', '.next', 'standalone', 'server.js');
-                    dbPath = electron_1.app.isPackaged
-                        ? path_1.default.join(electron_1.app.getPath('userData'), 'sporttag.db')
-                        : path_1.default.join(__dirname, '..', 'sporttag.db');
+                        ? path_1.default.join(process.resourcesPath, 'standalone', 'githubrepos', 'sporttag', 'server.js')
+                        : path_1.default.join(__dirname, '..', '.next', 'standalone', 'githubrepos', 'sporttag', 'server.js');
+                    if (electron_1.app.isPackaged) {
+                        userData = electron_1.app.getPath('userData');
+                        fs_1.default.mkdirSync(userData, { recursive: true });
+                        console.log("Created/verified userData directory: ".concat(userData));
+                        dbPath = path_1.default.join(userData, 'sporttag.db');
+                        migrationsPath = path_1.default.join(process.resourcesPath, 'standalone', 'githubrepos', 'sporttag', 'src', 'db', 'migrations');
+                    }
+                    else {
+                        // Development: use project root
+                        dbPath = path_1.default.join(__dirname, '..', 'sporttag.db');
+                        migrationsPath = path_1.default.join(__dirname, '..', 'src', 'db', 'migrations');
+                    }
                     console.log("Starting Next.js server at ".concat(serverPath));
                     console.log("Database path: ".concat(dbPath));
+                    console.log("Migrations path: ".concat(migrationsPath));
                     nextServer = (0, child_process_1.spawn)('node', [serverPath], {
-                        env: __assign(__assign({}, process.env), { PORT: String(PORT), HOSTNAME: 'localhost', DB_PATH: dbPath }),
+                        env: __assign(__assign({}, process.env), { PORT: String(PORT), HOSTNAME: 'localhost', DB_PATH: dbPath, MIGRATIONS_PATH: migrationsPath }),
                         cwd: path_1.default.dirname(serverPath),
                         stdio: ['ignore', 'pipe', 'pipe'],
                     });

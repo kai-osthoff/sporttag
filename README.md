@@ -43,6 +43,30 @@ macOS blockiert Apps, die nicht von Apple signiert sind. Eine solche Signatur ko
 
 Das Script entfernt lediglich die Blockade fuer diese eine App. Dein Mac bleibt weiterhin geschuetzt. Du kannst den gesamten Quellcode hier auf GitHub einsehen.
 
+### Manuelle Installation (ohne Terminal)
+
+Falls du die App lieber manuell installieren moechtest:
+
+1. Lade die DMG-Datei herunter: [Sporttag herunterladen](https://github.com/kai-osthoff/sporttag/releases/latest)
+   - **Apple Silicon** (M1/M2/M3/M4): `Sporttag-X.X.X-arm64.dmg`
+   - **Intel Mac**: `Sporttag-X.X.X.dmg`
+
+2. Oeffne die DMG und ziehe Sporttag in den Applications-Ordner
+
+3. Beim ersten Start erscheint eine Sicherheitswarnung. So umgehst du sie:
+
+   **Option A (empfohlen):**
+   ```bash
+   xattr -r -d com.apple.quarantine /Applications/Sporttag.app 2>/dev/null
+   ```
+
+   **Option B (ohne Terminal):**
+   - Rechtsklick auf Sporttag.app in /Applications
+   - "Oeffnen" waehlen
+   - Im Dialog nochmals "Oeffnen" klicken
+
+4. Danach startet die App normal
+
 ## Features
 
 - **Veranstaltungen verwalten** - Lege Sportarten mit Kapazitaetsgrenzen an
